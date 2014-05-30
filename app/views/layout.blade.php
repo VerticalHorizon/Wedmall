@@ -36,19 +36,30 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Wedmall</a>
+          <a class="navbar-brand" href="{{{ URL::to('/') }}}">Wedmall</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li class="active"><a href="{{{ URL::to('/') }}}">Home</a></li>
+            <li><a href="{{{ URL::to('/user/login') }}}">Login</a></li>
+            <li><a href="{{{ URL::to('/user/create') }}}">Register</a></li>
           </ul>
+          <!-- /login form -->
+          <form  method="POST" action="{{{ Confide::checkAction('UserController@do_login') ?: URL::to('/user/login') }}}" accept-charset="UTF-8" class="navbar-form navbar-right" role="form">
+            <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
+            <div class="form-group">
+              <input type="text" placeholder="{{{ Lang::get('confide::confide.username_e_mail') }}}" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="{{{ Lang::get('confide::confide.password') }}}" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">{{{ Lang::get('confide::confide.login.submit') }}}</button>
+          </form>
         </div><!--/.nav-collapse -->
       </div>
     </div>
 
-    <div class="container" style="margin-top: 60px">
+    <div class="container" style="margin-top: 80px">
 
       @yield('content')
 
