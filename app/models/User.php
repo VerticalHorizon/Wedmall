@@ -8,6 +8,14 @@ use Zizaco\Entrust\HasRole;
 class User extends ConfideUser {
 	use HasRole;
 
+    /**
+     * Validation rules
+     */
+    public static $rules = array(
+    	'username' => 'unique:users,username',
+        'email' => 'required|email',
+        'password' => 'required|between:4,16|confirmed',
+    );
 	/**
 	 * The database table used by the model.
 	 *

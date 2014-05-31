@@ -40,7 +40,10 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="{{{ URL::to('/') }}}">Home</a></li>
+            <li><a href="{{{ URL::to('/products') }}}">Products</a></li>
+            <li><a href="{{{ URL::to('/ideas') }}}">Ideas</a></li>
+            <li><a href="{{{ URL::to('/articles') }}}">Articles</a></li>
+            <li><a href="{{{ URL::to('/services') }}}">Services</a></li>
             <li><a href="{{{ URL::to('/user/login') }}}">Login</a></li>
             <li><a href="{{{ URL::to('/user/create') }}}">Register</a></li>
           </ul>
