@@ -17,7 +17,8 @@ class Category extends Migration {
 			$table->increments('id');
 			$table->string('title');
 			$table->text('description');
-			$table->integer('parent_id');
+			$table->integer('parent_id')->unsigned();
+			$table->foreign('parent_id')->references('id')->on('categories');
 		});
 	}
 
@@ -28,10 +29,10 @@ class Category extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('categories', function(Blueprint $table)
-		{
-			Schema::drop('categories');
-		});
+        Schema::table('categories', function(Blueprint $table) {
+            $table->dropForeign('categories_parent_id_foreign');
+        });
+		Schema::drop('categories');
 	}
 
 }
