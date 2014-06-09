@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('index')
 
 @section('content')
 <form method="POST" action="{{{ (Confide::checkAction('UserController@do_reset_password'))    ?: URL::to('/user/reset') }}}" accept-charset="UTF-8">

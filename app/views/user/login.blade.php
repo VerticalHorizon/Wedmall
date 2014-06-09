@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('index')
 
 @section('content')
 <form method="POST" action="{{{ Confide::checkAction('UserController@do_login') ?: URL::to('/user/login') }}}" accept-charset="UTF-8">

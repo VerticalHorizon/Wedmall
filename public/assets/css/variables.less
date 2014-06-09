@@ -1,0 +1,108 @@
+@header-background: #353535;
+@white: #ffffff;
+@black: #000000;
+@grayBorder: #d4d4d4;
+@linkRad: #f25860;
+@black-text: #111111;
+
+@sprite: '../../images/sprite.png';
+@img: '../images/';
+
+.b-box {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.reg(@reg) {
+  font-family: 'PT Sans', sans-serif;
+  font-size: @reg;
+}
+.reg-bold (@reg-b) {
+  font-family: 'PT Sans', sans-serif;
+  font-size: @reg-b;
+  font-weight: 700;
+}
+.reg-boldI (@reg-bi) {
+  font-family: 'PT Sans', sans-serif;
+  font-size: @reg-bi;
+  font-weight: 700;
+  font-style: italic;
+}
+.reg-i (@reg-i) {
+  font-family: 'PT Sans', sans-serif;
+  font-size: @reg-i;
+  font-style: italic;
+}
+.reg-narrowB(@reg-nB) {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: @reg-nB;
+  font-weight: 700;
+}
+.reg-CaptB(@reg-CB) {
+  font-family: 'PT Sans Caption', sans-serif;
+  font-size: @reg-CB;
+  font-weight: 700;
+}
+.reg-Capt(@reg-C) {
+  font-family: 'PT Sans Caption', sans-serif;
+  font-size: @reg-C;
+  font-weight: normal;
+}
+.i-b {
+  display: inline-block;
+  vertical-align: top;
+}
+.content {
+  content: '';
+  .i-b;
+  width: 714px;
+}
+.transition_prev {
+  -webkit-transition: background 0.5s;
+  -moz-transition: background 0.5s;
+  -o-transition: background 0.5s;
+  transition: background 0.5s;
+}
+.transition_prev_out {
+  -webkit-transition: background 0.5s;
+  -moz-transition: background 0.5s;
+  -o-transition: background 0.5s;
+  transition: background 0.5s;
+}
+.transition_all_in {
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.transition_all_out {
+   -webkit-transition: all 0.5s;
+   -moz-transition: all 0.5s;
+   -o-transition: all 0.5s;
+   transition: all 0.5s;
+ }
+.transition_opacity {
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+
+.transform-rotate(@transform) {
+  -moz-transform: rotate(@transform); /* Для Firefox */
+  -ms-transform: rotate(@transform); /* Для IE */
+  -webkit-transform: rotate(@transform); /* Для Safari, Chrome, iOS */
+  -o-transform: rotate(@transform); /* Для Opera */
+  transform: rotate(@transform);
+}
+h5 {
+.reg-narrowB(16px);
+  color: #111111;
+  text-transform: uppercase;
+  line-height: 16px;
+  margin: 0;
+}
+h2 {
+  .reg-CaptB(22px);
+  margin: 25px 0 19px;
+}
