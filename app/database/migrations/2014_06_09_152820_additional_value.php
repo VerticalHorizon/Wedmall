@@ -23,8 +23,8 @@ class AdditionalValue extends Migration {
         });
 
         Schema::table('add_values', function(Blueprint $table) {
-            $table->foreign('param_id')->references('id')->on('add_params');
-            $table->foreign('product_id')->references('id')->on('products');
+            // $table->foreign('param_id')->references('id')->on('add_params');
+            // $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
@@ -36,8 +36,8 @@ class AdditionalValue extends Migration {
     public function down()
     {
         Schema::table('add_values', function(Blueprint $table) {
-            $table->dropForeign('add_values_product_id_foreign');
-            $table->dropForeign('add_values_param_id_foreign');
+            // $table->dropForeign('add_values_product_id_foreign');
+            // $table->dropForeign('add_values_param_id_foreign');
         });
 
         Schema::drop('add_values');

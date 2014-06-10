@@ -24,7 +24,7 @@ class Category extends Migration {
         });
 
         Schema::table('categories', function(Blueprint $table) {
-            $table->foreign('parent_id')->references('id')->on('categories');
+            // $table->foreign('parent_id')->references('id')->on('categories');
         });        
     }
 
@@ -36,7 +36,7 @@ class Category extends Migration {
     public function down()
     {
         Schema::table('categories', function(Blueprint $table) {
-            $table->dropForeign('categories_parent_id_foreign');
+            // $table->dropForeign('categories_parent_id_foreign');
         });
         Schema::drop('categories');
     }

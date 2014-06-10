@@ -23,7 +23,7 @@ class AdditionalParam extends Migration {
         });
 
         Schema::table('add_params', function(Blueprint $table) {
-            $table->foreign('category_id')->references('id')->on('categories');
+            // $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
@@ -35,7 +35,7 @@ class AdditionalParam extends Migration {
     public function down()
     {
         Schema::table('add_params', function(Blueprint $table) {
-            $table->dropForeign('add_params_category_id_foreign');
+            // $table->dropForeign('add_params_category_id_foreign');
         });
 
         Schema::drop('add_params');
