@@ -18,14 +18,20 @@ class Product extends Migration {
             $table->string('title');
             $table->text('description');
             $table->integer('color');
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('category_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories');
-
+            $table->text('photos');
+            
             $table->integer('pageviews')->unsigned();
             $table->integer('likes')->unsigned();
+            $table->integer('popularity')->unsigned();
 
+            $table->integer('purchase_terms_id')->unsigned();       // maybe enum
+            $table->integer('brand_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->integer('category_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('category_id')->references('id')->on('categories');
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

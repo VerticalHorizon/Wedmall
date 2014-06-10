@@ -121,7 +121,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Zizaco\Confide\ConfideServiceProvider',
 		'Zizaco\Entrust\EntrustServiceProvider',
-
+		'Frozennode\Administrator\AdministratorServiceProvider',
 	),
 
 	/*

@@ -16,6 +16,8 @@ class AdditionalParams extends Migration {
 		{
 			$table->increments('id');
 			$table->string('title');
+			$table->integer('popularity')->unsigned();
+			
 			$table->integer('category_id')->unsigned();
 			$table->foreign('category_id')->references('id')->on('categories');
 		});
