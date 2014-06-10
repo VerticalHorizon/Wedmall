@@ -7,9 +7,9 @@ class Category extends Eloquent {
         return $this->hasMany('Product');
     }
 
-    public function product()
+    public function parameters()
     {
-        return $this->hasMany('AdditionalParams');
+        return $this->hasMany('AdditionalParam');
     }
 
     public function parent()

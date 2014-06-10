@@ -19,7 +19,6 @@ class Product extends Migration {
             $table->text('description');
             $table->integer('color');
             $table->text('photos');
-            
             $table->integer('pageviews')->unsigned();
             $table->integer('likes')->unsigned();
             $table->integer('popularity')->unsigned();
@@ -28,11 +27,14 @@ class Product extends Migration {
             $table->integer('brand_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->integer('category_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('category_id')->references('id')->on('categories');
 
             $table->softDeletes();
             $table->timestamps();
+        });
+
+        Schema::table('products', function(Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

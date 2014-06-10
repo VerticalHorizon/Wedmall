@@ -21,8 +21,11 @@ class Category extends Migration {
             $table->integer('popularity')->unsigned();
 
             $table->integer('parent_id')->unsigned();
-            $table->foreign('parent_id')->references('id')->on('categories');
         });
+
+        Schema::table('categories', function(Blueprint $table) {
+            $table->foreign('parent_id')->references('id')->on('categories');
+        });        
     }
 
     /**

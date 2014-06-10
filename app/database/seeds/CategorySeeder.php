@@ -11,7 +11,6 @@ class CategorySeeder extends Seeder {
 	{
         DB::table('categories')->delete();
 
-        Category::create(array('title' => 'Category1', 'description' => '', 'parent_id' => 0));
+        Category::create(array('title' => 'For Austronauts', 'description' => '', 'parent_id' => 0));
 	}
-
 }
