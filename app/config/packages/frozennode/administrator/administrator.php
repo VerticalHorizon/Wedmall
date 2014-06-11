@@ -51,7 +51,7 @@ return array(
 	 * 		'Analytics' => array('E-Commerce' => 'page.ecommerce.analytics'),
 	 *	)
 	 */
-	'menu' => array(),
+	'menu' => array('products'),
 
 	/**
 	 * The permission option is the highest-level authentication check that lets you define a closure that should return true if the current user
@@ -61,7 +61,7 @@ return array(
 	 */
 	'permission'=> function()
 	{
-		return Auth::check();
+		return true;
 	},
 
 	/**
@@ -84,7 +84,7 @@ return array(
 	 *
 	 * @type string
 	 */
-	'home_page' => '',
+	'home_page' => 'products',
 
 	/**
 	 * The route to which the user will be taken when they click the "back to site" button

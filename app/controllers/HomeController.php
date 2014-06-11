@@ -17,8 +17,8 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
-		$products = new Product;
-		dd($products);
+		// $products = new Product;
+		// dd($products);
 
 		return View::make('home');
 	}
