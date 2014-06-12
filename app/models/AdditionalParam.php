@@ -9,6 +9,8 @@ class AdditionalParam extends Eloquent {
 	 */
 	protected $table = 'add_params';
 
+	//protected $fillable = array('alias', 'title', 'category_id');
+
     public function category()
     {
         return $this->belongsTo('Category');
