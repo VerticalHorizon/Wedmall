@@ -18,11 +18,11 @@ class HomeController extends BaseController {
 	public function showWelcome()
 	{
 		$products = Product::with(['category.parameters.values' => function($query)
-		{
-		    //$query->where('product.id', '=', 'add_values.product_id');
+		{	
+			dd($query);
+		    $query->where('products.id', '=', 'add_values.product_id');
 
 		}])->get()->toArray();
-
 		dd($products);
 
 		return View::make('home');

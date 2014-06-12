@@ -21,4 +21,12 @@ class AdditionalParam extends Eloquent {
         return $this->hasMany('AdditionalValue', 'param_id');
     }
 
+    public function scopeKeyvalue($query)
+    {
+		return $query->join('add_values', function($join)
+		{
+			$join->on('add_values.param_id', '=', 'add_params.id');
+		})
+		->get();
+    }
 }
