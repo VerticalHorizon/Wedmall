@@ -32,8 +32,8 @@ return [
 	],
 
 	'edit_fields' => [
-		'name' => [
-			'title' => 'Name',
+		'title' => [
+			'title' => 'Title',
 			'type' => 'text',
 		],
 	],

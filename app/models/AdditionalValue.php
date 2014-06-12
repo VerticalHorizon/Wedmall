@@ -2,7 +2,14 @@
 
 class AdditionalValue extends Eloquent {
 
-    public function category()
+	/**
+	 * The database table used by the model.
+	 *
+	 * @var string
+	 */
+	protected $table = 'add_values';
+
+    public function product()
     {
         return $this->belongsTo('Product');
     }
