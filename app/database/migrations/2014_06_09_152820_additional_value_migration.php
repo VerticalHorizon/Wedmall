@@ -16,7 +16,7 @@ class AdditionalValueMigration extends Migration {
         Schema::create('add_values', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('value');
+            $table->string('param_value');
 
             $table->integer('product_id')->unsigned();
             $table->integer('param_id')->unsigned();

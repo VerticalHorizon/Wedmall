@@ -1,6 +1,7 @@
 @extends('index')
 
 @section('content')
+{{ $products }}
         <div class="search all">
             <div class="form">
                 <form action="#">

@@ -11,21 +11,24 @@ class HomeController extends BaseController {
 	| based routes. That's great! Here is an example controller method to
 	| get you started. To route to this controller, just add the route:
 	|
-	|	Route::get('/', 'HomeController@showWelcome');
+	|	Route::get('/', 'HomeController@welcome');
 	|
 	*/
 
-	public function showWelcome()
+	public function Welcome()
 	{
-		$products = Product::with(['category.parameters.values' => function($query)
-		{	
-			dd($query);
-		    $query->where('products.id', '=', 'add_values.product_id');
+/*		$products = Product::with('category.parameters.paramvalues')
+		->get()
+		->filter(function($parameter) {
+			dd($parameter->category->parameters);
+		})
+		->toArray();	// impossible to do diamond select with Eloquent*/
+		
+		$products = Product::withParameters()
+		->get()
+		->toArray();
 
-		}])->get()->toArray();
-		dd($products);
-
-		return View::make('home');
+		return View::make('home')->with('products', '<pre>'.print_r($products, true).'</pre>');
 	}
 
 }

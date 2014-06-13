@@ -16,17 +16,17 @@ class AdditionalParam extends Eloquent {
         return $this->belongsTo('Category');
     }
 
-    public function values()
+    public function paramValues()
     {
         return $this->hasMany('AdditionalValue', 'param_id');
     }
 
-    public function scopeKeyvalue($query)
-    {
-		return $query->join('add_values', function($join)
-		{
-			$join->on('add_values.param_id', '=', 'add_params.id');
-		})
-		->get();
-    }
+  //   public function scopeKeyvalue($query)
+  //   {
+		// return $query->join('add_values', function($join)
+		// {
+		// 	$join->on('add_values.param_id', '=', 'add_params.id');
+		// })
+		// ->get();
+  //   }
 }

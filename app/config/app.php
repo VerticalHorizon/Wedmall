@@ -123,6 +123,8 @@ return array(
 		'Zizaco\Confide\ConfideServiceProvider',
 		'Zizaco\Entrust\EntrustServiceProvider',
 		'Frozennode\Administrator\AdministratorServiceProvider',
+
+		'Barryvdh\Debugbar\ServiceProvider',
 	),
 
 	/*

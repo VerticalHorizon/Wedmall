@@ -16,6 +16,6 @@ class AdditionalValue extends Eloquent {
 
     public function parameter()
     {
-        return $this->belongsTo('AdditionalParam');
+        return $this->belongsTo('AdditionalParam', 'param_id');
     }
 }

@@ -9,7 +9,9 @@
 		"laravelbook/ardent": "dev-master",
 		"zizaco/confide": "dev-master",
 		"zizaco/entrust": "dev-master",
-		"frozennode/administrator": "dev-master"
+		"frozennode/administrator": "dev-master",
+		"barryvdh/laravel-debugbar": "1.*@dev",
+		"maximebf/debugbar": "1.*@dev"
 	},
 	"autoload": {
 		"classmap": [
@@ -33,7 +35,7 @@
 		"post-update-cmd": [
 			"php artisan clear-compiled",
 			"php artisan optimize",
-			"php artisan asset:publish frozennode/administrator"
+			"php artisan asset:publish frozennode/administrator",
 		],
 		"post-create-project-cmd": [
 			"php artisan key:generate"
