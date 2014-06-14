@@ -21,6 +21,11 @@ class AdditionalParam extends Eloquent {
         return $this->hasMany('AdditionalValue', 'param_id');
     }
 
+    public function products()
+    {
+        return $this->belongsToMany('Product', 'add_values', 'param_id', 'product_id')->withPivot('param_value');
+    }
+
   //   public function scopeKeyvalue($query)
   //   {
 		// return $query->join('add_values', function($join)

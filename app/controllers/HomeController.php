@@ -25,8 +25,12 @@ class HomeController extends BaseController {
 		->toArray();	// impossible to do diamond select with Eloquent*/
 		
 		$products = Product::withParameters()
-		->get()
-		->toArray();
+		->get();
+		//->toArray();
+
+		// $products = Product::withParameters()
+		// ->get()
+		// ->toArray();
 
 		return View::make('home')->with('products', '<pre>'.print_r($products, true).'</pre>');
 	}

@@ -26,8 +26,20 @@ return [
 	 * Columns
 	 */
 	'columns' => [
-		'name' => [
-			'title' => 'Name'
+		'title' => [
+			'title' => 'Title'
+		],
+		'description' => [
+			'title' => 'Description'
+		],
+		'color' => [
+			'title' => 'Color'
+		],
+		'popularity' => [
+			'title' => 'Popularity'
+		],
+		'category' => [
+			'title' => 'Category'
 		],
 	],
 
@@ -36,5 +48,14 @@ return [
 			'title' => 'Title',
 			'type' => 'text',
 		],
+		'description' => [
+			'title' => 'Description',
+			'type' => 'text',
+		],
+		'category' => [
+			'title' => 'Category',
+			'type' => 'relationship',
+		],
+
 	],
 ];
