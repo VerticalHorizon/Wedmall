@@ -40,11 +40,11 @@ return [
 		'popularity' => [
 			'title'		=> 'Popularity'
 		],
-		'parameters' => [
+/*		'parameters' => [
 			'title'			=> 'Additional Parameters',
 			'relationship'	=> 'AdditionalParam',
 			'select'		=> '(:table).title',
-		],
+		],*/
 /*		'first_parent' => [
 			'title'			=> 'Parent',
 			'relationship'	=> 'Category',
@@ -63,11 +63,16 @@ return [
 			'limit'			=> 300,
 			'height'		=> 130,
 		],
+		'parameters' => [
+			'title'			=> 'Add. Parameters',
+			'type'			=> 'relationship',
+			'name_field'	=> 'title',
+			'sort_field' 	=> 'alias',
+		],
 		'parent' => [
 			'title'			=> 'Parent',
 			'type'			=> 'relationship',
 			'name_field'	=> 'title',
-			'autocomplete'	=> true,
 		],
 
 	],

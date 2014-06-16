@@ -22,11 +22,6 @@ class Category extends Eloquent {
         return $this->hasMany('Category', 'parent_id');
     }
 
-    public function closest_parent()
-    {
-        return $this->belongsTo('Category', 'parent_id')->first();
-    }
-
 /*    public function name()
     {
         return $this->title;
