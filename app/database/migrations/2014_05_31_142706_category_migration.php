@@ -20,7 +20,10 @@ class CategoryMigration extends Migration {
             $table->text('photos');
             $table->integer('popularity')->unsigned();
 
-            $table->integer('parent_id')->unsigned();
+            $table->integer('parent_id')->unsigned()->nullable();
+
+            $table->timestamps();
+
         });
 
         // Schema::table('categories', function(Blueprint $table) {

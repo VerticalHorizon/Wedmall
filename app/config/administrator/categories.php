@@ -6,21 +6,21 @@ return [
 	 *
 	 * @type string
 	 */
-	'title'		=> 'Products',
+	'title'		=> 'Categories',
 
 	/**
 	 * The singular name of model
 	 *
 	 * @type string
 	 */
-	'single'	=> 'product',
+	'single'	=> 'category',
 
 	/**
 	 * The class name of the Eloquent model that this config represents
 	 *
 	 * @type string
 	 */
-	'model'	=> 'Product',
+	'model'	=> 'Category',
 
 	'form_width' => 500,
 
@@ -34,28 +34,28 @@ return [
 		'description' => [
 			'title'		=> 'Description'
 		],
-		'color' => [
-			'title'		=> 'Color'
+		'photos' => [
+			'title'		=> 'Photos'
 		],
 		'popularity' => [
 			'title'		=> 'Popularity'
 		],
-		'category' => [
-			'title'			=> 'Category',
-			'relationship'	=> 'Category',
+		'parameters' => [
+			'title'			=> 'Additional Parameters',
+			'relationship'	=> 'AdditionalParam',
 			'select'		=> '(:table).title',
 		],
+/*		'first_parent' => [
+			'title'			=> 'Parent',
+			'relationship'	=> 'Category',
+			'select'		=> '(:table).title',
+		],*/
 	],
 
 	'edit_fields' => [
-		'id'	=> [
-			'title'			=> 'ID',
-			'type'			=> 'key',
-		],
 		'title' => [
 			'title'			=> 'Title',
 			'type'			=> 'text',
-			'limit'			=> 40,
 		],
 		'description' => [
 			'title'			=> 'Description',
@@ -63,8 +63,8 @@ return [
 			'limit'			=> 300,
 			'height'		=> 130,
 		],
-		'category' => [
-			'title'			=> 'Category',
+		'parent' => [
+			'title'			=> 'Parent',
 			'type'			=> 'relationship',
 			'name_field'	=> 'title',
 			'autocomplete'	=> true,
