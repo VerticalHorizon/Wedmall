@@ -51,7 +51,7 @@ return array(
 	 * 		'Analytics' => array('E-Commerce' => 'page.ecommerce.analytics'),
 	 *	)
 	 */
-	'menu' => array('products', 'categories'),
+	'menu' => array('slider', 'products', 'categories'),
 
 	/**
 	 * The permission option is the highest-level authentication check that lets you define a closure that should return true if the current user
@@ -84,7 +84,7 @@ return array(
 	 *
 	 * @type string
 	 */
-	'home_page' => 'products',
+	'home_page' => 'slider',
 
 	/**
 	 * The route to which the user will be taken when they click the "back to site" button
@@ -127,6 +127,6 @@ return array(
 	 *
 	 * @type array
 	 */
-	'locales' => array(),
+	'locales' => array('en', 'ru'),
 
 );

@@ -28,11 +28,14 @@ class HomeController extends BaseController {
 		->get()
 		->toArray();
 
+		$slides = Slider::all();
+
 		// $products = Product::withParameters()
 		// ->get()
 		// ->toArray();
 
-		return View::make('home.index')->with('products', '<pre>'.print_r($products, true).'</pre>');
+		//return View::make('home.index')->with('products', '<pre>'.print_r($products, true).'</pre>');
+		return View::make('home.index')->with('products', $products = [])->with('slides', $slides);
 	}
 
 }

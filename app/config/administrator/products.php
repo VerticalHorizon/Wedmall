@@ -67,7 +67,6 @@ return [
 			'title'			=> 'Category',
 			'type'			=> 'relationship',
 			'name_field'	=> 'title',
-			'autocomplete'	=> true,
 		],
 
 	],

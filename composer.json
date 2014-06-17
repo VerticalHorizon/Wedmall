@@ -5,13 +5,18 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.1.*",
-		"way/generators": "dev-master",
 		"laravelbook/ardent": "dev-master",
 		"zizaco/confide": "dev-master",
 		"zizaco/entrust": "dev-master",
-		"frozennode/administrator": "dev-master",
+		"cartalyst/sentry": "2.1.*",
+		"frozennode/administrator": "dev-master"
+	},
+	"require-dev": {
+		"way/generators": "dev-master",
 		"barryvdh/laravel-debugbar": "1.*@dev",
-		"maximebf/debugbar": "1.*@dev"
+		"maximebf/debugbar": "1.*@dev",
+		"mockery/mockery": "~0.9",
+		"phpunit/phpunit": "~4.0"
 	},
 	"autoload": {
 		"classmap": [

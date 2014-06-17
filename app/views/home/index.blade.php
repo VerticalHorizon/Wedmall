@@ -1,41 +1,13 @@
 @extends('index')
 
 @section('content')
-{{ $products }}
+
     @include('home.search', array('key' => 'value'))
     @include('home.leftmenu', array('key' => 'value'))
         <div class="content">
-            <div class="slider">
-                <ul class="slides">
-                    <li class="slide">
-                        <img src="{{ asset('images/other/slider.png') }}" alt="">
-                        <div>
-                            <p>
-                                Новое портфолио наших фотографов
-                            </p>
-                            <a href="#">Подробнее</a>
-                        </div>
-                    </li>
-                    <li class="slide">
-                        <img src="{{ asset('images/other/slider.png') }}" alt="">
-                        <div>
-                            <p>
-                                Новое портфолио наших фотографов
-                            </p>
-                            <a href="#">Подробнее</a>
-                        </div>
-                    </li>
-                    <li class="slide">
-                        <img src="{{ asset('images/other/slider.png') }}" alt="">
-                        <div>
-                            <p>
-                                Новое портфолио наших фотографов
-                            </p>
-                            <a href="#">Подробнее</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+
+            @include('home.slider', array('slides' => $slides))
+
             <h2>
                 Популярные разделы
             </h2>
