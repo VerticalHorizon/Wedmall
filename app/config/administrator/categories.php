@@ -45,11 +45,11 @@ return [
 			'relationship'	=> 'AdditionalParam',
 			'select'		=> '(:table).title',
 		],*/
-/*		'first_parent' => [
+		'parentname' => [
 			'title'			=> 'Parent',
-			'relationship'	=> 'Category',
-			'select'		=> '(:table).title',
-		],*/
+/*			'relationship'	=> 'Category',
+			'select'		=> '(:table).title',*/
+		],
 	],
 
 	'edit_fields' => [

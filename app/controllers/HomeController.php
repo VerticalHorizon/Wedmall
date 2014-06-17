@@ -24,9 +24,7 @@ class HomeController extends BaseController {
 		})
 		->toArray();	// impossible to do diamond select with Eloquent*/
 		
-		$products = Product::withParameters()
-		->get()
-		->toArray();
+		//$products = Product::withParameters()->get()->toArray();
 
 		$slides = Slider::all();
 
