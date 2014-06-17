@@ -13,7 +13,7 @@ return array(
     |
     */
 
-    'debug' => true,
+    'debug' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ return array(
     |
     */
 
-    'url' => 'http://localhost',
+    'url' => 'http://wedmall.ru',
 
     /*
     |--------------------------------------------------------------------------
@@ -122,13 +122,8 @@ return array(
 
         'Zizaco\Confide\ConfideServiceProvider',
         'Zizaco\Entrust\EntrustServiceProvider',
-        'Cartalyst\Sentry\SentryServiceProvider',
+        
         'Frozennode\Administrator\AdministratorServiceProvider',
-
-        'Barryvdh\Debugbar\ServiceProvider',
-
-        'Way\Generators\GeneratorsServiceProvider',
-
     ),
 
     /*

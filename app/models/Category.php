@@ -17,29 +17,28 @@ class Category extends Eloquent {
         return $this->belongsTo('Category', 'parent_id');
     }
 
-    public function scopeParentName()
-    {
-        $name = DB::table('categories')
-        ->whereExists(function($query)
-        {
-            $query->select('p_cat.title')
-                  ->from('categories')
-                  ->join('categories as p_cat', 'p_cat.id', '=', 'categories.id');
-        })
-        ->get();
-        dd($name);
-        return $name;
-    }
-
-
     public function children()
     {
         return $this->hasMany('Category', 'parent_id');
     }
 
-/*    public function name()
-    {
-        return $this->title;
-    }*/
 
+    /**
+     * For frozennode/administrator
+     */
+    public function getParentTitleAttribute()
+    {
+        return $this->getAttribute('parent') === NULL ? NULL : $this->getAttribute('parent')->getAttribute('title');
+    }
+    public function getAttrTitlesAttribute()
+    {
+        $titles = NULL;
+        
+        if($this->getAttribute('parameters') !== NULL)
+            $this->getAttribute('parameters')->each(function($param) use (&$titles) {
+                $titles .= $param->title.'; ';
+            });
+        
+        return trim($titles);
+    }
 }

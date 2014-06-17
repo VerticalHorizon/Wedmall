@@ -40,15 +40,15 @@ return [
 		'popularity' => [
 			'title'		=> 'Popularity'
 		],
-/*		'parameters' => [
+		'attr_titles' => [
 			'title'			=> 'Additional Parameters',
-			'relationship'	=> 'AdditionalParam',
-			'select'		=> '(:table).title',
-		],*/
-		'parentname' => [
+			// 'relationship'	=> 'AdditionalParam',
+			// 'select'		=> '(:table).title',
+		],
+		'parent_title' => [
 			'title'			=> 'Parent',
-/*			'relationship'	=> 'Category',
-			'select'		=> '(:table).title',*/
+			// 'relationship'	=> 'Category',
+			// 'select'		=> '(:table).title',
 		],
 	],
 

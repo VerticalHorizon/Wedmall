@@ -26,6 +26,7 @@ class HomeController extends BaseController {
 		
 		//$products = Product::withParameters()->get()->toArray();
 
+		$categories = Category::with('children')->where('parent_id', NULL)->get();
 		$slides = Slider::all();
 
 		// $products = Product::withParameters()
@@ -33,7 +34,7 @@ class HomeController extends BaseController {
 		// ->toArray();
 
 		//return View::make('home.index')->with('products', '<pre>'.print_r($products, true).'</pre>');
-		return View::make('home.index')->with('products', $products = [])->with('slides', $slides);
+		return View::make('home.index')->with('categories', $categories)->with('slides', $slides);
 	}
 
 }
