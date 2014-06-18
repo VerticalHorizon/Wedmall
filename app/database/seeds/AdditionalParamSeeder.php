@@ -17,8 +17,6 @@ class AdditionalParamSeeder extends Seeder {
         	['alias' => 'arm_size', 'title' => 'Arm Size', 'category_id' => 1]
         	];
 
-        foreach ($additionalParams as $additionalParam) {
-            DB::table('add_params')->insert($additionalParam);
-        }
+        DB::table('add_params')->insert($additionalParams);
 	}
 }

@@ -66,7 +66,7 @@ return array(
 	 */
 	'permission'=> function()
 	{
-		return true;
+		return Entrust::hasRole('admin');
 	},
 
 	/**
@@ -110,7 +110,7 @@ return array(
 	 *
 	 * @type string
 	 */
-	'logout_path' => false,
+	'logout_path' => URL::route('logout'),
 
 	/**
 	 * This is the key of the return path that is sent with the redirection to your login_action. Session::get('redirect') will hold the return URL.

@@ -1,20 +1,17 @@
 <?php
 
-// Composer: "fzaninotto/faker": "v1.3.0"
-
 class SliderTableSeeder extends Seeder {
 
-	public function run()
-	{
-		$slides = [
-            ['description' => ' la la la', 'photo' =>  'photo1', 'link' => 'http://google.by'],
-            ['description' => 'ha ha ha ha', 'photo' =>  'photo2', 'link' => 'http://tut.by/'],
-		];
+    public function run()
+    {
+        DB::table('slider')->delete();
 
-        foreach ($slides as $slide) {
-            DB::table('slider')->insert($slide);
-        }
+        $slides = [
+            ['description' => ' la la la', 'photo' =>  'euTh4Sp0h1UAedzX09FcoHySkwKk1wmY.jpg', 'link' => 'http://google.by'],
+            ['description' => 'ha ha ha ha', 'photo' =>  'p0YSBcVXnFCUTwVCeFjFyAUKmF4Kva9M.jpg', 'link' => 'http://tut.by/'],
+        ];
 
-	}
+        DB::table('slider')->insert($slides);
+    }
 
 }

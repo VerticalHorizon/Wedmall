@@ -35,7 +35,7 @@ return [
 			'title'		=> 'Alias'
 		],
 		'category' => [
-			'title'			=> 'Parent',
+			'title'			=> 'Category',
 			'relationship'	=> 'Category',
 			'select'		=> '(:table).title',
 		],

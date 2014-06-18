@@ -192,8 +192,6 @@ return array(
 
         'Confide'         => 'Zizaco\Confide\ConfideFacade',
         'Entrust'         => 'Zizaco\Entrust\EntrustFacade',
-
-        'Sentry'          => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
     ),
 
 );

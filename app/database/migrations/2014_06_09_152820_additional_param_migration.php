@@ -18,6 +18,7 @@ class AdditionalParamMigration extends Migration {
             $table->increments('id');
             $table->string('alias');
             $table->string('title');
+            $table->text('default');
 
             $table->integer('category_id')->unsigned();
         });

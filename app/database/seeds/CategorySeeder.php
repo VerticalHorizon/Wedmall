@@ -12,11 +12,10 @@ class CategorySeeder extends Seeder {
         DB::table('categories')->delete();
 
         $categories = [
-            ['title' => 'For Austronauts', 'description' => '']
+                ['title' => 'For Austronauts', 'description' => 'only for Austronauts',  'parent_id' => NULL],
+                ['title' => 'For Aliens', 'description' => 'only for Aliens', 'parent_id' => 1],
             ];
 
-        foreach ($categories as $category) {
-            DB::table('categories')->insert($category);
-        }
+        DB::table('categories')->insert($categories);
     }
 }

@@ -18,9 +18,7 @@ class AdditionalValueSeeder extends Seeder {
             ['param_value' => 'Nothing else matters', 'product_id' => 2, 'param_id' => 1]
             ];
 
-        foreach ($additionalValues as $additionalValue) {
-            DB::table('add_values')->insert($additionalValue);
-        }
+        DB::table('add_values')->insert($additionalValues);
     }
 
 }

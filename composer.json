@@ -8,7 +8,6 @@
 		"laravelbook/ardent": "dev-master",
 		"zizaco/confide": "dev-master",
 		"zizaco/entrust": "dev-master",
-		"cartalyst/sentry": "2.1.*",
 		"frozennode/administrator": "dev-master"
 	},
 	"require-dev": {

@@ -18,9 +18,7 @@ class ProductSeeder extends Seeder {
                 'pageviews' => 10, 'likes' => 10, 'purchase_terms_id' => 0, 'brand_id' => 0]
             ];
 
-        foreach ($products as $product) {
-            DB::table('products')->insert($product);
-        }
+        DB::table('products')->insert($products);
     }
 
 }
