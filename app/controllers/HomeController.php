@@ -33,8 +33,19 @@ class HomeController extends BaseController {
 		// ->get()
 		// ->toArray();
 
-		//return View::make('home.index')->with('products', '<pre>'.print_r($products, true).'</pre>');
 		return View::make('home.index')->with('categories', $categories)->with('slides', $slides);
+	}
+
+	public function byCategory($alias)
+	{
+		//$category = Category::with('product')->where('alias', $alias)->get()->toArray();
+		$category = Product::with(array('category' => function($query) use ($alias)
+		{
+		    $query->where('alias', $alias);
+
+		}))->get()->toArray();
+		dd($category);
+		return View::make('home.index')->with('category', $category);
 	}
 
 }

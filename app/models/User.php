@@ -91,17 +91,17 @@ class User extends ConfideUser {
 		return $this->email;
 	}
 
-    /**
-     * Save roles inputted from multiselect
-     * @param $inputRoles
-     */
-    public function saveRoles($inputRoles)
+
+    public function getRolesNamesAttribute()
     {
-        if(! empty($inputRoles)) {
-            $this->roles()->sync($inputRoles);
-        } else {
-            $this->roles()->detach();
-        }
+        $names = NULL;
+        
+        if($this->getAttribute('roles') !== NULL)
+            $this->getAttribute('roles')->each(function($param) use (&$names) {
+                $names .= $param->name.'; ';
+            });
+        
+        return trim($names);
     }
 
 }

@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'HomeController@welcome');
+Route::get('category/{alias}', 'HomeController@byCategory');
 
 // Confide routes
 Route::get( 'user/create',                 'UserController@create');
@@ -23,7 +24,7 @@ Route::get( 'user/forgot_password',        'UserController@forgot_password');
 Route::post('user/forgot_password',        'UserController@do_forgot_password');
 Route::get( 'user/reset_password/{token}', 'UserController@reset_password');
 Route::post('user/reset_password',         'UserController@do_reset_password');
-Route::get('user/logout', array(
+Route::get('user/logout', array(		// relocated to Administrator config
 	'as' => 'logout',
 	'uses' => 'UserController@logout'
 ));

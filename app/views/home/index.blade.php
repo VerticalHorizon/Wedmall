@@ -6,7 +6,9 @@
     @include('home.leftmenu', array('key' => 'value'))
         <div class="content">
 
-            @include('home.slider', array('slides' => $slides))
+            @if (isset($slides) && is_object($slides))
+                @include('home.slider', array('slides' => $slides))
+            @endif
 
             <h2>
                 Популярные разделы
