@@ -3,7 +3,10 @@
 @section('content')
 
     @include('home.search', array('key' => 'value'))
-    @include('home.leftmenu', array('key' => 'value'))
+
+        <div class="sidebar left">
+            @include('home.leftmenu', array('key' => 'value'))
+        </div>
         <div class="content">
 
             @if (isset($slides) && is_object($slides))

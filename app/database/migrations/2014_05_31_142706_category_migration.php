@@ -18,7 +18,7 @@ class CategoryMigration extends Migration {
             $table->string('title');
             $table->string('alias');
             $table->text('description');
-            $table->text('photos');
+            $table->text('photos');     // photos in JSON
             $table->integer('popularity')->unsigned();
 
             $table->integer('parent_id')->unsigned()->nullable();
@@ -28,7 +28,7 @@ class CategoryMigration extends Migration {
         });
 
         // Schema::table('categories', function(Blueprint $table) {
-        //     $table->foreign('parent_id')->references('id')->on('categories');
+        //     $table->foreign('parent_id')->references('id')->on('categories')->onDelete('cascade');
         // });
     }
 

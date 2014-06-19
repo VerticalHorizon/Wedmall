@@ -8,6 +8,9 @@ header {
       list-style-type: none;
     }
   }
+  .open_menu {
+    display: none;
+  }
   > div {
     width: 959px;
     margin: 0 auto;
@@ -70,7 +73,8 @@ header {
               background: url('@{sprite}') -12px 0 no-repeat;
               width: 21px;
               height: 11px;
-              .content;
+              content: '';
+              display: block;
               position: absolute;
               top: -11px;
               left: 31px;

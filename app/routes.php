@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'HomeController@welcome');
-Route::get('category/{alias}', 'HomeController@byCategory');
+Route::get('category/{alias}', 'HomeController@getByCategory');
 
 // Confide routes
 Route::get( 'user/create',                 'UserController@create');

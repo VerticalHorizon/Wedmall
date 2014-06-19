@@ -1,12 +1,18 @@
 header {
   background: @header-background;
-  height: 55px;
+  height: 46px;
   .b-box;
   ul {
     list-style-type: none;
     li {
       list-style-type: none;
     }
+  }
+  .open_menu {
+    .i-b;
+    background: url('@{sprite}') -343px -3px no-repeat;
+    width: 17px;
+    height: 13px;
   }
   > div {
     width: 959px;
@@ -70,7 +76,8 @@ header {
               background: url('@{sprite}') -12px 0 no-repeat;
               width: 21px;
               height: 11px;
-              .content;
+              content: '';
+              display: block;
               position: absolute;
               top: -11px;
               left: 31px;

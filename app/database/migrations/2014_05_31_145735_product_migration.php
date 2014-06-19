@@ -18,7 +18,8 @@ class ProductMigration extends Migration {
             $table->string('title');
             $table->text('description');
             $table->integer('color');
-            $table->text('photos');
+            $table->float('price');
+            $table->text('photos');     // photos in JSON
             $table->integer('pageviews')->unsigned();
             $table->integer('likes')->unsigned();
             $table->integer('popularity')->unsigned();
