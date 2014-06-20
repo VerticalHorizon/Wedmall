@@ -26,7 +26,7 @@ class HomeController extends BaseController {
 		
 		//$products = Product::withParameters()->get()->toArray();
 
-		$categories = Category::with('children')->where('parent_id', NULL)->get()->toArray();
+		$categories = Category::with('children')->where('parent_id', NULL)->get();
 		$slides = Slider::all();
 
 		// $products = Product::withParameters()
@@ -38,11 +38,22 @@ class HomeController extends BaseController {
 
 	public function getByCategory($alias)
 	{
-		$categories = Category::with('children')->where('parent_id', NULL)->get()->toArray();
-		$attributes = AdditionalParam::leftJoin('categories', 'categories.id', '=', 'add_params.category_id')->where('categories.alias', $alias)->select('add_params.*')->get();
+
+		//dd(Input::all());
+
+		$current_category = Category::where('alias', $alias)->firstOrFail();
+
+		$categories = Category::with('children')->where('parent_id', NULL)->get();
+
+		$attributes = AdditionalParam::leftJoin('categories', 'categories.id', '=', 'add_params.category_id')
+		->where('categories.alias', $alias)
+		->select('add_params.*')
+		->get();
+
 		$products = Product::leftJoin('categories', 'categories.id', '=', 'products.category_id')->where('categories.alias', $alias)->select('products.*')->get()->toArray();
 
 		return View::make('products.index')
+		->with('current_category', $current_category)
 		->with('attributes', $attributes)
 		->with('categories', $categories)
 		->with('products', $products);

@@ -1,5 +1,30 @@
 @extends('index')
 
+{{-- Web site Title --}}
+@section('title')
+@parent
+ - {{{ $current_category->title }}}
+@stop
+
+{{-- Update the Meta Title --}}
+@section('meta_title')
+@parent
+
+@stop
+
+{{-- Update the Meta Description --}}
+@section('meta_description')
+@parent
+
+@stop
+
+{{-- Update the Meta Keywords --}}
+@section('meta_keywords')
+@parent
+
+@stop
+
+{{-- Content --}}
 @section('content')
 
     @include('products.search', array('key' => 'value'))
@@ -12,16 +37,10 @@
     </div>
 
 
-    <div class="content articles catalog">
-
-        <div class="breadcrumbs">
-            <a href="#">Главная</a>
-            <a href="#">Платья на свадьбу</a>
-            <a href="#">Все о свадебных платьях</a>
-        </div>
+    <div class="content articles catalog"><!-- Fucking white space! -->{{Breadcrumbs::renderIfExists('category', $current_category)}}
 
         <h1>
-            Свадебные платья
+            {{{ $current_category->title }}}
         </h1>
         <div class="choice">
             <p>

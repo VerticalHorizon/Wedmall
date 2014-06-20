@@ -3,7 +3,11 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width; initial-scale=1.0; user-scable=1">
-    <title>index</title>
+    <title>
+        @section('title')
+            Wedmall
+        @show
+    </title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css'>
@@ -653,7 +657,41 @@
                     </div>
             </div>
         </nav>
-        <a href="#" class="open popup_open" data-type="popup_auth">Войти</a>
+        @if (Auth::check())
+            <div class="user">
+               <div class="top">
+                   <div class="photo">
+                       <img src="" alt=""/>
+                   </div>
+                   <span>
+                       {{{ Auth::user()->username }}}
+                   </span>
+               </div>
+                <div class="over">
+                    <ul>
+                        @if (Auth::user()->hasRole('admin'))
+                        <li>
+                            <a href="{{{ URL::to('admin') }}}" class="admin">Admin Panel</a>
+                        </li>
+                        @endif
+                        <li>
+                            <a href="#" class="like">Мне нравится</a>
+                        </li>
+                        <li>
+                            <a href="#" class="my_collections">Мои коллекции</a>
+                        </li>
+                        <li>
+                            <a href="{{{ URL::to('user') }}}" class="profile">Профиль</a>
+                        </li>
+                        <li class="exit">
+                            <a href="{{{ URL::to('user/logout') }}}" class="exit">Выйти</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        @else
+            <a href="#" class="open popup_open" data-type="popup_auth">{{{ Lang::get('site.login') }}}</a>
+        @endif
     </div>
 </header>
 <section>
@@ -871,41 +909,10 @@
                 </li>
             </ul>
             <div id="tabs-1">
-                <i>Войти через социальные сети:</i>
-                <div class="social">
-                    <a href="#" class="vk"></a>
-                    <a href="#" class="fb"></a>
-                    <a href="#" class="twitter"></a>
-                    <a href="#" class=ok></a>
-                </div>
-                <i>Или заполните форму:</i>
-
-                <form action="">
-                    <input type="email" placeholder="Email"/>
-                    <input type="password" placeholder="Пароль"/>
-                    <input type="submit" value="Войти"/>
-                    <a href="#" class="r_pass">Забыли пароль?</a>
-                </form>
+                @include('user.login_form')
             </div>
             <div id="tabs-2">
-                <i>Войти через социальные сети:</i>
-                <div class="social">
-                    <a href="#" class="vk"></a>
-                    <a href="#" class="fb"></a>
-                    <a href="#" class="twitter"></a>
-                    <a href="#" class=ok></a>
-                </div>
-                <i>Или заполните форму:</i>
-
-                <form action="">
-                    <input type="radio" name="user" id="one"/><label for="one">Пользователь</label>
-                    <input type="radio" name="user" id="two"/><label for="two">Профессионал</label>
-                    <input type="radio" name="user" id="three"/><label for="three">Организация</label>
-                    <input type="text" placeholder="Имя пользователя"/>
-                    <input type="email" placeholder="Email"/>
-                    <input type="password" placeholder="Пароль"/>
-                    <input type="submit" value="Зарегистрироваться"/>
-                </form>
+                @include('user.signup_form')
             </div>
            <a href="#" class="close"></a>
        </div>

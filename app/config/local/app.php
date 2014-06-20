@@ -48,6 +48,8 @@ return array(
         'Zizaco\Entrust\EntrustServiceProvider',
         
         'Frozennode\Administrator\AdministratorServiceProvider',
+        
+        'DaveJamesMiller\Breadcrumbs\ServiceProvider',
 
         'Barryvdh\Debugbar\ServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
@@ -95,5 +97,7 @@ return array(
 
         'Confide'         => 'Zizaco\Confide\ConfideFacade',
         'Entrust'         => 'Zizaco\Entrust\EntrustFacade',
+
+        'Breadcrumbs'     => 'DaveJamesMiller\Breadcrumbs\Facade',
     ),
 );

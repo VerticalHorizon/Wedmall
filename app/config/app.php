@@ -124,6 +124,8 @@ return array(
         'Zizaco\Entrust\EntrustServiceProvider',
         
         'Frozennode\Administrator\AdministratorServiceProvider',
+
+        'DaveJamesMiller\Breadcrumbs\ServiceProvider',
     ),
 
     /*
@@ -192,6 +194,8 @@ return array(
 
         'Confide'         => 'Zizaco\Confide\ConfideFacade',
         'Entrust'         => 'Zizaco\Entrust\EntrustFacade',
+
+        'Breadcrumbs'     => 'DaveJamesMiller\Breadcrumbs\Facade',
     ),
 
 );

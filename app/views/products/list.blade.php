@@ -1,5 +1,4 @@
     <div class="content_preview">
-        <?php $i=0; ?>
         <div class="preview cost">
             @for ($i = 0; $i < count($products); $i++)
                 <div>
@@ -22,7 +21,7 @@
                         от Твоя кухня
                     </span>
                     <p class="cost">
-                        3200 руб.
+                        {{{ $products[$i]['price'] }}} руб.
                     </p>
                 </div>
                 {{!$i % 3}}
