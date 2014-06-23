@@ -1,5 +1,5 @@
 section {
-  width: 959px;
+  width: 280px;
   margin: 0 auto;
   overflow: hidden;
   &.alert {
@@ -72,41 +72,76 @@ section {
   }
   article {
     position: relative;
+    &.catalog {
+      > div.sidebar.left {
+        > div.kat {
+          > a {
+            .i-b;
+            width: 118px;
+            &.ui-accordion-header-active {
+              background: #f25860;
+              color: @white;
+              > span {
+                background: url('@{sprite}') -57px -11px no-repeat;
+                .transform-rotate(-90deg);
+                width: 7px;
+                height: 11px;
+              }
+            }
+          }
+          + a.filters {
+            font-family: 'PT Sans Caption', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            display: inline-block;
+            color: #111111;
+            background: #f1f1f1;
+            padding: 10px 11px 11px;
+            position: relative;
+            vertical-align: top;
+            width: 118px;
+          }
+        }
+      }
+    }
     > div {
       &.search {
         &.all {
           width: 100%;
-          margin: 55px 0 36px;
-          height: 92px;
+          margin: 21px 0 10px;
           text-align: center;
           .b-box;
-          border: 2px dashed #d8d8d8;
-          border-size: 8px;
           position: relative;
           > div {
             &.form {
               position: relative;
-              padding: 0 24px;
+              padding: 0;
               background: #fff;
-              top: -22px;
               .i-b;
               form {
                 input {
                   border-radius: 4px;
-                  height: 48px;
+                  height: 34px;
                   .i-b;
                   .b-box;
                   &[type="text"] {
-                    .reg-bold(20px);
+                    .reg(16px);
                     color: #b8b8b8;
                     border: 1px solid #d4d4d4;
                     box-shadow: inset 0px 2px 3px 0px #ececec;
-                    width: 448px;
-                    margin-right: 7px;
+                    width: 278px;
+                    margin-right: 0;
                     text-indent: 15px;
-                    margin-left: 3px;
+                    margin-left: 0;
+                    background: url('@{img}mobile_search.png') 252px 8px no-repeat transparent;
+                    padding-right: 33px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                   }
                   &[type="submit"] {
+                    display: none;
                     background: #f25860;
                     .reg-CaptB(20px);
                     color: @white;
@@ -123,11 +158,14 @@ section {
               }
             }
             &.color_link {
-              margin-top: -3px;
+              margin-top: 22px;
+              text-align: left;
               > span {
                 .reg-i(14px);
                 color: #999999;
-                margin-right: 9px;
+                display: block;
+                text-align: left;
+                margin-bottom: 18px;
               }
               a {
                 background: url('@{sprite}') 0 0 no-repeat;
@@ -135,7 +173,10 @@ section {
                 height: 25px;
                 display: inline-block;
                 vertical-align: middle;
-                margin: 0 2px;
+                margin: 0 5px 11px 0;
+                &:nth-of-type(8) {
+                  margin: 0 0 11px 0;
+                }
                 &.rad {
                   background-position: 0 -31px;
                 }
@@ -182,9 +223,41 @@ section {
       }
       &.sidebar {
         .i-b;
-        width: 225px;
+        width: 100%;
+        margin-top: 6px;
+       position: relative;
+        z-index: 100;
+        margin-bottom: 25px;
         &.left {
           margin-right: 14px;
+          .kat {
+            > a {
+              .reg-CaptB(16px);
+              text-decoration: none;
+              text-transform: uppercase;
+              display: block;
+              color: #111111;
+              background: #f1f1f1;
+              padding: 10px 11px 11px;
+              position: relative;
+              &[aria-selected="true"] {
+                > span {
+                  transform: rotate(180deg);
+                  -webkit-transform: rotate(180deg);
+                  -ms-transform: rotate(180deg);
+                }
+              }
+              > span {
+                display: block;
+                position: absolute;
+                background: url('@{sprite}') -53px -1px no-repeat;
+                width: 11px;
+                height: 7px;
+                right: 11px;
+                top: 13px;
+              }
+            }
+          }
           form {
             > div {
               margin-bottom: 19px;
@@ -324,6 +397,9 @@ section {
               border-bottom: 1px solid #dfdfdf;
               padding: 12px 15px 11px;
               position: relative;
+              &.ui-accordion-header-active {
+                background: #f9f9f9;
+              }
               &[aria-selected="true"] {
                 > span {
                   transform: rotate(180deg);
@@ -467,8 +543,8 @@ section {
         > div {
           &.slider {
             z-index: 9;
-            width: 713px;
-            height: 334px;
+            width: 280px;
+            height: 258px;
             overflow: hidden;
             margin: 0 0 7px;
             position: relative;
@@ -486,12 +562,12 @@ section {
             > div {
               &.slider-nav {
                 position: absolute;
-                text-align: center;
+                text-align: left;
                 bottom: 12px;
                 width: 100%;
                 a {
                   background: url('@{sprite}') -69px 3px no-repeat;
-                  margin: 0;
+                  margin: 0 5px;
                   width: 27px;
                   height: 27px;
                   cursor: pointer;
@@ -536,23 +612,24 @@ section {
                 margin: 0;
                 list-style-type: none;
                 float: left;
-                width: 713px;
-                height: 334px;
+                width: 280px;
+                height: 258px;
                 position: relative;
                 img {
-                  width: 100%;
+                  //width: 100%;
                   height: 100%;
                 }
                 > div {
                   background: rgba(0,0,0, 0.5);
                   position: absolute;
-                  top: 30px;
+                  bottom: 0;
                   left: 0;
-                  width: 238px;
-                  padding: 22px 20px 22px 27px;
+                  width: 100%;
+                  padding: 17px 10px 17px 17px;
+                  max-height: 118px;
                   .b-box;
                   p {
-                    .reg-CaptB(30px);
+                    .reg-CaptB(22px);
                     color: @white;
                     margin: 0;
                     line-height: 26px;
@@ -564,9 +641,9 @@ section {
                     display: inline-block;
                     background: @linkRad;
                     border-radius: 4px;
-                    padding: 8px 24px 10px 11px;
+                    padding: 8px 23px 8px 9px;
                     position: relative;
-                    margin-top: 21px;
+                    margin: 4px 0 0 130px;
                     &:hover {
                       background: #fe6f76;
                     }
@@ -589,8 +666,8 @@ section {
             > div {
               display: inline-block;
               vertical-align: top;
-              width: 226px;
-              height: 226px;
+              width: 132px;
+              height: 132px;
               overflow: hidden;
               a {
                 position: relative;
@@ -598,16 +675,16 @@ section {
                 height: 100%;
                 display: block;
                 img {
-                  min-width: 226px;
-                  min-height: 226px;
+                  min-width: 132px;
+                  max-height: 132px;
                 }
               }
             }
             &.hover {
-              margin-bottom: -20px;
+              margin-bottom: -12px;
                > div {
-                 margin: 0 18px 19px 0;
-                 &:nth-child(3n) {
+                 margin: 0 14px 15px 0;
+                 &:nth-child(2n) {
                    margin-right: 0;
                  }
                  a {
@@ -626,21 +703,20 @@ section {
                      &.title {
                        display: table;
                        position: absolute;
-                       top: 68px;
-                       left: 27px;
-                       width: 172px;
+                       top: 20px;
+                       left: 7px;
+                       width: 118px;
                        height: 90px;
-                       border: 3px solid #fff;
                        text-align: center;
                        text-transform: uppercase;
                        .b-box;
                        z-index: 1;
                        p {
-                         line-height: 23px;
+                         line-height: 18px;
                          vertical-align: middle;
                          display: table-cell;
                          color: #fff;
-                         .reg-CaptB(20px);
+                         .reg-CaptB(16px);
                        }
                      }
                      &.hover {
@@ -657,19 +733,20 @@ section {
                }
             }
             &.cost {
-              margin-bottom: -22px;
+              margin-bottom: -19px;
               > div {
                 height: auto;
-                margin: 0 18px 19px 0;
+                margin: 0 14px 15px 0;
                 position: relative;
-                width: 226px;
-                &:nth-child(3n) {
+                width: 132px;
+                padding-bottom: 62px;
+                &:nth-child(2n) {
                   margin-right: 0;
                 }
                 > a {
-                  width: 226px;
+                  width: 132px;
                   overflow: hidden;
-                  height: 224px;
+                  height: 132px;
                   margin-bottom: 10px;
                   img {
 
@@ -678,34 +755,25 @@ section {
                 > div {
                   &.hover {
                     width: 100%;
-                    height: 224px;
+                    height: 50px;
                     position: absolute;
-                    top: 0;
+                    bottom: 0;
                     left: 0;
-                    &:hover {
-                      .preview {
-                        a {
-                          .transition_all_in;
-                          opacity: 1;
-                        }
-                      }
-                    }
                     > a {
                     }
                     > div {
                       &.preview {
                         height: 100%;
                         position: absolute;
-                        top: 0;
+                        bottom: 0;
                         width: 100%;
                         left: 0;
                         > a {
-                          opacity: 0;
                           display: block;
                           .transition_all_out;
                           &.center {
+                            display: none;
                             text-decoration: none;
-                            display: block;
                             position: absolute;
                             background-color: rgba(255,255,255,0.8);
                             color: #111;
@@ -726,30 +794,20 @@ section {
                             }
                           }
                           &.love {
-                            background: url('@{sprite}') 0 -63px no-repeat;
-                            width: 36px;
-                            height: 36px;
-                            bottom: 11px;
+                            background: url('@{sprite}') -135px -335px no-repeat;
+                          width: 63px;
+                            height: 34px;
+                            bottom: 0;
                             position: absolute;
-                            right: 52px;
-                            .transition(0.1s);
-                            &:hover {
-                              background: url('@{sprite}') 0 -101px no-repeat;
-                              .transition(0.1s);
-                            }
+                            left: 0;
                           }
                           &.add {
-                            background: url('@{sprite}') -39px -63px no-repeat;
-                            width: 36px;
-                            height: 36px;
-                            bottom: 11px;
+                          background: url('@{sprite}') -205px -335px no-repeat;
+                            width: 63px;
+                            height: 34px;
+                            bottom: 0;
                             position: absolute;
-                            right: 12px;
-                            .transition(0.1s);
-                            &:hover {
-                              background: url('@{sprite}') -39px -101px no-repeat;
-                              .transition(0.1s);
-                            }
+                            right: 0;
                           }
                         }
                       }
@@ -759,7 +817,7 @@ section {
                 p {
                   .reg-Capt(16px);
                   color: #000;
-                  margin-bottom: 4px;
+                  margin: 12px 0 3px;
                   &.cost {
                     .reg-CaptB(14px);
                   }
@@ -767,7 +825,7 @@ section {
                 span {
                   .reg(12px);
                   color: #999999;
-                  margin-bottom: 12px;
+                  margin-bottom: 10px;
                   display: block;
                   &.name {
                     .i-b;
@@ -780,7 +838,7 @@ section {
               }
             }
             &.color {
-              margin-bottom: -20px;
+              margin-bottom: -17px;
               > div {
                 &:hover {
                   div {
@@ -792,11 +850,11 @@ section {
                 }
                 display: inline-block;
                 vertical-align: top;
-                width: 226px;
-                height: 224px;
+                width: 132px;
+                height: 132px;
                 overflow: hidden;
-                margin: 0 18px 19px 0;
-                &:nth-child(3n) {
+                margin: 0 14px 15px 0;
+                &:nth-child(2n) {
                   margin-right: 0;
                 }
                 > a {
@@ -863,9 +921,11 @@ section {
                     left: 0;
                     z-index: 1;
                     > p {
+                      text-decoration: none;
                       .reg-CaptB(16px);
                       color: #fff;
-                      padding: 5px 12px;
+                      padding: 0px 10px;
+                      margin: 7px 0;
                     }
                     &.rad {
                       background: #d52c38;
@@ -913,16 +973,17 @@ section {
             &.content {
               > div {
                 height: auto;
-                margin: 0 18px 19px 0;
+                margin: 0 14px 15px 0;
                 position: relative;
-                width: 226px;
-                &:nth-child(3n) {
+                width: 132px;
+                padding-bottom: 62px;
+                &:nth-child(2n) {
                   margin-right: 0;
                 }
                 > a {
-                  width: 226px;
+                  width: 132px;
                   overflow: hidden;
-                  height: 224px;
+                  height: 132px;
                   margin-bottom: 10px;
                   img {
 
@@ -931,34 +992,25 @@ section {
                 > div {
                   &.hover {
                     width: 100%;
-                    height: 224px;
+                    height: 50px;
                     position: absolute;
-                    top: 0;
+                    bottom: 0;
                     left: 0;
-                    &:hover {
-                      .preview {
-                        a {
-                          .transition_all_in;
-                          opacity: 1;
-                        }
-                      }
-                    }
                     > a {
                     }
                     > div {
                       &.preview {
                         height: 100%;
                         position: absolute;
-                        top: 0;
+                        bottom: 0;
                         width: 100%;
                         left: 0;
                         > a {
-                          opacity: 0;
                           display: block;
                           .transition_all_out;
                           &.center {
+                            display: none;
                             text-decoration: none;
-                            display: block;
                             position: absolute;
                             background-color: rgba(255,255,255,0.8);
                             color: #111;
@@ -973,36 +1025,22 @@ section {
                             line-height: 26px;
                             text-indent: 11px;
                             z-index: 2;
-                            &:hover {
-                              background: #f0656c;
-                              color: @white;
-                            }
                           }
                           &.love {
-                            background: url('@{sprite}') 0 -63px no-repeat;
-                            width: 36px;
-                            height: 36px;
-                            bottom: 11px;
+                            background: url('@{sprite}') -135px -335px no-repeat;
+                            width: 63px;
+                            height: 34px;
+                            bottom: 0;
                             position: absolute;
-                            right: 52px;
-                            .transition(0.1s);
-                            &:hover {
-                              background: url('@{sprite}') 0 -101px no-repeat;
-                              .transition(0.1s);
-                            }
+                            left: 0;
                           }
                           &.add {
-                            background: url('@{sprite}') -39px -63px no-repeat;
-                            width: 36px;
-                            height: 36px;
-                            bottom: 11px;
+                            background: url('@{sprite}') -205px -335px no-repeat;
+                            width: 63px;
+                            height: 34px;
+                            bottom: 0;
                             position: absolute;
-                            right: 12px;
-                            .transition(0.1s);
-                            &:hover {
-                              background: url('@{sprite}') -39px -101px no-repeat;
-                              .transition(0.1s);
-                            }
+                            right: 0;
                           }
                         }
                       }
@@ -1013,7 +1051,7 @@ section {
                   .reg-Capt(16px);
                   color: #000;
                   margin-bottom: 4px;
-                  width: 220px;
+                  width: 132px;
                   margin-top: 15px;
                   line-height: 19px;
                 }
@@ -1690,21 +1728,25 @@ section {
           form {
             input {
               border-radius: 4px;
-              height: 48px;
-              .i-b;
+              height: 34px;
               .b-box;
               &[type="text"] {
-                .reg-bold(16px);
+                .i-b;
+                .reg(16px);
                 color: #b8b8b8;
                 border: 1px solid #d4d4d4;
                 box-shadow: inset 0px 2px 3px 0px #ececec;
-                height: 34px;
-                width: 871px;
-                margin-right: 7px;
+                width: 278px;
+                margin-right: 0;
                 text-indent: 15px;
-                margin-left: 3px;
+                margin-left: 0;
+                background: url('@{img}mobile_search.png') 252px 8px no-repeat transparent;
+                padding-right: 33px;
+                overflow: hidden;
+                text-overflow: ellipsis;
               }
               &[type="submit"] {
+                display: none;
                 background: #f25860;
                 .reg-CaptB(16px);
                 color: @white;

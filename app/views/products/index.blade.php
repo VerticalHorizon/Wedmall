@@ -32,7 +32,7 @@
     <div class="sidebar left">
         @include('home.leftmenu', array('categories' => $categories))
         @if(isset($attributes))
-            @include('products.leftform', array('attributes' => $attributes))
+            @include('products.leftform', array('input' => $input))
         @endif
     </div>
 

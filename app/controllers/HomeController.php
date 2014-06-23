@@ -39,7 +39,16 @@ class HomeController extends BaseController {
 	public function getByCategory($alias)
 	{
 
-		//dd(Input::all());
+		if( !empty(Input::all()) )
+		{
+			$products = Product::search($alias, Input::all())->get()->toArray();
+		    //dd($products);
+		    //dd(Input::all());
+		}
+		else
+		{
+			$products = Product::leftJoin('categories', 'categories.id', '=', 'products.category_id')->where('categories.alias', $alias)->select('products.*')->get()->toArray();
+		}
 
 		$current_category = Category::where('alias', $alias)->firstOrFail();
 
@@ -50,13 +59,13 @@ class HomeController extends BaseController {
 		->select('add_params.*')
 		->get();
 
-		$products = Product::leftJoin('categories', 'categories.id', '=', 'products.category_id')->where('categories.alias', $alias)->select('products.*')->get()->toArray();
 
 		return View::make('products.index')
 		->with('current_category', $current_category)
 		->with('attributes', $attributes)
 		->with('categories', $categories)
-		->with('products', $products);
+		->with('products', $products)
+		->with('input', Input::all());
 	}
 
 }

@@ -57,5 +57,4 @@
                 </div>
             @endforeach
         @endif
-        <input type="submit" value="Найти">
     </form>

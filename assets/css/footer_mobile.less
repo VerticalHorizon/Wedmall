@@ -1,6 +1,8 @@
 footer {
   background: #f2f2f2;
-  margin-top: 14px;
+  max-width: 360px;
+  margin: 14px auto 0;
+  overflow: hidden;
   ul {
     list-style-type: none;
     li {
@@ -11,18 +13,14 @@ footer {
     text-decoration: none;
   }
   > div {
-    width: 959px;
+    font-size: 0;
+    width: 280px;
     margin: 0 auto;
     overflow: hidden;
     > div {
-      border-right: 1px solid #444444;
-      display: inline-block;
-      vertical-align: top;
-      height: 175px;
-      margin: 40px 0;
-      &:last-child {
-        border-right: 0;
-      }
+      display: block;
+      border-bottom: 1px solid #d3d3d3;
+      padding-bottom: 31px;
       h2 {
         .reg-narrowB(19px);
         color: #111111;
@@ -44,19 +42,15 @@ footer {
         }
       }
       &.wedmall {
-        width: 345px;
-        height: 175px;
         .b-box;
         > img {
-          margin-top: -7px;
-          margin-bottom: 13px;
-          padding-right: 40px;
+        margin: 27px 0 13px 0;
         }
         p {
           .reg(16px);
           color: #444444;
           line-height: 22px;
-          margin-bottom: 38px;
+          margin-bottom: 22px;
           &.copiwrite {
             font-size: 13px;
             line-height: inherit;
@@ -71,19 +65,33 @@ footer {
         }
       }
       &.about {
-        width: 167px;
+        width: 134px;
         .b-box;
-        padding: 0 0 0 45px;
+        .i-b;
+        margin-top: 27px;
+        padding-bottom: 12px;
+        a {
+          text-decoration: underline;
+          height: 19px;
+        }
       }
       &.partners {
-        width: 235px;
-        padding-left: 45px;
+        width: 145px;
+        margin-top: 27px;
+        .i-b;
         .b-box;
+        padding: 0 0 12px;
+        a {
+          text-decoration: underline;
+          height: 19px;
+        }
       }
       &.social {
         .b-box;
-        padding-left: 42px;
-        width: 198px;
+        margin-top: 22px;
+        width: 100%;
+        padding: 0;
+        border-bottom: 0;
         h2 {
           margin-bottom: 17px;
         }
@@ -93,7 +101,7 @@ footer {
         background: url('@{sprite}') 0 0 no-repeat;
           width: 35px;
           height: 35px;
-          margin-right: 1px;
+          margin-right: 10px;
           .transition(0.2s);
         &.contact {
           background-position: -78px -64px;
@@ -128,9 +136,11 @@ footer {
             background: none;
             .reg(13px);
             color: #999999;
-            width: 170px;
+            width: 100%;
             text-decoration: none;
-            margin: 72px 0 0;
+            margin: 29px 0 0;
+            border-top: 1px solid #d3d3d3;
+            padding: 30px 0 10px;
             img {
               margin: -5px 0 0;
               //display: inline-block;
