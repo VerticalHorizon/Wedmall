@@ -474,10 +474,4 @@ $(document).ready(function() {
         animationTime: 500
 
     });
-
-    $('.form.catalog form').on('submit', function(e) {
-        e.preventDefault();
-        var data = $('.form.catalog form, .sidebar.left form').serialize();
-        window.location.href = $(e.currentTarget).attr('action') + '?' + data;
-    });
 });

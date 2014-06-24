@@ -27,12 +27,12 @@
 {{-- Content --}}
 @section('content')
 
-    @include('products.search', array('key' => 'value'))
+    @include('products.search', ['key' => 'value'])
 
     <div class="sidebar left">
-        @include('home.leftmenu', array('categories' => $categories))
+        @include('home.leftmenu', ['categories' => $categories])
         @if(isset($attributes))
-            @include('products.leftform', array('input' => $input))
+            @include('products.leftform', ['input' => $input])
         @endif
     </div>
 
@@ -60,6 +60,6 @@
             </span>
         </div>
 
-        @include('products.list', array('products' => $products))
+        @include('products.list', ['products' => $products, 'input' => $input])
     </div>
 @stop

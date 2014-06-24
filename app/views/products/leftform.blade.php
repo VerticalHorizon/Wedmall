@@ -1,3 +1,13 @@
+    {{-- Add styles --}}
+    @section('scripts')
+        @if (isset($attributes) && is_object($attributes))
+                $(document).ready(function() {
+                    @foreach ($attributes as $attribute)
+                        $('input[name^="{{ $attribute->alias }}"]').parents(".form_cost").accordion({ active: 0 });
+                    @endforeach
+                })
+        @endif
+    @stop
     <form action="{{ URL::to('category/'.Route::getCurrentRoute()->getParameter('alias')) }}" method="GET">
         <div class="form_cost">
             <a href="#">Цена </a>
@@ -48,8 +58,8 @@
                     @if(count($attribute->defaultValues()))
                         <div>
                             @foreach($attribute->defaultValues() as $value => $param)
-                                <input name="{{ $attribute->alias }}[]" type="checkbox" id="{{ $attribute->alias }}_{{ $value }}"/>
-                                 <label for="{{ $attribute->alias }}_{{ $value }}">{{ $param }} <span>(1)</span>
+                                <input name="{{ $attribute->alias }}[{{ $value }}]" type="checkbox" id="{{ $attribute->alias }}_{{ $value }}" value="1" @if( isset($input[$attribute->alias ]) && isset($input[ $attribute->alias ][ $value ]) )checked="checked"@endif/>
+                                 <label for="{{ $attribute->alias }}_{{ $value }}">{{{ $param }}} <span>(1)</span>
                                  </label>
                             @endforeach
                         </div>

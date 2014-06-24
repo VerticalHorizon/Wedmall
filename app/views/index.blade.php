@@ -33,6 +33,7 @@
     <script src="{{ URL::asset('assets/scripts/slider.js') }}"></script>
     <script src="{{ URL::asset('assets/scripts/less.js') }}"></script>
     <script src="{{ URL::asset('assets/scripts/style.js') }}"></script>
+    <script src="{{ URL::asset('assets/scripts/behavior.js') }}"></script>
 
 </head>
 
@@ -2078,7 +2079,10 @@
     </div>
 
 </div>
-
+    <script type="text/javascript">
+        @section('scripts')
+        @show
+    </script>
 </body>
 
 </html>
