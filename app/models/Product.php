@@ -1,5 +1,36 @@
 <?php
 
+function array_diff_assoc_recursive($array1, $array2) 
+{ 
+    foreach($array1 as $key => $value) 
+    { 
+        if(is_array($value)) 
+        { 
+              if(!isset($array2[$key])) 
+              { 
+                  $difference[$key] = $value; 
+              } 
+              elseif(!is_array($array2[$key])) 
+              { 
+                  $difference[$key] = $value; 
+              } 
+              else 
+              { 
+                  $new_diff = array_diff_assoc_recursive($value, $array2[$key]); 
+                  if($new_diff != FALSE) 
+                  { 
+                        $difference[$key] = $new_diff; 
+                  } 
+              } 
+          } 
+          elseif(!isset($array2[$key]) || $array2[$key] != $value) 
+          { 
+              $difference[$key] = $value; 
+          } 
+    } 
+    return !isset($difference) ? 0 : $difference; 
+}
+
 class Product extends Eloquent {
     /**
      * The database table used by the model.
@@ -52,7 +83,7 @@ class Product extends Eloquent {
             $join->on('add_values.product_id', '=', 'products.id')
                  ->on('add_values.param_id', '=', 'add_params.id');
         })
-        ->select('products.*', 'add_params.alias AS param_alias', 'add_values.param_value', 'add_params.title AS param_title')
+        ->select('products.*', 'add_params.alias AS param_alias', 'add_params.title AS param_title', 'add_values.param_value')
         ->where(function($query) use ($alias)
         {
             !$alias ?: $query->where('categories.alias', $alias);
@@ -68,6 +99,30 @@ class Product extends Eloquent {
                 }
             }
         });
-        return $query;
+        return $this->_toNestedArray( $query->get()->toArray() );
+        #return $query;
+    }
+
+    protected function _toNestedArray($source)
+    {
+        $result = [];
+        $node = 'param';
+
+        foreach ($source as $key => $value) {
+
+            if(!isset($result[$value['id']]))
+                $result[$value['id']] = $value;
+
+            foreach ($value as $k => $v) {
+                if (strpos($k, $node) !== FALSE) {
+                    $result[$value['id']][$node][][$k] = $v;
+                    unset($result[$value['id']][$k]);
+                }
+            }
+        }
+
+        dd($result);
+        //dd($source);
+        return $source;
     }
 }
