@@ -20,28 +20,14 @@ class Product extends Eloquent {
 
     public function values()
     {
-        return $this->hasMany('AdditionalValue', 'param_id');
+        return $this->hasMany('AdditionalValue', 'product_id');
     }
 
     public function parameters() {
-        return $this->hasMany('AdditionalParam', 'param_id', 'product_id');
+        return $this->belongsToMany('AdditionalParam', 'add_values', 'product_id', 'param_id')->withPivot('param_value');
     }
 
-    // public function scopeWithParameters($query, $product_id = NULL){      // TODO: prevent SQL Injection
-    //     $query
-    //     ->join('categories', 'categories.id', '=', 'products.category_id')
-    //     ->leftJoin('add_params', 'categories.id', '=', 'add_params.category_id')
-    //     ->leftJoin('add_values', function($join)
-    //     {
-    //         $join->on('add_values.product_id', '=', 'products.id')
-    //              ->on('add_values.param_id', '=', 'add_params.id');
-    //     })
-    //     ->select('products.*', 'add_params.alias', 'add_params.title as param_title', 'add_values.param_value');
-    //     //->where('add_values.param_value', '!=', 0);
-    //     return $product_id ? $query->where('products.id', $product_id) : $query;
-    // }
-
-    public function scopeSearch($query, $alias = NULL, $input = [])
+    public function scopeSearch($query, $alias = NULL)
     {
         $source = $query
         ->leftJoin('categories', 'categories.id', '=', 'products.category_id')
@@ -54,23 +40,31 @@ class Product extends Eloquent {
         ->select('products.*', 'add_params.alias AS param_alias', 'add_params.title AS param_title', 'add_values.param_value')
         ->where(function($query) use ($alias)
         {
-            !$alias ?: $query->where('categories.alias', $alias);
-            !(Input::has('price-from') && Input::has('price-to')) ?: $query->whereBetween('price', array( Input::get('price-from'), Input::get('price-to') ));
+            ! $alias ?: $query->where('categories.alias', $alias);
+            ! (Input::has('price-from') && Input::has('price-to')) ?: $query->whereBetween('price', array( Input::get('price-from'), Input::get('price-to') ));
+            ! Input::has('q') ?: $query->where(function($query)
+            {
+              $query->where('products.title', 'LIKE', '%'.Input::get('q').'%');
+              $query->orWhere('products.description', 'LIKE', '%'.Input::get('q').'%');
+            });
 
-            $i = 0;
-            foreach (Input::except('price-from', 'price-to', 'q') as $key => $value) {
-                if (is_array($value))
-                {   
-                    $i ? $query->orWhere('add_params.alias', $key) : $query->where('add_params.alias', $key);
-                    $query->whereIn('param_value', array_keys($value));
-                    $i++;
-                }
-            }
+            empty(Input::except('price-from', 'price-to', 'q')) ?: $query->where(function($query)
+            {              
+              $i = 0;
+              foreach (Input::except('price-from', 'price-to', 'q') as $key => $value) {
+                  if (is_array($value))
+                  {   
+                      $i ? $query->orWhere('add_params.alias', $key) : $query->where('add_params.alias', $key);
+                      $query->whereIn('param_value', array_keys($value));
+                      $i++;
+                  }
+              }
+            });
         })
-        //->groupBy('param_title')
         ->get();
-
-        $result = [];   # transform rows to nested array
+        
+        # transform rows to nested array
+        $result = [];
         $node = 'param';    # nodes
 
         foreach ($source->toArray() as $key => $value) {
@@ -85,8 +79,25 @@ class Product extends Eloquent {
             }
         }
 
-        //dd($result);
-        //dd($source);
         return $result;
+        // $products = Product::with([    # fucking eloquent!
+        // 'category' => function($query) use ($alias)
+        // {
+        //   $query->where('alias', $alias);
+        // },
+        // 'parameters' => function($query)
+        // {
+        //         $i = 0;
+        //         foreach (Input::except('price-from', 'price-to', 'q') as $key => $value) {
+        //             if (is_array($value))
+        //             {   
+        //                 $i ? $query->orWhere('add_params.alias', $key) : $query->where('add_params.alias', $key);
+        //                 $query->whereIn('param_value', array_keys($value));
+        //                 $i++;
+        //             }
+        //         }
+        // }])
+        // ->get()
+        // ->toArray();
     }
 }

@@ -1,14 +1,13 @@
     {{-- Add styles --}}
     @section('scripts')
-        @if (isset($attributes) && is_object($attributes))
-                $(document).ready(function() {
-                    @foreach ($attributes as $attribute)
-                        $('input[name^="{{ $attribute->alias }}"]').parents(".form_cost").accordion({ active: 0 });
-                    @endforeach
-                })
-        @endif
+        $(document).ready(function() {
+            @foreach (Input::except('price-from', 'price-to', 'q') as $k => $v)
+                $('input[id^="{{ $k }}"]').parents(".form_cost").accordion({ active: 0 });
+            @endforeach
+        })
     @stop
-    <form action="{{ URL::to('category/'.Route::getCurrentRoute()->getParameter('alias')) }}" method="GET">
+
+    {{ Form::open(['url' => Request::path(), 'method' => 'get']) }}
         <div class="form_cost">
             <a href="#">Цена </a>
             <div>
@@ -51,15 +50,15 @@
                 <input type="checkbox" id="9"/> <label for="9">69slam</label>
             </div>
         </div>
-        @if (isset($attributes) && is_object($attributes))
+        @if (isset($attributes) && is_array($attributes))
             @foreach ($attributes as $attribute)
                 <div class="form_cost other">
-                    <a href="#">{{{ $attribute->title }}}</a>
-                    @if(count($attribute->defaultValues()))
+                    <a href="#">{{{ $attribute['title'] }}}</a>
+                    @if(count($attribute['default']))
                         <div>
-                            @foreach($attribute->defaultValues() as $value => $param)
-                                <input name="{{ $attribute->alias }}[{{ $value }}]" type="checkbox" id="{{ $attribute->alias }}_{{ $value }}" value="1" @if( isset($input[$attribute->alias ]) && isset($input[ $attribute->alias ][ $value ]) )checked="checked"@endif/>
-                                 <label for="{{ $attribute->alias }}_{{ $value }}">{{{ $param }}} <span>(1)</span>
+                            @foreach($attribute['default'] as $value => $param)
+                                <input name="{{ $attribute['alias'] }}[{{ $value }}]" type="checkbox" id="{{ $attribute['alias'] }}_{{ $value }}" value="1" @if( Input::has($attribute['alias']) && isset(Input::get($attribute['alias'])[ $value ]) )checked="checked"@endif/>
+                                 <label for="{{ $attribute['alias'] }}_{{ $value }}">{{{ $param }}} <span>(1)</span>
                                  </label>
                             @endforeach
                         </div>
@@ -67,4 +66,4 @@
                 </div>
             @endforeach
         @endif
-    </form>
+    {{ Form::close() }}

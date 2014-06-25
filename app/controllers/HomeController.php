@@ -29,26 +29,13 @@ class HomeController extends BaseController {
 		$categories = Category::with('children')->where('parent_id', NULL)->get();
 		$slides = Slider::all();
 
-		// $products = Product::withParameters()
-		// ->get()
-		// ->toArray();
-
 		return View::make('home.index')->with('categories', $categories)->with('slides', $slides);
 	}
 
 	public function getByCategory($alias)
 	{
 
-		if( !empty(Input::all()) )
-		{
-			//$products = Product::search();		# ->get() already called in model
-			$products = Product::with('parameters')->get()->toArray();
-			dd($products);
-		}
-		else
-		{
-			$products = Product::leftJoin('categories', 'categories.id', '=', 'products.category_id')->where('categories.alias', $alias)->select('products.*')->get()->toArray();
-		}
+		$products = Product::search($alias);		# ->get() already called in model
 
 		$current_category = Category::where('alias', $alias)->firstOrFail();
 
@@ -57,15 +44,16 @@ class HomeController extends BaseController {
 		$attributes = AdditionalParam::leftJoin('categories', 'categories.id', '=', 'add_params.category_id')
 		->where('categories.alias', $alias)
 		->select('add_params.*')
-		->get();
+		->get()
+		->toArray();
 
+		$attributes = array_combine(array_column($attributes, 'alias'), array_values($attributes));
 
 		return View::make('products.index')
 		->with('current_category', $current_category)
 		->with('attributes', $attributes)
 		->with('categories', $categories)
-		->with('products', $products)
-		->with('input', Input::all());
+		->with('products', $products);
 	}
 
 }

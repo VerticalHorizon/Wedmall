@@ -27,39 +27,42 @@
 {{-- Content --}}
 @section('content')
 
-    @include('products.search', ['key' => 'value'])
+    @include('products.search')
 
     <div class="sidebar left">
-        @include('home.leftmenu', ['categories' => $categories])
+        @include('home.leftmenu')
         @if(isset($attributes))
-            @include('products.leftform', ['input' => $input])
+            @include('products.leftform')
         @endif
     </div>
 
-
     <div class="content articles catalog"><!-- Fucking white space! -->{{Breadcrumbs::renderIfExists('category', $current_category)}}
-
         <h1>
             {{{ $current_category->title }}}
         </h1>
-        <div class="choice">
-            <p>
-                Вы выбрали:
-            </p>
-            <span>
-                Бренд: 69slam
-                <a href="#" class="close"></a>
-            </span>
-             <span>
-                Бренд: Adilisik
-                 <a href="#" class="close"></a>
-            </span>
-             <span>
-                Бренд: Acasta
-                 <a href="#" class="close"></a>
-            </span>
-        </div>
+        @if(!empty(Input::all()))
+            <div class="choice">
+                <p>
+                    Вы выбрали:
+                </p>
+                @foreach(Input::except('price-from', 'price-to', 'q') as $key =>  $value)
+                    @if(is_array($value))
+                        @foreach($value as $k =>  $v)                         {{-- $v is only flag --}}
+                            <span>
+                            {{{ $attributes[$key]['title'] }}}: {{{ $attributes[$key]['default'][$k] }}}
+                            <a href="#" class="close" data-name="{{{ $attributes[$key]['alias'] }}}_{{ $k }}"></a>
+                            </span>
+                        @endforeach
+                    @else
+                        <span>
+                        {{{ $attributes[$key]['title'] }}}: {{{ $value }}}
+                        <a href="#" class="close" data-name="{{{ $attributes[$key]['alias'] }}}_{{{ $value }}}"></a>
+                        </span>
+                    @endif
+                @endforeach
+            </div>
+        @endif
 
-        @include('products.list', ['products' => $products, 'input' => $input])
+        @include('products.list')
     </div>
 @stop
