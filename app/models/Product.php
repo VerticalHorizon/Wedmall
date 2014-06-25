@@ -1,36 +1,5 @@
 <?php
 
-function array_diff_assoc_recursive($array1, $array2) 
-{ 
-    foreach($array1 as $key => $value) 
-    { 
-        if(is_array($value)) 
-        { 
-              if(!isset($array2[$key])) 
-              { 
-                  $difference[$key] = $value; 
-              } 
-              elseif(!is_array($array2[$key])) 
-              { 
-                  $difference[$key] = $value; 
-              } 
-              else 
-              { 
-                  $new_diff = array_diff_assoc_recursive($value, $array2[$key]); 
-                  if($new_diff != FALSE) 
-                  { 
-                        $difference[$key] = $new_diff; 
-                  } 
-              } 
-          } 
-          elseif(!isset($array2[$key]) || $array2[$key] != $value) 
-          { 
-              $difference[$key] = $value; 
-          } 
-    } 
-    return !isset($difference) ? 0 : $difference; 
-}
-
 class Product extends Eloquent {
     /**
      * The database table used by the model.
@@ -54,10 +23,9 @@ class Product extends Eloquent {
         return $this->hasMany('AdditionalValue', 'param_id');
     }
 
-/*    public function parameters() {
-        //return $this->hasManyThrough('AdditionalParam', 'Category', 'country_id', 'user_id');
-        return $this->hasMany('AdditionalParam', 'add_params', 'product_id', 'param_id')->withPivot('param_value');
-    }*/
+    public function parameters() {
+        return $this->hasMany('AdditionalParam', 'param_id', 'product_id');
+    }
 
     // public function scopeWithParameters($query, $product_id = NULL){      // TODO: prevent SQL Injection
     //     $query
@@ -75,7 +43,7 @@ class Product extends Eloquent {
 
     public function scopeSearch($query, $alias = NULL, $input = [])
     {
-        $query
+        $source = $query
         ->leftJoin('categories', 'categories.id', '=', 'products.category_id')
         ->leftJoin('add_params', 'categories.id', '=', 'add_params.category_id')
         ->leftJoin('add_values', function($join)
@@ -98,31 +66,27 @@ class Product extends Eloquent {
                     $i++;
                 }
             }
-        });
-        return $this->_toNestedArray( $query->get()->toArray() );
-        #return $query;
-    }
+        })
+        //->groupBy('param_title')
+        ->get();
 
-    protected function _toNestedArray($source)
-    {
-        $result = [];
-        $node = 'param';
+        $result = [];   # transform rows to nested array
+        $node = 'param';    # nodes
 
-        foreach ($source as $key => $value) {
-
+        foreach ($source->toArray() as $key => $value) {
             if(!isset($result[$value['id']]))
                 $result[$value['id']] = $value;
 
             foreach ($value as $k => $v) {
                 if (strpos($k, $node) !== FALSE) {
-                    $result[$value['id']][$node][][$k] = $v;
+                    $result[$value['id']][$node][$k][] = $v;
                     unset($result[$value['id']][$k]);
                 }
             }
         }
 
-        dd($result);
+        //dd($result);
         //dd($source);
-        return $source;
+        return $result;
     }
 }

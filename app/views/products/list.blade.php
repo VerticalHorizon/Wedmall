@@ -15,13 +15,13 @@
                         </div>
                     </div>
                     <p>
-                        {{{ $product->title }}}
+                        {{{ $product['title'] }}}
                     </p>
                     <span>
                         от Твоя кухня
                     </span>
                     <p class="cost">
-                        {{{ $product->price }}} руб.
+                        {{{ $product['price'] }}} руб.
                     </p>
                 </div>
                 {{!$i % 3}}

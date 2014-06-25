@@ -41,9 +41,9 @@ class HomeController extends BaseController {
 
 		if( !empty(Input::all()) )
 		{
-			$products = Product::search($alias, Input::all())->get();
-		    dd($products->toArray());
-		    //dd(Input::all());
+			//$products = Product::search();		# ->get() already called in model
+			$products = Product::with('parameters')->get()->toArray();
+			dd($products);
 		}
 		else
 		{
