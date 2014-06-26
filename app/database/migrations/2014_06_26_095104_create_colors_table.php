@@ -19,6 +19,13 @@ class CreateColorsTable extends Migration {
 			$table->string('alias');
 			$table->integer('hex')->nullable();
 		});
+
+        // Many-to-Many Polymorphic relation
+        Schema::create('colorables', function($table)
+        {
+            $table->integer('color_id')->unsigned();
+            $table->morphs('colorable');
+        });
 	}
 
 
@@ -29,6 +36,7 @@ class CreateColorsTable extends Migration {
 	 */
 	public function down()
 	{
+		Schema::drop('colorables');
 		Schema::drop('colors');
 	}
 

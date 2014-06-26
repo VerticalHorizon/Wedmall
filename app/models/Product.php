@@ -23,6 +23,11 @@ class Product extends Eloquent {
         return $this->belongsTo('Brand');
     }
 
+    public function colors()
+    {
+        return $this->morphToMany('Color', 'colorable');
+    }
+
     public function values()
     {
         return $this->hasMany('AdditionalValue', 'product_id');
@@ -41,8 +46,14 @@ class Product extends Eloquent {
         extract($arguments, EXTR_OVERWRITE);
 
         ! $category ?: $query->leftJoin('categories', 'categories.id', '=', 'products.category_id');
-        ! $color ?: $query->leftJoin('colors', 'colors.id', '=', 'products.color');
         ! $brand ?: $query->leftJoin('brands', 'brands.id', '=', 'products.brand_id');
+
+        if($color){
+            $query
+            ->leftJoin('colorables', 'colorables.colorable_id', '=', 'products.id')
+            ->leftJoin('colors', 'colorables.color_id', '=', 'colors.id');
+        }
+            
 
         $query
         ->leftJoin('add_params', 'categories.id', '=', 'add_params.category_id')

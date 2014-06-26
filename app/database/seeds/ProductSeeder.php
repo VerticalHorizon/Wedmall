@@ -12,9 +12,9 @@ class ProductSeeder extends Seeder {
         DB::table('products')->delete();
 
         $products = [
-            ['title' => 'Suit', 'description' => ' la la la', 'color' => 2, 'price' => 80.0, 'photos' =>  '', 'category_id' => 1, 'pageviews' => 10, 'likes' => 8, 'purchase_terms_id' => 0, 'brand_id' => 0],
-            ['title' => 'Hat', 'description' => 'ha ha hah ha', 'color' => 11, 'price' => 120.0, 'photos' =>  '', 'category_id' => 1, 'pageviews' => 10, 'likes' => 10, 'purchase_terms_id' => 0, 'brand_id' => 0],
-            ['title' => 'Black', 'description' => 'Das gsdfga aedfasddf eds  s', 'color' => 8, 'price' => 180.0, 'photos' =>  '', 'category_id' => 2, 'pageviews' => 40, 'likes' => 15, 'purchase_terms_id' => 0, 'brand_id' => 0],
+            ['title' => 'Suit', 'description' => ' la la la', 'color_id' => 2, 'price' => 80.0, 'photos' =>  '', 'category_id' => 1, 'pageviews' => 10, 'likes' => 8, 'purchase_terms_id' => 0, 'brand_id' => 0],
+            ['title' => 'Hat', 'description' => 'ha ha hah ha', 'color_id' => 11, 'price' => 120.0, 'photos' =>  '', 'category_id' => 1, 'pageviews' => 10, 'likes' => 10, 'purchase_terms_id' => 0, 'brand_id' => 0],
+            ['title' => 'Black', 'description' => 'Das gsdfga aedfasddf eds  s', 'color_id' => 8, 'price' => 180.0, 'photos' =>  '', 'category_id' => 2, 'pageviews' => 40, 'likes' => 15, 'purchase_terms_id' => 0, 'brand_id' => 0],
         ];
 
         DB::table('products')->insert($products);
