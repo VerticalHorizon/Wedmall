@@ -33,4 +33,9 @@ class AdditionalParam extends Eloquent {
         return $value === '' ? NULL : json_decode( $value );
     }
 
+    public function setDefaultAttribute($value)
+    {
+        $this->attributes['default'] = $value === '' ? '' : json_encode( $value );
+    }
+
 }

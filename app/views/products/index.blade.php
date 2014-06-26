@@ -24,6 +24,16 @@
 
 @stop
 
+@section('scripts')
+    $(document).ready(function() {
+        @foreach (Input::except('price-from', 'price-to', 'q') as $k => $v)
+            $('input[name^="{{ $k }}"]').parents(".form_cost").accordion({ active: 0 });
+        @endforeach
+        $('a[data-name^="{{ $current_category->alias }}"]').parents(".sidebar_menu").accordion({ active: 0 });
+        window.console.log($('ul').index($('a[data-name^="{{ $current_category->alias }}"]').parent() ))
+    })
+@stop
+
 {{-- Content --}}
 @section('content')
 
@@ -45,19 +55,21 @@
                 <p>
                     Вы выбрали:
                 </p>
-                @foreach(Input::except('price-from', 'price-to', 'q') as $key =>  $value)
-                    @if(is_array($value))
-                        @foreach($value as $k =>  $v)                         {{-- $v is only flag --}}
+                @foreach(Input::except('price-from', 'price-to', 'color', 'brand', 'q') as $key =>  $value)
+                    @if(isset($attributes[$key]))            
+                        @if(is_array($value))
+                            @foreach($value as $k =>  $v)                         {{-- $v is only flag --}}
+                                <span>
+                                {{{ $attributes[$key]['title'] }}}: {{{ $attributes[$key]['default'][$k] }}}
+                                <a href="#" class="close" data-name="{{{ $attributes[$key]['alias'] }}}_{{ $k }}"></a>
+                                </span>
+                            @endforeach
+                        @else
                             <span>
-                            {{{ $attributes[$key]['title'] }}}: {{{ $attributes[$key]['default'][$k] }}}
-                            <a href="#" class="close" data-name="{{{ $attributes[$key]['alias'] }}}_{{ $k }}"></a>
+                            {{{ $attributes[$key]['title'] }}}: {{{ $value }}}
+                            <a href="#" class="close" data-name="{{{ $attributes[$key]['alias'] }}}_{{{ $value }}}"></a>
                             </span>
-                        @endforeach
-                    @else
-                        <span>
-                        {{{ $attributes[$key]['title'] }}}: {{{ $value }}}
-                        <a href="#" class="close" data-name="{{{ $attributes[$key]['alias'] }}}_{{{ $value }}}"></a>
-                        </span>
+                        @endif
                     @endif
                 @endforeach
             </div>

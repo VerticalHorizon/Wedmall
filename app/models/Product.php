@@ -18,6 +18,11 @@ class Product extends Eloquent {
         return $this->belongsTo('Category');
     }
 
+    public function brand()
+    {
+        return $this->belongsTo('Brand');
+    }
+
     public function values()
     {
         return $this->hasMany('AdditionalValue', 'product_id');
@@ -27,31 +32,59 @@ class Product extends Eloquent {
         return $this->belongsToMany('AdditionalParam', 'add_values', 'product_id', 'param_id')->withPivot('param_value');
     }
 
-    public function scopeSearch($query, $alias = NULL)
+    public function scopeSearch($query, $arguments)
     {
-        $source = $query
-        ->leftJoin('categories', 'categories.id', '=', 'products.category_id')
+        $category = Input::get('category', NULL);
+        $color = Input::get('color', []);
+        $brand = Input::get('brand', []);
+
+        extract($arguments, EXTR_OVERWRITE);
+
+        ! $category ?: $query->leftJoin('categories', 'categories.id', '=', 'products.category_id');
+        ! $color ?: $query->leftJoin('colors', 'colors.id', '=', 'products.color');
+        ! $brand ?: $query->leftJoin('brands', 'brands.id', '=', 'products.brand_id');
+
+        $query
         ->leftJoin('add_params', 'categories.id', '=', 'add_params.category_id')
         ->leftJoin('add_values', function($join)
         {
             $join->on('add_values.product_id', '=', 'products.id')
                  ->on('add_values.param_id', '=', 'add_params.id');
         })
-        ->select('products.*', 'add_params.alias AS param_alias', 'add_params.title AS param_title', 'add_values.param_value')
-        ->where(function($query) use ($alias)
+        ->where(function($query) use (&$category, &$color, &$brand)
         {
-            ! $alias ?: $query->where('categories.alias', $alias);
-            ! (Input::has('price-from') && Input::has('price-to')) ?: $query->whereBetween('price', array( Input::get('price-from'), Input::get('price-to') ));
+            ! $category ?: $query->where('categories.alias', $category);
+
+            empty($color) ?: $query->where(function($query) use ($color)
+            {                
+                $i = 0;
+                foreach ($color as &$value) {
+                    $i ? $query->orWhere('colors.alias', $value) : $query->where('colors.alias', $value);
+                    $i++;
+                }
+            });
+
+            empty($brand) ?: $query->where(function($query) use ($brand)
+            {                
+                $i = 0;
+                foreach ($brand as &$value) {
+                    $i ? $query->orWhere('brands.alias', $value) : $query->where('brands.alias', $value);
+                    $i++;
+                }
+            });
+
+            ! (Input::has('price-from') && Input::has('price-to')) ?: $query->whereBetween('price', [Input::get('price-from'), Input::get('price-to')]);
+
             ! Input::has('q') ?: $query->where(function($query)
             {
               $query->where('products.title', 'LIKE', '%'.Input::get('q').'%');
               $query->orWhere('products.description', 'LIKE', '%'.Input::get('q').'%');
             });
 
-            empty(Input::except('price-from', 'price-to', 'q')) ?: $query->where(function($query)
+            empty(Input::except('price-from', 'price-to', 'color', 'brand_id', 'q')) ?: $query->where(function($query)
             {              
               $i = 0;
-              foreach (Input::except('price-from', 'price-to', 'q') as $key => $value) {
+              foreach (Input::except('price-from', 'price-to', 'color', 'brand_id', 'q') as $key => $value) {
                   if (is_array($value))
                   {   
                       $i ? $query->orWhere('add_params.alias', $key) : $query->where('add_params.alias', $key);
@@ -61,25 +94,10 @@ class Product extends Eloquent {
               }
             });
         })
-        ->get();
+        ->select('products.*')
+        ->groupBy('products.id');
         
-        # transform rows to nested array
-        $result = [];
-        $node = 'param';    # nodes
-
-        foreach ($source->toArray() as $key => $value) {
-            if(!isset($result[$value['id']]))
-                $result[$value['id']] = $value;
-
-            foreach ($value as $k => $v) {
-                if (strpos($k, $node) !== FALSE) {
-                    $result[$value['id']][$node][$k][] = $v;
-                    unset($result[$value['id']][$k]);
-                }
-            }
-        }
-
-        return $result;
+        return $query->get()->toArray();
         // $products = Product::with([    # fucking eloquent!
         // 'category' => function($query) use ($alias)
         // {

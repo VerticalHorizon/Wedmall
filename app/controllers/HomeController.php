@@ -17,32 +17,33 @@ class HomeController extends BaseController {
 
 	public function Welcome()
 	{
-/*		$products = Product::with('category.parameters.paramvalues')
-		->get()
-		->filter(function($parameter) {
-			dd($parameter->category->parameters);
-		})
-		->toArray();	// impossible to do diamond select with Eloquent*/
-		
-		//$products = Product::withParameters()->get()->toArray();
+		$colors = DB::table('colors')->get();
 
 		$categories = Category::with('children')->where('parent_id', NULL)->get();
+
 		$slides = Slider::all();
 
-		return View::make('home.index')->with('categories', $categories)->with('slides', $slides);
+		return View::make('home.index')
+		->with('colors', $colors)
+		->with('categories', $categories)
+		->with('slides', $slides);
 	}
 
-	public function getByCategory($alias)
+	public function getByCategory($category)
 	{
 
-		$products = Product::search($alias);		# ->get() already called in model
+		$products = Product::search(['category' => $category]);		# ->get() already called in model
 
-		$current_category = Category::where('alias', $alias)->firstOrFail();
+		$current_category = Category::where('alias', $category)->firstOrFail();
 
 		$categories = Category::with('children')->where('parent_id', NULL)->get();
 
+		$brands = Brand::all();
+
+		$colors = DB::table('colors')->get();
+
 		$attributes = AdditionalParam::leftJoin('categories', 'categories.id', '=', 'add_params.category_id')
-		->where('categories.alias', $alias)
+		->where('categories.alias', $category)
 		->select('add_params.*')
 		->get()
 		->toArray();
@@ -51,8 +52,23 @@ class HomeController extends BaseController {
 
 		return View::make('products.index')
 		->with('current_category', $current_category)
-		->with('attributes', $attributes)
 		->with('categories', $categories)
+		->with('brands', $brands)
+		->with('colors', $colors)
+		->with('attributes', $attributes)
+		->with('products', $products);
+	}
+
+	public function getByColor($color)
+	{
+
+		$products = Product::search(['color' => $color]);		# ->get() already called in model
+
+		return View::make('products.index')
+		->with('categories', $categories)
+		->with('brands', $brands)
+		->with('colors', $colors)
+		->with('attributes', $attributes)
 		->with('products', $products);
 	}
 

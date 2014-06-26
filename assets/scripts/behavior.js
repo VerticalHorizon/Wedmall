@@ -7,12 +7,13 @@ $(document).ready(function() {
     });
 
     $('div.choice').on('click', 'a.close', function(e) {
-    	window.console.log('#' + $(e.currentTarget).attr('data-name'));
-		$('#' + $(e.currentTarget).attr('data-name'))
+    	var target = $(e.currentTarget);
+		$('#' + target.attr('data-name'))
 			.val('')
 			.removeAttr('checked');
 
-		$('.form.catalog form').trigger('submit');
+		// $('.form.catalog form').trigger('submit');
+        target.parent('span').remove();
     	return false;
     });
     

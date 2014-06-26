@@ -26,7 +26,7 @@ class Category extends Eloquent {
     /**
      * For frozennode/administrator
      */
-    public function getParentTitleAttribute()
+    public function getParentTitleAttribute()   # TODO: refactor!
     {
         return $this->getAttribute('parent') === NULL ? NULL : $this->getAttribute('parent')->getAttribute('title');
     }

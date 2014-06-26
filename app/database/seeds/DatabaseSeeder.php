@@ -27,6 +27,10 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('SliderTableSeeder');
 
+		$this->call('ColorsTableSeeder');
+
+		$this->call('BrandsTableSeeder');
+
 		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 	}
 
