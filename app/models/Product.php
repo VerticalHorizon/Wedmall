@@ -20,6 +20,7 @@ class Product extends Eloquent {
 
     public function brand()
     {
+                dd('das');
         return $this->belongsTo('Brand');
     }
 
@@ -51,7 +52,8 @@ class Product extends Eloquent {
         if($color){
             $query
             ->leftJoin('colorables', 'colorables.colorable_id', '=', 'products.id')
-            ->leftJoin('colors', 'colorables.color_id', '=', 'colors.id');
+            ->leftJoin('colors', 'colorables.color_id', '=', 'colors.id')
+            ->where('colorables.colorable_type', get_class($this));     # consider polymorphic relation with color
         }
             
 
@@ -64,6 +66,7 @@ class Product extends Eloquent {
         })
         ->where(function($query) use (&$category, &$color, &$brand)
         {
+
             ! $category ?: $query->where('categories.alias', $category);
 
             empty($color) ?: $query->where(function($query) use ($color)

@@ -34,11 +34,11 @@ return [
 		'description' => [
 			'title'		=> 'Description'
 		],
-		'color' => [
-			'title'		=> 'Colors',
-			// 'relationship'	=> 'Color',
-			// 'select'		=> '(:table).alias',
-		],
+		// 'color' => [
+		// 	'title'		=> 'Colors',
+		// 	'relationship'	=> 'Color',
+		// 	'select'		=> '(:table).alias',
+		// ],
 		'popularity' => [
 			'title'		=> 'Popularity'
 		],

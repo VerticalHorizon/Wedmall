@@ -46,7 +46,7 @@ return [
 			'title'			=> 'Title',
 			'type'			=> 'text',
 		],
-		'Alias' => [
+		'alias' => [
 			'title'			=> 'Alias',
 			'type'			=> 'text',
 		],

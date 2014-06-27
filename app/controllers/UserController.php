@@ -154,6 +154,7 @@ class UserController extends BaseController {
     public function forgot_password()
     {
         return View::make(Config::get('confide::forgot_password_form'));
+        //return View::make('user.forgot_password');
     }
 
     /**
@@ -226,4 +227,30 @@ class UserController extends BaseController {
         return Redirect::to('/');
     }
 
+    /**
+     * User profile
+     *
+     */
+    public function profile()
+    {
+        return View::make('user.info');
+    }
+
+    /**
+     * User settings
+     *
+     */
+    public function settings()
+    {
+        return View::make('user.settings');
+    }
+
+    /**
+     * User portfolio
+     *
+     */
+    public function portfolio()
+    {
+        return View::make('user.portfolio');
+    }
 }
