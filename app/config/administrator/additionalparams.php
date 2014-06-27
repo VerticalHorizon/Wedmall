@@ -46,6 +46,10 @@ return [
 			'title'			=> 'Title',
 			'type'			=> 'text',
 		],
+		'default' => [
+			'title'			=> 'Default',
+			'type'			=> 'text',
+		],
 		'alias' => [
 			'title'			=> 'Alias',
 			'type'			=> 'text',

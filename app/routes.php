@@ -15,6 +15,10 @@ Route::get('/', [
     'as' => 'home',
     'uses' => 'HomeController@welcome',
 ]);
+Route::any('products', [
+    'as' => 'category',
+    'uses' => 'HomeController@getByCategory',
+]);
 Route::any('category/{alias}', [
     'as' => 'category',
     'uses' => 'HomeController@getByCategory',

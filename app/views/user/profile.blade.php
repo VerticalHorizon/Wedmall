@@ -7,7 +7,7 @@
 
         </div>
         <p class="name">
-            Варвара
+            {{{ Auth::user()->username }}}
         </p>
         <span>
             Статус
@@ -24,7 +24,7 @@
     <nav class="portfolio_link">
         <ul>
             <li>
-                <a href="{{ URL::to('user/info') }}">Личная информация</a>
+                <a href="{{ URL::to('user/') }}">Личная информация</a>
             </li>
             <li>
                 <a href="{{ URL::to('user/settings') }}">Настройки</a>

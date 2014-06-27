@@ -11,7 +11,7 @@
                 <label>Имя пользователя:</label>
             </div>
             <div>
-                <input type="text"/>
+                <input type="text" value="{{{ Auth::user()->username }}}"/>
             </div>
         </div>
         <div class="text-top">
@@ -30,9 +30,9 @@
             </div>
             <div>
                 <select name="day" id="">
-                    <option value="">день</option>
-                    <option value="">день</option>
-                    <option value="">день</option>
+                    @foreach(range(1, 31) as $day)
+                    <option value="{{ $day }}">{{ $day }}</option>
+                    @endforeach
                 </select>
                 <select name="mounth" id="">
                     <option value="">месяц</option>
@@ -89,16 +89,16 @@
                 <label>Дата свадьбы</label>
             </div>
             <div>
-                <select name="day" id="">
-                    <option value="">день</option>
-                    <option value="">день</option>
-                    <option value="">день</option>
+                <select name="wedding_day" id="">
+                    @foreach(range(1, 31) as $day)
+                    <option value="{{ $day }}">{{ $day }}</option>
+                    @endforeach
                 </select>
-                <select name="mounth" id="">
+                <select name="wedding_mounth" id="">
                     <option value="">месяц</option>
                     <option value="">месяц</option>
                 </select>
-                <select name="year" id="">
+                <select name="wedding_year" id="">
                     <option value="">Год</option>
                     <option value="">Год</option>
                 </select>
