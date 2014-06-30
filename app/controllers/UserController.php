@@ -11,6 +11,11 @@
 
 class UserController extends BaseController {
 
+    public function __construct()
+    {
+        $this->beforeFilter('csrf', array('on' => 'post'));
+    }
+
     /**
      * Displays the form for account creation
      *
@@ -53,10 +58,29 @@ class UserController extends BaseController {
             // Get validation errors (see Ardent package)
             $error = $user->errors()->all(':message');
 
-                        return Redirect::action('UserController@create')
-                            ->withInput(Input::except('password'))
+            return Redirect::action('UserController@create')
+                ->withInput(Input::except('password'))
                 ->with( 'error', $error );
         }
+    }
+
+    /**
+     * Update existing account
+     *
+     */
+    public function update()
+    {
+        //dd(Confide::user()->roles[0]['name']);
+        $user = Confide::user();
+        $user->update([
+                'username' => Input::get('username'),
+                'first_name' => Input::get('first_name'),
+                'second_name' => Input::get('second_name'),
+            ]);
+        $error = $user->errors()->all(':message');
+
+        return Redirect::action('UserController@profile')
+            ->with( 'error', $error );
     }
 
     /**

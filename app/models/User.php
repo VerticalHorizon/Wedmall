@@ -8,14 +8,8 @@ use Zizaco\Entrust\HasRole;
 class User extends ConfideUser {
 	use HasRole;
 
-    /**
-     * Validation rules
-     */
-    public static $rules = array(
-    	'username' => 'unique:users,username',
-        'email' => 'required|email',
-        'password' => 'required|between:4,16|confirmed',
-    );
+	protected $guarded = array('id', 'password');
+
 	/**
 	 * The database table used by the model.
 	 *
@@ -29,6 +23,15 @@ class User extends ConfideUser {
 	 * @var array
 	 */
 	protected $hidden = array('password');
+
+    /**
+     * Validation rules
+     */
+    public static $rules = array(
+    	'username' => 'unique:users,username',
+        'email' => 'email',
+        'password' => 'between:4,16|confirmed',
+    );
 
 	/**
 	 * Get the unique identifier for the user.
