@@ -1,33 +1,6 @@
 @extends('user.profile')
 
 @section('user_content')
-        @if ($message = Session::get('success'))
-        <div class="alert alert-success alert-block">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <h4>Success</h4>
-            @if(is_array($message))
-                @foreach ($message as $m)
-                    {{ $m }}
-                @endforeach
-            @else
-                {{ $message }}
-            @endif
-        </div>
-        @endif
-
-        @if ($message = Session::get('error'))
-        <div class="alert alert-danger alert-block">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <h4>Error</h4>
-            @if(is_array($message))
-            @foreach ($message as $m)
-            {{ $m }}
-            @endforeach
-            @else
-            {{ $message }}
-            @endif
-        </div>
-        @endif
     <h2>
         Личная информация
     </h2>
@@ -57,9 +30,9 @@
                 <label>Дата рождения</label>
             </div>
             <div>
-                {{ Form::selectRange('birth_day', 1, 31, null, ['id' => 'birth_day']) }}
-                {{ Form::selectMonth('birth_month', null, ['id' => 'birth_month']) }}
-                {{ Form::selectRange('birth_year', 1930, date("Y"), null, ['id' => 'birth_year']) }}
+                {{ Form::selectRange('birth_day', 1, 31, Confide::user()->birth_day, ['id' => 'birth_day']) }}
+                {{ Form::selectMonth('birth_month', Confide::user()->birth_month, ['id' => 'birth_month']) }}
+                {{ Form::selectRange('birth_year', 1930, date("Y"), Confide::user()->birth_year, ['id' => 'birth_year']) }}
             </div>
         </div>
         <div>
@@ -94,7 +67,7 @@
                 <label>Регион</label>
             </div>
             <div>
-                <select name="region">
+                <select name="city">
                     <option value="1">Москва</option>
                     <option value="2">Минск</option>
                 </select>
@@ -105,9 +78,9 @@
                 <label>Дата свадьбы</label>
             </div>
             <div>
-                {{ Form::selectRange('wedding_day', 1, 31, null, ['id' => 'wedding_day']) }}
-                {{ Form::selectMonth('wedding_month', null, ['id' => 'wedding_month']) }}
-                {{ Form::selectRange('wedding_year', date("Y"), date("Y") + 2, null, ['id' => 'wedding_year']) }}
+                {{ Form::selectRange('wedding_day', 1, 31, Confide::user()->wedding_day, ['id' => 'wedding_day']) }}
+                {{ Form::selectMonth('wedding_month', Confide::user()->wedding_month, ['id' => 'wedding_month']) }}
+                {{ Form::selectRange('wedding_year', date("Y"), date("Y") + 2, Confide::user()->wedding_year, ['id' => 'wedding_year']) }}
             </div>
         </div>
         <div class="text-top">

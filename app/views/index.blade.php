@@ -106,7 +106,7 @@
 
             <div class="menu_open big catalog">
 
-                <a href="#" class="stop_propagation">
+                <a href="{{ URL::to('products') }}" class="stop_propagation">
 
                     Товары
 

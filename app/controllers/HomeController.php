@@ -29,12 +29,12 @@ class HomeController extends BaseController {
 		->with('slides', $slides);
 	}
 
-	public function getByCategory($category)
+	public function Products()
 	{
+		$color = Route::input('color');
+		$category = Route::input('category');
 
-		$products = Product::search(['category' => $category]);		# ->get() already called in model
-
-		$current_category = Category::where('alias', $category)->firstOrFail();
+		$products = Product::search(['category' => $category, 'color' => [$color] ]);		# ->get() already called in model
 
 		$categories = Category::with('children')->where('parent_id', NULL)->get();
 
@@ -42,20 +42,30 @@ class HomeController extends BaseController {
 
 		$colors = DB::table('colors')->get();
 
-		$attributes = AdditionalParam::leftJoin('categories', 'categories.id', '=', 'add_params.category_id')
-		->where('categories.alias', $category)
-		->select('add_params.*')
-		->get()
-		->toArray();
+		if($category)
+		{
+			$current_category = Category::where('alias', $category)->firstOrFail();
 
-		$attributes = array_combine(array_column($attributes, 'alias'), array_values($attributes));
+			$attributes = AdditionalParam::leftJoin('categories', 'categories.id', '=', 'add_params.category_id')
+			->where('categories.alias', $category)
+			->select('add_params.*')
+			->get()
+			->toArray();
+
+			$attributes = array_combine(array_column($attributes, 'alias'), array_values($attributes));
+		}
+		else
+		{
+			$current_category = NULL;
+			$attributes = NULL;
+		}
 
 		return View::make('products.index')
 		->with('current_category', $current_category)
+		->with('attributes', $attributes)
 		->with('categories', $categories)
 		->with('brands', $brands)
 		->with('colors', $colors)
-		->with('attributes', $attributes)
 		->with('products', $products);
 	}
 

@@ -16,16 +16,16 @@ Route::get('/', [
     'uses' => 'HomeController@welcome',
 ]);
 Route::any('products', [
-    'as' => 'category',
-    'uses' => 'HomeController@getByCategory',
+    'as' => 'products',
+    'uses' => 'HomeController@products',
 ]);
-Route::any('category/{alias}', [
+Route::any('category/{category}', [
     'as' => 'category',
-    'uses' => 'HomeController@getByCategory',
+    'uses' => 'HomeController@products',
 ]);
-Route::any('color/{alias}', [
+Route::any('color/{color}', [
     'as' => 'color',
-    'uses' => 'HomeController@getByColor',
+    'uses' => 'HomeController@products',
 ]);
 
 // Confide routes

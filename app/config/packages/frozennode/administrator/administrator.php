@@ -53,7 +53,6 @@ return array(
 	 */
 	'menu' => array(
 		'slider',
-		'products',
 		'Categories & Attributes'	=> ['categories', 'additionalparams'],
 		'users',
 		'Settings'					=> ['settings.site'],

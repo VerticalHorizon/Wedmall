@@ -23,6 +23,8 @@ class ColorsTableSeeder extends Seeder {
             ];
 
         DB::table('colors')->insert($colors);
-	}
 
+        $product = Product::find(1);
+        $product->attachColor( Color::find(8) );
+	}
 }

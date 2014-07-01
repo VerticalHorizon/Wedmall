@@ -31,7 +31,7 @@
                </form>
             </div>
             <div>
-               <p>varvara@gmail.com</p>
+               <p>{{{ Confide::user()->email }}}</p>
             </div>
         </div>
         <div class="text-top">
@@ -39,9 +39,10 @@
                 <label>Новый email:</label>
             </div>
             <div>
-               <form>
-                   <input type="email"/>
-                  <input type="submit" value="Изменить email"/>
+               <form action="{{ URL::to('user/update') }}" method="post">
+                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                   <input type="email" name="email"/>
+                   <input type="submit" value="Изменить email"/>
                </form>
             </div>
         </div>
@@ -56,7 +57,7 @@
                     <label>Текущий пароль:</label>
                 </div>
                 <div>
-                    <input type="text" class="error"/>
+                    <input name="old_password" type="password" class="error"/>
                     <p>Необходимо ввести текущий пароль</p>
                 </div>
             </div>
@@ -65,7 +66,7 @@
                     <label>Новый пароль:</label>
                 </div>
                 <div>
-                    <input type="text" class="error"/>
+                    <input name="password" type="password" class="error"/>
                     <p>Необходимо ввести новыйч пароль</p>
                 </div>
             </div>
@@ -74,7 +75,7 @@
                     <label>Повторите пароль:</label>
                 </div>
                 <div>
-                    <input type="text" class="error"/>
+                    <input name="password_confirmation" type="password" class="error"/>
                     <p>Необходимо повторить новый пароль</p>
                     <input type="submit" value="Изменить email"/>
                 </div>
@@ -97,17 +98,4 @@
             </div>
         </form>
 </div>
-    <div class="notifications">
-        <div class="ok">
-            <p>
-                Настройки сохранены
-            </p>
-        </div>
-        <div class="error">
-            <p>
-                Произошла ошибка.
-                Попробуйте еще раз.
-            </p>
-        </div>
-    </div>
 @stop

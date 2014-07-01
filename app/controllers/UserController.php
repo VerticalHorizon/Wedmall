@@ -47,11 +47,11 @@ class UserController extends BaseController {
 
         if ( $user->id )
         {
-                        $notice = Lang::get('confide::confide.alerts.account_created') . ' ' . Lang::get('confide::confide.alerts.instructions_sent'); 
+            $notice = Lang::get('confide::confide.alerts.account_created') . ' ' . Lang::get('confide::confide.alerts.instructions_sent'); 
                     
             // Redirect with success message, You may replace "Lang::get(..." for your custom message.
-                        return Redirect::action('UserController@login')
-                            ->with( 'notice', $notice );
+            return Redirect::action('UserController@login')
+                ->with( 'notice', $notice );
         }
         else
         {
@@ -70,13 +70,14 @@ class UserController extends BaseController {
      */
     public function update()
     {
-        //dd(Confide::user()->roles[0]['name']);
         $user = Confide::user();
-        $user->update([
-                'username' => Input::get('username'),
-                'first_name' => Input::get('first_name'),
-                'second_name' => Input::get('second_name'),
-            ]);
+
+        if(Input::has('password') && (Input::get('old_password')!=Input::get('password')))
+            return Redirect::action('UserController@profile')->with( 'error', Lang::get('confide::wrong_password_reset') );
+        
+        $user->fill(Input::all());
+        $user->updateUniques();
+
         $error = $user->errors()->all(':message');
 
         return Redirect::action('UserController@profile')

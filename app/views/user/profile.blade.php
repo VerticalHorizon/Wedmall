@@ -7,7 +7,7 @@
 
         </div>
         <p class="name">
-            {{{ Auth::user()->username }}}
+            {{{ Confide::user()->username }}}
         </p>
         <span>
             Статус
@@ -37,5 +37,37 @@
 </div>
 <div class="content edit_profile">
     @yield('user_content')
+    <div class="notifications">
+        @if ($message = Session::get('success'))
+        <div class="ok">
+            <p>
+                @if(is_array($message))
+                <ul>
+                    @foreach ($message as $m)
+                        <li>{{ $m }}</li>
+                    @endforeach
+                </ul>
+                @else
+                    {{ $message }}
+                @endif
+            </p>
+        </div>
+        @endif
+        @if ($message = Session::get('error'))
+        <div class="error">
+            <p>
+            @if(is_array($message))
+            <ul>
+                @foreach ($message as $m)
+                    <li>{{ $m }}</li>
+                @endforeach
+            </ul>
+            @else
+                {{ $message }}
+            @endif
+            </p>
+        </div>
+        @endif
+    </div>
 </div>
 @stop

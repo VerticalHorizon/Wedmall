@@ -196,6 +196,8 @@ return array(
         'Entrust'         => 'Zizaco\Entrust\EntrustFacade',
 
         'Breadcrumbs'     => 'DaveJamesMiller\Breadcrumbs\Facade',
+
+        'Carbon'          => 'Carbon\Carbon',
     ),
 
 );
