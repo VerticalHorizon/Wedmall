@@ -24,7 +24,7 @@ class ColorsTableSeeder extends Seeder {
 
         DB::table('colors')->insert($colors);
 
-        $product = Product::find(1);
-        $product->attachColor( Color::find(8) );
+        $product = Product::where('title', 'Suit')->firstOrFail();
+        $product->colors()->attach( Color::where('alias', 'amethyst')->firstOrFail() );
 	}
 }

@@ -6,36 +6,36 @@ use Zizaco\Confide\ConfideUser;
 use Zizaco\Entrust\HasRole;
 
 class User extends ConfideUser {
-	use HasRole;
+    use HasRole;
 
-	protected $guarded = array('id', 'password');
+    protected $guarded = array('id', 'password');
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'users';
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'users';
 
-	/**
-	 * The attributes excluded from the model's JSON form.
-	 *
-	 * @var array
-	 */
-	protected $hidden = ['password'];
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = ['password'];
 
-	/**
-	 * The attributes included in the model's JSON form.
-	 *
-	 * @var array
-	 */
+    /**
+     * The attributes included in the model's JSON form.
+     *
+     * @var array
+     */
     protected $appends = ['birth_day', 'birth_month', 'birth_year', 'wedding_day', 'wedding_month', 'wedding_year'];
 
     /**
      * Validation rules
      */
     public static $rules = array(
-    	'username' => 'required|min:3|max:80|alpha_dash|unique:users,username',
+        'username' => 'required|min:3|max:80|alpha_dash|unique:users,username',
         'email' => 'required|between:3,64|email|unique:users',
         'password' => 'required|alpha_num|between:4,16|confirmed',
     );
@@ -45,66 +45,66 @@ class User extends ConfideUser {
         return $this->belongsTo('City');
     }
 
-	/**
-	 * Get the unique identifier for the user.
-	 *
-	 * @return mixed
-	 */
-	public function getAuthIdentifier()
-	{
-		return $this->getKey();
-	}
+    /**
+     * Get the unique identifier for the user.
+     *
+     * @return mixed
+     */
+    public function getAuthIdentifier()
+    {
+        return $this->getKey();
+    }
 
-	/**
-	 * Get the password for the user.
-	 *
-	 * @return string
-	 */
-	public function getAuthPassword()
-	{
-		return $this->password;
-	}
+    /**
+     * Get the password for the user.
+     *
+     * @return string
+     */
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
 
-	/**
-	 * Get the token value for the "remember me" session.
-	 *
-	 * @return string
-	 */
-	public function getRememberToken()
-	{
-		return $this->remember_token;
-	}
+    /**
+     * Get the token value for the "remember me" session.
+     *
+     * @return string
+     */
+    public function getRememberToken()
+    {
+        return $this->remember_token;
+    }
 
-	/**
-	 * Set the token value for the "remember me" session.
-	 *
-	 * @param  string  $value
-	 * @return void
-	 */
-	public function setRememberToken($value)
-	{
-		$this->remember_token = $value;
-	}
+    /**
+     * Set the token value for the "remember me" session.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setRememberToken($value)
+    {
+        $this->remember_token = $value;
+    }
 
-	/**
-	 * Get the column name for the "remember me" token.
-	 *
-	 * @return string
-	 */
-	public function getRememberTokenName()
-	{
-		return 'remember_token';
-	}
+    /**
+     * Get the column name for the "remember me" token.
+     *
+     * @return string
+     */
+    public function getRememberTokenName()
+    {
+        return 'remember_token';
+    }
 
-	/**
-	 * Get the e-mail address where password reminders are sent.
-	 *
-	 * @return string
-	 */
-	public function getReminderEmail()
-	{
-		return $this->email;
-	}
+    /**
+     * Get the e-mail address where password reminders are sent.
+     *
+     * @return string
+     */
+    public function getReminderEmail()
+    {
+        return $this->email;
+    }
 
 
     public function beforeSave( $forced = false ){
@@ -162,6 +162,20 @@ class User extends ConfideUser {
             });
         
         return trim($names);
+    }
+
+    public function setRoleAttribute($value)
+    {
+        if( ! Entrust::hasRole('admin') )
+        {           
+            $role = Role::where('name', $value)->firstOrFail();
+
+            DB::table('assigned_roles')->where('user_id', $this->id)->delete();
+
+            $this->attachRole($role);
+        }
+
+        return $this;
     }
 
 }

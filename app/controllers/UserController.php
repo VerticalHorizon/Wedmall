@@ -72,10 +72,11 @@ class UserController extends BaseController {
     {
         $user = Confide::user();
 
-        if(Input::has('password') && (Input::get('old_password')!=Input::get('password')))
-            return Redirect::action('UserController@profile')->with( 'error', Lang::get('confide::wrong_password_reset') );
-        
-        $user->fill(Input::all());
+        if(Input::has('password') && (Input::get('old_password')!=Input::get('password')))      # change password with confirmation
+            return Redirect::action('UserController@profile')
+                ->with( 'error', Lang::get('confide::wrong_password_reset') );
+
+        $user->fill(Input::all());          # deny admin to change his role
         $user->updateUniques();
 
         $error = $user->errors()->all(':message');

@@ -12,7 +12,7 @@
                 <label>Имя пользователя:</label>
             </div>
             <div>
-                <input type="text" name="username" value="{{{ Auth::user()->username }}}"/>
+                <input type="text" name="username" value="{{{ Confide::user()->username }}}"/>
             </div>
         </div>
         <div class="text-top">
@@ -25,6 +25,22 @@
                 @endforeach
             </div>
         </div>
+
+@if(Entrust::hasRole('professional') || Entrust::hasRole('organization'))
+        <div>
+            <div>
+                <label>Вид деятельности:</label>
+            </div>
+            <div>
+                <select name="">
+                    <option value="">Фотограф</option>
+                    <option value="">Студия не декора</option>
+                    <option value="">Студия передекора</option>
+                </select>
+            </div>
+        </div>
+@endif
+@if(Entrust::hasRole('user') || Entrust::hasRole('professional'))
         <div>
             <div>
                 <label>Дата рождения</label>
@@ -40,7 +56,7 @@
                 <label>Имя:</label>
             </div>
             <div>
-                <input type="text" name="first_name" value="{{{ Auth::user()->first_name }}}" />
+                <input type="text" name="first_name" value="{{{ Confide::user()->first_name }}}" />
             </div>
         </div>
         <div>
@@ -48,9 +64,19 @@
                 <label>Фамилия:</label>
             </div>
             <div>
-                <input type="text" name="second_name" value="{{{ Auth::user()->second_name }}}" />
+                <input type="text" name="second_name" value="{{{ Confide::user()->second_name }}}" />
             </div>
         </div>
+@elseif(Entrust::hasRole('organization'))
+        <div>
+            <div>
+                <label>Название организации:</label>
+            </div>
+            <div>
+                <input type="text" name="first_name" value="{{{ Confide::user()->first_name }}}" />
+            </div>
+        </div>
+@endif
         <div>
             <div>
                 <label>Страна</label>
@@ -73,6 +99,7 @@
                 </select>
             </div>
         </div>
+@if(Entrust::hasRole('user'))
         <div>
             <div>
                 <label>Дата свадьбы</label>
@@ -83,6 +110,19 @@
                 {{ Form::selectRange('wedding_year', date("Y"), date("Y") + 2, Confide::user()->wedding_year, ['id' => 'wedding_year']) }}
             </div>
         </div>
+@elseif(Entrust::hasRole('professional') || Entrust::hasRole('organization'))
+        <div class="text-top">
+            <div>
+                <label>Контакты:</label>
+            </div>
+            <div>
+                <input type="text" class="contact" placeholder="В контакте"/>
+                <input type="text" class="facebook" placeholder="facebook"/>
+                <input type="text" placeholder="сайт"/>
+                <input type="text" placeholder="Телефон"/>
+            </div>
+        </div>
+@endif
         <div class="text-top">
             <div>
                 <label>Фото профиля:</label>
