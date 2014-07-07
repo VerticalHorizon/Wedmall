@@ -110,7 +110,7 @@ return array(
 	 *
 	 * @type string
 	 */
-	'logout_path' => URL::route('logout'),
+	'logout_path' => 'user/logout',//URL::route('logout'), main routes loads after this config :(
 
 	/**
 	 * This is the key of the return path that is sent with the redirection to your login_action. Session::get('redirect') will hold the return URL.
