@@ -17,55 +17,69 @@ class HomeController extends BaseController {
 
 	public function Welcome()
 	{
-/*		$products = Product::with('category.parameters.paramvalues')
-		->get()
-		->filter(function($parameter) {
-			dd($parameter->category->parameters);
-		})
-		->toArray();	// impossible to do diamond select with Eloquent*/
-		
-		//$products = Product::withParameters()->get()->toArray();
+		$colors = DB::table('colors')->get();
 
 		$categories = Category::with('children')->where('parent_id', NULL)->get();
+
 		$slides = Slider::all();
 
-		// $products = Product::withParameters()
-		// ->get()
-		// ->toArray();
-
-		return View::make('home.index')->with('categories', $categories)->with('slides', $slides);
+		return View::make('home.index')
+		->with('colors', $colors)
+		->with('categories', $categories)
+		->with('slides', $slides);
 	}
 
-	public function getByCategory($alias)
+	public function Products()
 	{
+		//$color = Route::input('color');
+		$category = Route::input('category');
 
-		if( !empty(Input::all()) )
+		$products = Product::search(['category' => $category]);		# ->get() already called in model
+
+		$categories = Category::with('children')->where('parent_id', NULL)->get();
+
+		$brands = Brand::all();
+
+		$colors = DB::table('colors')->get();
+
+		if($category)
 		{
-			$products = Product::search($alias, Input::all())->get()->toArray();
-		    //dd($products);
-		    //dd(Input::all());
+			$current_category = Category::where('alias', $category)->firstOrFail();
+
+			$attributes = AdditionalParam::leftJoin('categories', 'categories.id', '=', 'add_params.category_id')
+			->where('categories.alias', $category)
+			->select('add_params.*')
+			->get()
+			->toArray();
+
+			$attributes = array_combine(array_column($attributes, 'alias'), array_values($attributes));
 		}
 		else
 		{
-			$products = Product::leftJoin('categories', 'categories.id', '=', 'products.category_id')->where('categories.alias', $alias)->select('products.*')->get()->toArray();
+			$current_category = NULL;
+			$attributes = NULL;
 		}
-
-		$current_category = Category::where('alias', $alias)->firstOrFail();
-
-		$categories = Category::with('children')->where('parent_id', NULL)->get();
-
-		$attributes = AdditionalParam::leftJoin('categories', 'categories.id', '=', 'add_params.category_id')
-		->where('categories.alias', $alias)
-		->select('add_params.*')
-		->get();
-
 
 		return View::make('products.index')
 		->with('current_category', $current_category)
 		->with('attributes', $attributes)
 		->with('categories', $categories)
-		->with('products', $products)
-		->with('input', Input::all());
+		->with('brands', $brands)
+		->with('colors', $colors)
+		->with('products', $products);
+	}
+
+	public function getByColor($color)
+	{
+
+		$products = Product::search(['color' => $color]);		# ->get() already called in model
+
+		return View::make('products.index')
+		->with('categories', $categories)
+		->with('brands', $brands)
+		->with('colors', $colors)
+		->with('attributes', $attributes)
+		->with('products', $products);
 	}
 
 }

@@ -11,6 +11,11 @@
 
 class UserController extends BaseController {
 
+    public function __construct()
+    {
+        $this->beforeFilter('csrf', array('on' => 'post'));
+    }
+
     /**
      * Displays the form for account creation
      *
@@ -42,21 +47,42 @@ class UserController extends BaseController {
 
         if ( $user->id )
         {
-                        $notice = Lang::get('confide::confide.alerts.account_created') . ' ' . Lang::get('confide::confide.alerts.instructions_sent'); 
+            $notice = Lang::get('confide::confide.alerts.account_created') . ' ' . Lang::get('confide::confide.alerts.instructions_sent'); 
                     
             // Redirect with success message, You may replace "Lang::get(..." for your custom message.
-                        return Redirect::action('UserController@login')
-                            ->with( 'notice', $notice );
+            return Redirect::action('UserController@login')
+                ->with( 'notice', $notice );
         }
         else
         {
             // Get validation errors (see Ardent package)
             $error = $user->errors()->all(':message');
 
-                        return Redirect::action('UserController@create')
-                            ->withInput(Input::except('password'))
+            return Redirect::action('UserController@create')
+                ->withInput(Input::except('password'))
                 ->with( 'error', $error );
         }
+    }
+
+    /**
+     * Update existing account
+     *
+     */
+    public function update()
+    {
+        $user = Confide::user();
+
+        if(Input::has('password') && (Input::get('old_password')!=Input::get('password')))      # change password with confirmation
+            return Redirect::action('UserController@profile')
+                ->with( 'error', Lang::get('confide::wrong_password_reset') );
+
+        $user->fill(Input::all());          # deny admin to change his role
+        $user->updateUniques();
+
+        $error = $user->errors()->all(':message');
+
+        return Redirect::action('UserController@profile')
+            ->with( 'error', $error );
     }
 
     /**
@@ -154,6 +180,7 @@ class UserController extends BaseController {
     public function forgot_password()
     {
         return View::make(Config::get('confide::forgot_password_form'));
+        //return View::make('user.forgot_password');
     }
 
     /**
@@ -226,4 +253,30 @@ class UserController extends BaseController {
         return Redirect::to('/');
     }
 
+    /**
+     * User profile
+     *
+     */
+    public function profile()
+    {
+        return View::make('user.info');
+    }
+
+    /**
+     * User settings
+     *
+     */
+    public function settings()
+    {
+        return View::make('user.settings');
+    }
+
+    /**
+     * User portfolio
+     *
+     */
+    public function portfolio()
+    {
+        return View::make('user.portfolio');
+    }
 }

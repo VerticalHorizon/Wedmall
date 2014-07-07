@@ -52,7 +52,7 @@ return array(
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ru',
 
     /*
     |--------------------------------------------------------------------------
@@ -196,6 +196,8 @@ return array(
         'Entrust'         => 'Zizaco\Entrust\EntrustFacade',
 
         'Breadcrumbs'     => 'DaveJamesMiller\Breadcrumbs\Facade',
+
+        'Carbon'          => 'Carbon\Carbon',
     ),
 
 );

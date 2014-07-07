@@ -1,6 +1,7 @@
 /bootstrap/compiled.php
 /vendor
 /uploads
+/app/config/database.php
 composer.bat
 artisan.bat
 composer.phar

@@ -16,7 +16,7 @@
                 <i>Или заполните форму:</i>
 
                 <form action="{{{ Confide::checkAction('UserController@do_login') ?: URL::to('/user/login') }}}" method="post" accept-charset="UTF-8">
-                    <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
+                    <input type="hidden" name="_token" value="{{ Session::getToken() }}">
                     <input type="text" placeholder="{{{ Lang::get('confide::confide.username_e_mail') }}}" tabindex="1" name="email" id="email" value="{{{ Input::old('email') }}}">
                     <input type="password" placeholder="{{{ Lang::get('confide::confide.password') }}}" tabindex="2" name="password" id="password">
                     <input type="submit" value="{{{ Lang::get('confide::confide.login.submit') }}}"/>

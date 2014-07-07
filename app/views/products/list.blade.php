@@ -1,6 +1,6 @@
     <div class="content_preview">
         <div class="preview cost">
-            @for ($i = 0; $i < count($products); $i++)
+            @foreach ($products as $i => $product)
                 <div>
                     <a href="#">
                         <img src="../images/other/preview_cost.png" alt="">
@@ -15,19 +15,19 @@
                         </div>
                     </div>
                     <p>
-                        {{{ $products[$i]['title'] }}}
+                        {{{ $product['title'] }}}
                     </p>
                     <span>
                         от Твоя кухня
                     </span>
                     <p class="cost">
-                        {{{ $products[$i]['price'] }}} руб.
+                        {{{ $product['price'] }}} руб.
                     </p>
                 </div>
                 {{!$i % 3}}
                 @if(!$i%3 && $i)
                     </div><div class="preview cost">
                 @endif
-            @endfor
+            @endforeach
         </div>
     </div>

@@ -34,9 +34,11 @@ return [
 		'description' => [
 			'title'		=> 'Description'
 		],
-		'color' => [
-			'title'		=> 'Color'
-		],
+		// 'color' => [
+		// 	'title'		=> 'Colors',
+		// 	'relationship'	=> 'Color',
+		// 	'select'		=> '(:table).alias',
+		// ],
 		'popularity' => [
 			'title'		=> 'Popularity'
 		],
@@ -67,6 +69,11 @@ return [
 			'title'			=> 'Category',
 			'type'			=> 'relationship',
 			'name_field'	=> 'title',
+		],
+		'colors' => [
+			'title'			=> 'Color',
+			'type'			=> 'relationship',
+			'name_field'	=> 'alias',
 		],
 
 	],

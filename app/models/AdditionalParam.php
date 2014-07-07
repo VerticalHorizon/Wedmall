@@ -28,9 +28,14 @@ class AdditionalParam extends Eloquent {
         return $this->belongsToMany('Product', 'add_values', 'param_id', 'product_id')->withPivot('param_value');
     }
 
-    public function defaultValues()
+    public function getDefaultAttribute($value)
     {
-        return $this->getAttribute('default') === '' ? NULL : json_decode( $this->getAttribute('default') );
+        return $value === '' ? NULL : json_decode( $value );
+    }
+
+    public function setDefaultAttribute($value)
+    {
+        $this->attributes['default'] = $value === '' ? '' : json_encode( $value );
     }
 
 }
