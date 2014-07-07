@@ -23,10 +23,11 @@ class ActivityTypesTableSeeder extends Seeder {
          * Attach roles
          */
         $profy = Role::where('name', 'professional')->firstOrFail();
-        $king = ActivityType::where('alias', 'king')->firstOrFail();
-        $joker = ActivityType::where('alias', 'joker')->firstOrFail();
-        $king->role()->attach($profy);
-        $joker->role()->attach($profy);
+
+        $profy->activityTypes()->saveMany([
+            ActivityType::where('alias', 'king')->firstOrFail(),
+            ActivityType::where('alias', 'joker')->firstOrFail(),
+        ]);
     }
 
 }
