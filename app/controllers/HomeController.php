@@ -69,17 +69,13 @@ class HomeController extends BaseController {
 		->with('products', $products);
 	}
 
-	public function getByColor($color)
+	public function Show($id)
 	{
 
-		$products = Product::search(['color' => $color]);		# ->get() already called in model
+		$product = Product::find($id);
 
-		return View::make('products.index')
-		->with('categories', $categories)
-		->with('brands', $brands)
-		->with('colors', $colors)
-		->with('attributes', $attributes)
-		->with('products', $products);
+		return View::make('products.show')
+		->with('product', $product);
 	}
 
 }

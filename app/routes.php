@@ -11,6 +11,8 @@
 |
 */
 
+Route::pattern('id', '[0-9]+');
+
 Route::get('/', [
     'as' => 'home',
     'uses' => 'HomeController@welcome',
@@ -18,6 +20,10 @@ Route::get('/', [
 Route::any('products', [
     'as' => 'products',
     'uses' => 'HomeController@products',
+]);
+Route::any('products/{id}', [
+    'as' => 'product_show',
+    'uses' => 'HomeController@show',
 ]);
 Route::any('category/{category}', [
     'as' => 'category',

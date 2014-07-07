@@ -35,7 +35,7 @@
         @foreach (Input::except('price-from', 'price-to', 'q') as $k => $v)
             $('input[name^="{{ $k }}"]').parents(".form_cost").accordion({ active: 0 });
         @endforeach
-        @if(isset($current_category))
+        @if(isset($current_category))       // expand only parent of child with .active
         $('a[data-name^="{{ $current_category->alias }}"]').parents(".sidebar_menu").accordion({ active: 0 });
         window.console.log($('ul').index($('a[data-name^="{{ $current_category->alias }}"]').parent() ))
         @endif
@@ -48,7 +48,7 @@
     @include('products.search')
 
     <div class="sidebar left">
-        @include('home.leftmenu')
+        @include('home.leftmenu')       {{-- rename to categoires --}}
         
         {{ Form::open(['url' => Request::path(), 'method' => 'get']) }}
             <div class="form_cost">
