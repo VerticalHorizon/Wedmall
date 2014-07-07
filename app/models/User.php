@@ -109,10 +109,12 @@ class User extends ConfideUser {
 
     public function beforeSave( $forced = false ){
 
-        parent::beforeSave( $forced );
+        parent::beforeSave( $forced );      # TODO: refactor updating
 
-        $this->attributes['birth_date'] = Carbon::create($this->birth_year, $this->birth_month, $this->birth_day)->toDateString();
-        $this->attributes['wedding_date'] = Carbon::create($this->wedding_year, $this->wedding_month, $this->wedding_day)->toDateString();
+        if(Input::has('birth_year') && Input::has('birth_month') && Input::has('birth_day'))
+            $this->attributes['birth_date'] = Carbon::create($this->birth_year, $this->birth_month, $this->birth_day)->toDateString();
+        if(Input::has('wedding_year') && Input::has('wedding_month') && Input::has('wedding_day'))
+            $this->attributes['wedding_date'] = Carbon::create($this->wedding_year, $this->wedding_month, $this->wedding_day)->toDateString();
         unset(
                 $this->birth_day, $this->birth_month, $this->birth_year,
                 $this->wedding_day, $this->wedding_month, $this->wedding_year

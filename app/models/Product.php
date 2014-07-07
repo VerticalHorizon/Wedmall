@@ -46,7 +46,7 @@ class Product extends Eloquent {
 
         extract($arguments, EXTR_OVERWRITE);
 
-        if($color)
+        if(array_filter($color))
         {
             $query
             ->leftJoin('colorables', 'colorables.colorable_id', '=', 'products.id')

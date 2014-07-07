@@ -40,7 +40,7 @@
             </div>
         </div>
 @endif
-@if(Entrust::hasRole('user') || Entrust::hasRole('professional'))
+@if(Entrust::hasRole('admin') || Entrust::hasRole('user') || Entrust::hasRole('professional'))
         <div>
             <div>
                 <label>Дата рождения</label>

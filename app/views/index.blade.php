@@ -1342,7 +1342,7 @@
                 </div>
             </div>
         @else
-            <a href="#" class="open popup_open" data-type="popup_auth">{{{ Lang::get('site.login') }}}</a>
+            <a href="#" class="open popup_open" data-type="popup_auth">@lang('labels.login')</a>
         @endif
     </div>
 
