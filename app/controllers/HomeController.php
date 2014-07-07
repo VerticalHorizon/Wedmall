@@ -31,10 +31,10 @@ class HomeController extends BaseController {
 
 	public function Products()
 	{
-		$color = Route::input('color');
+		//$color = Route::input('color');
 		$category = Route::input('category');
 
-		$products = Product::search(['category' => $category, 'color' => [$color] ]);		# ->get() already called in model
+		$products = Product::search(['category' => $category]);		# ->get() already called in model
 
 		$categories = Category::with('children')->where('parent_id', NULL)->get();
 

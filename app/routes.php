@@ -23,10 +23,6 @@ Route::any('category/{category}', [
     'as' => 'category',
     'uses' => 'HomeController@products',
 ]);
-Route::any('color/{color}', [
-    'as' => 'color',
-    'uses' => 'HomeController@products',
-]);
 
 // Confide routes
 Route::get( 'user/create',                 'UserController@create');

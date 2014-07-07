@@ -38,7 +38,7 @@ class Product extends Eloquent {
         return $this->belongsToMany('AdditionalParam', 'add_values', 'product_id', 'param_id')->withPivot('param_value');
     }
 
-    public function scopeSearch($query, $arguments)
+    public function scopeSearch($query, $arguments)     # TODO: refactor
     {
         $category = Input::get('category', NULL);
         $color = Input::get('color', []);
@@ -46,7 +46,7 @@ class Product extends Eloquent {
 
         extract($arguments, EXTR_OVERWRITE);
 
-        if(array_filter($color))
+        if($color)
         {
             $query
             ->leftJoin('colorables', 'colorables.colorable_id', '=', 'products.id')
