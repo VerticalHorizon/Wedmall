@@ -56,10 +56,10 @@ return [
 			'title'			=> 'Photo',
 			'type'			=> 'image',
 			'naming'		=> 'random',
-			'location'		=> '/home/deploy/htdocs/wedmall/uploads/slides/originals/',
+			'location'		=> public_path().'/uploads/slides/originals/',
 			'size_limit'	=> 2,
 	        'sizes' => [
-	            [714, 334, 'crop', '/home/deploy/htdocs/wedmall/uploads/slides/detail/', 100],
+	            [714, 334, 'crop', public_path().'/uploads/slides/detail/', 100],
 	        ]
 		],
 
