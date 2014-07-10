@@ -13,6 +13,7 @@
 
 Route::pattern('id', '[0-9]+');
 
+Route::get('articles/{alias}/{subalias}', 'ArticlesController@byTopic');
 Route::resource('articles', 'ArticlesController');
 
 Route::get('/', [

@@ -13,7 +13,8 @@
 
 App::before(function($request)
 {
-	//
+	View::share('topics', $topics = Topic::with('children')->where('parent_id', NULL)->get());
+	View::share('categories', $categories = Category::with('children')->where('parent_id', NULL)->get());
 });
 
 

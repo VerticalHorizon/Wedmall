@@ -16,6 +16,19 @@ class ArticlesController extends BaseController {
 	}
 
 	/**
+	 * Display a listing of the resource filtered by  topic
+	 * GET /articles/{alias}/{alias}
+	 *
+	 * @return Response
+	 */
+	public function byTopic()
+	{
+
+		return View::make('articles.index')
+		->with('articles', Article::all());
+	}
+
+	/**
 	 * Show the form for creating a new resource.
 	 * GET /articles/create
 	 *

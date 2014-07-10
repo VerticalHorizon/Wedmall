@@ -42,7 +42,7 @@
 </h1>
 
 <div class="sidebar left">
-    @include('articles.categories')
+    @include('articles.categories', ['categories' => $topics])
 </div>
 
 <div class="content articles">
