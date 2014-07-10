@@ -56,7 +56,7 @@ return [
 			'title'			=> 'Photo',
 			'type'			=> 'image',
 			'naming'		=> 'random',
-			'location'		=> public_path().'uploads/slides/originals/',
+			'location'		=> 'uploads/slides/originals/',
 			'size_limit'	=> 2,
 	        'sizes' => [
 	            [714, 334, 'crop', 'uploads/slides/detail/', 100],
