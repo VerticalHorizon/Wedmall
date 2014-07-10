@@ -13,6 +13,8 @@
 
 Route::pattern('id', '[0-9]+');
 
+Route::resource('articles', 'ArticlesController');
+
 Route::get('/', [
     'as' => 'home',
     'uses' => 'HomeController@welcome',

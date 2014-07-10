@@ -676,7 +676,7 @@
 
             <div class="menu_open big">
 
-                <a href="#" class="stop_propagation">
+                <a href="{{ URL::to('articles') }}" class="stop_propagation">
 
                     статьи
 
