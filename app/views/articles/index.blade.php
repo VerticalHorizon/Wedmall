@@ -38,9 +38,7 @@
 </div>
 
 <h1>
-{{dd(public_path())}}
     Статьи
-
 </h1>
 
 <div class="sidebar left">
