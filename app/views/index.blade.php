@@ -107,9 +107,7 @@
             <div class="menu_open big catalog">
 
                 <a href="{{ URL::to('products') }}" class="stop_propagation">
-
-                    Товары
-
+                    @lang('labels.products')
                 </a>
 
                 <div>
@@ -131,17 +129,13 @@
             </div>
 
             <a href="#">
-
-                идеи
-
+                @lang('labels.ideas')
             </a>
 
             <div class="menu_open big">
 
                 <a href="{{ URL::to('articles') }}" class="stop_propagation">
-
-                    статьи
-
+                    @lang('labels.articles')
                 </a>
 
                 <div>
@@ -165,9 +159,7 @@
             <div class="menu_open small">
 
                 <a href="#" class="stop_propagation">
-
-                    услуги
-
+                    @lang('labels.services')
                 </a>
 
                     <div>
@@ -245,22 +237,17 @@
                </div>
                 <div class="over">
                     <ul>
-                        @if (Auth::user()->hasRole('admin'))
                         <li>
-                            <a href="{{{ URL::to('admin') }}}" class="admin">Admin Panel</a>
-                        </li>
-                        @endif
-                        <li>
-                            <a href="#" class="like">Мне нравится</a>
+                            <a href="#" class="like">@lang('labels.my_likes')</a>
                         </li>
                         <li>
-                            <a href="#" class="my_collections">Мои коллекции</a>
+                            <a href="#" class="my_collections">@lang('labels.my_collections')</a>
                         </li>
                         <li>
-                            <a href="{{{ URL::to('user') }}}" class="profile">Профиль</a>
+                            <a href="{{ URL::to('user') }}" class="profile">@lang('labels.profile')</a>
                         </li>
                         <li class="exit">
-                            <a href="{{{ URL::to('user/logout') }}}" class="exit">Выйти</a>
+                            <a href="{{ URL::to('user/logout') }}" class="exit">@lang('labels.logout')</a>
                         </li>
                     </ul>
                 </div>

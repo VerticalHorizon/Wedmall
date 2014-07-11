@@ -13,25 +13,17 @@
 
 Route::pattern('id', '[0-9]+');
 
-Route::get('articles/{alias}/{subalias}', 'ArticlesController@byTopic');
-Route::resource('articles', 'ArticlesController');
-
 Route::get('/', [
     'as' => 'home',
     'uses' => 'HomeController@welcome',
 ]);
-Route::any('products', [
-    'as' => 'products',
-    'uses' => 'HomeController@products',
-]);
-Route::any('products/{id}', [
-    'as' => 'product_show',
-    'uses' => 'HomeController@show',
-]);
-Route::any('category/{category}', [
-    'as' => 'category',
-    'uses' => 'HomeController@products',
-]);
+
+Route::get('articles/{alias?}/{subalias?}', 'ArticlesController@index');
+Route::resource('articles', 'ArticlesController');
+
+Route::get('category/{alias}', 'ProductsController@index');
+Route::resource('products', 'ProductsController');
+
 
 // Confide routes
 Route::get( 'user/create',                 'UserController@create');

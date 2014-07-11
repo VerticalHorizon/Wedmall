@@ -8,22 +8,8 @@ class ArticlesController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($alias = NULL, $subalias = NULL)
 	{
-
-		return View::make('articles.index')
-		->with('articles', Article::all());
-	}
-
-	/**
-	 * Display a listing of the resource filtered by  topic
-	 * GET /articles/{alias}/{alias}
-	 *
-	 * @return Response
-	 */
-	public function byTopic()
-	{
-
 		return View::make('articles.index')
 		->with('articles', Article::all());
 	}
