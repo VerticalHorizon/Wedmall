@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('ActivityTypesTableSeeder');
 
-		//$this->call('TopicsTableSeeder');
+		$this->call('TopicsTableSeeder');
 
 		$this->call('ArticlesTableSeeder');
 
