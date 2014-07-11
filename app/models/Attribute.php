@@ -18,7 +18,7 @@ class Attribute extends Eloquent {
         return $this->belongsToMany('Category', 'categories_attributes', 'attribute_id', 'category_id');
     }
 
-    public function default_value()
+    public function defaultValue()
     {
         return $this->belongsToMany('DefaultValue', 'attributes_defaults', 'value_id', 'attribute_id');
     }
@@ -35,8 +35,8 @@ class Attribute extends Eloquent {
     {
         $titles = NULL;
         
-        if($this->getAttribute('default_value') !== NULL)
-            $this->getAttribute('default_value')->each(function($param) use (&$titles) {
+        if($this->getAttribute('defaultValue') !== NULL)
+            $this->getAttribute('defaultValue')->each(function($param) use (&$titles) {
                 $titles .= $param->title.'; ';
             });
         
@@ -45,7 +45,7 @@ class Attribute extends Eloquent {
     public function getCategoryTitlesAttribute()
     {
         $titles = NULL;
-        //dd($this->category()->get()->toArray());
+
         if($this->getAttribute('category') !== NULL)
             $this->getAttribute('category')->each(function($param) use (&$titles) {
                 $titles .= $param->title.'; ';

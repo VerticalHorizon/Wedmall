@@ -87,9 +87,9 @@
                         <a href="#">{{{ $attribute['title'] }}}</a>
                         @if(count($attribute['default_value']))
                             <div>
-                                @foreach($attribute['default_value'] as $value => $param)
-                                    <input name="{{ $attribute['alias'] }}[{{ $value }}]" type="checkbox" id="{{ $attribute['alias'] }}_{{ $value }}" value="1" @if( Input::has($attribute['alias']) && isset(Input::get($attribute['alias'])[ $value ]) )checked="checked"@endif/>
-                                     <label for="{{ $attribute['alias'] }}_{{ $value }}">{{{ $param }}} <span>(1)</span>
+                                @foreach($attribute['default_value'] as $option)
+                                    <input name="{{ $attribute['alias'] }}[{{ $option['id'] }}]" type="checkbox" id="{{ $attribute['alias'] }}_{{ $option['id'] }}" value="1" @if( Input::has($attribute['alias']) && isset(Input::get($attribute['alias'])[ $option['id'] ]) )checked="checked"@endif/>
+                                     <label for="{{ $attribute['alias'] }}_{{ $option['id'] }}">{{{ $option['title'] }}} <span>(1)</span>
                                      </label>
                                 @endforeach
                             </div>
@@ -114,7 +114,7 @@
                         @if(is_array($value))
                             @foreach($value as $k =>  $v)                         {{-- $v is only flag --}}
                                 <span>
-                                {{{ $attributes[$key]['title'] }}}: {{{ $attributes[$key]['default'][$k] }}}
+                                {{{ $attributes[$key]['title'] }}}: {{{ $attributes[$key]['default_value'][$k] }}}
                                 <a href="#" class="close" data-name="{{{ $attributes[$key]['alias'] }}}_{{ $k }}"></a>
                                 </span>
                             @endforeach

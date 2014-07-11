@@ -86,7 +86,7 @@ return [
 			'type'			=> 'relationship',
 			'name_field'	=> 'title',
 		],
-		'default_value' => [
+		'defaultValue' => [
 			'title'			=> 'Defaults',
 			'type'			=> 'relationship',
 			'name_field'	=> 'title',

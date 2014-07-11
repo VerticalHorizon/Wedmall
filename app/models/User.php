@@ -8,7 +8,7 @@ use Zizaco\Entrust\HasRole;
 class User extends ConfideUser {
     use HasRole;
 
-    protected $guarded = array('id', 'password');
+    protected $guarded = ['id', 'password'];
 
     /**
      * The database table used by the model.

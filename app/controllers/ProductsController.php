@@ -22,14 +22,13 @@ class ProductsController extends \BaseController {
 		{
 			$current_category = Category::where('alias', $category)->firstOrFail();
 
-			$attributes = Attribute::with('default_value')->leftJoin('categories_attributes', 'attributes.id', '=', 'categories_attributes.attribute_id')
+			$attributes = Attribute::with('defaultValue')->leftJoin('categories_attributes', 'attributes.id', '=', 'categories_attributes.attribute_id')
 			->where('categories_attributes.category_id', $current_category->id)
 			->select('attributes.*')
 			->get()
 			->toArray();
 
 			$attributes = array_combine(array_column($attributes, 'alias'), array_values($attributes));
-			dd($attributes);
 		}
 		else
 		{
