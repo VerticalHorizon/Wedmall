@@ -85,9 +85,9 @@
                 @foreach ($attributes as $attribute)
                     <div class="form_cost other">
                         <a href="#">{{{ $attribute['title'] }}}</a>
-                        @if(count($attribute['default']))
+                        @if(count($attribute['default_value']))
                             <div>
-                                @foreach($attribute['default'] as $value => $param)
+                                @foreach($attribute['default_value'] as $value => $param)
                                     <input name="{{ $attribute['alias'] }}[{{ $value }}]" type="checkbox" id="{{ $attribute['alias'] }}_{{ $value }}" value="1" @if( Input::has($attribute['alias']) && isset(Input::get($attribute['alias'])[ $value ]) )checked="checked"@endif/>
                                      <label for="{{ $attribute['alias'] }}_{{ $value }}">{{{ $param }}} <span>(1)</span>
                                      </label>

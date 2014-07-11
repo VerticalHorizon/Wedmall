@@ -26,5 +26,8 @@ class ColorsTableSeeder extends Seeder {
 
         $product = Product::where('title', 'Suit')->firstOrFail();
         $product->colors()->attach( Color::where('alias', 'amethyst')->firstOrFail() );
+
+        $product = Product::where('title', 'Black')->firstOrFail();
+        $product->colors()->attach( Color::where('alias', 'amethyst')->firstOrFail() );
 	}
 }

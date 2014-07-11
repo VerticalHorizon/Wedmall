@@ -29,13 +29,13 @@ class Product extends Eloquent {
         return $this->morphToMany('Color', 'colorable');
     }
 
-    public function values()
+    public function value()
     {
-        return $this->hasMany('AdditionalValue', 'product_id');
+        return $this->hasMany('Value', 'product_id');
     }
 
-    public function parameters() {
-        return $this->belongsToMany('AdditionalParam', 'add_values', 'product_id', 'param_id')->withPivot('param_value');
+    public function attribute() {
+        return $this->belongsToMany('Attribute', 'values', 'product_id', 'param_id')->withPivot('param_value');
     }
 
     public function scopeSearch($query, $arguments)     # TODO: refactor
@@ -67,11 +67,12 @@ class Product extends Eloquent {
         {
             $query
             ->leftJoin('categories', 'categories.id', '=', 'products.category_id')
-            ->leftJoin('add_params', 'categories.id', '=', 'add_params.category_id')
-            ->leftJoin('add_values', function($join)
+            ->leftJoin('categories_attributes', 'categories.id', '=', 'categories_attributes.category_id')
+            ->leftJoin('attributes', 'attributes.id', '=', 'categories_attributes.attribute_id')
+            ->leftJoin('values', function($join)
             {
-                $join->on('add_values.product_id', '=', 'products.id')
-                     ->on('add_values.param_id', '=', 'add_params.id');
+                $join->on('values.product_id', '=', 'products.id')
+                     ->on('values.param_id', '=', 'attributes.id');
             })
             ->where(function($query) use (&$category)
             {
@@ -84,7 +85,7 @@ class Product extends Eloquent {
                   foreach (Input::except('price-from', 'price-to', 'color', 'brand_id', 'q') as $key => $value) {
                       if (is_array($value))
                       {   
-                          $i ? $query->orWhere('add_params.alias', $key) : $query->where('add_params.alias', $key);
+                          $i ? $query->orWhere('attributes.alias', $key) : $query->where('attributes.alias', $key);
                           $query->whereIn('param_value', array_keys($value));
                           $i++;
                       }

@@ -6,23 +6,27 @@ return [
 	 *
 	 * @type string
 	 */
-	'title'		=> 'Attributes',
+	'title'		=> 'Default Values',
 
 	/**
 	 * The singular name of model
 	 *
 	 * @type string
 	 */
-	'single'	=> 'attribute',
+	'single'	=> 'default value',
 
 	/**
 	 * The class name of the Eloquent model that this config represents
 	 *
 	 * @type string
 	 */
-	'model'	=> 'AdditionalParam',
+	'model'	=> 'DefaultValue',
 
 	'form_width' => 500,
+
+    'rules' => [
+        'title' => 'required',
+    ],
 
 	/**
 	 * Columns
@@ -31,13 +35,19 @@ return [
 		'title' => [
 			'title'		=> 'Title'
 		],
-		'alias' => [
-			'title'		=> 'Alias'
+	],
+
+	/**
+	 * The filter set
+	 */
+	'filters' => [
+		'title' => [
+			'title' => 'Title',
 		],
-		'category' => [
-			'title'			=> 'Category',
-			'relationship'	=> 'Category',
-			'select'		=> '(:table).title',
+		'attribute' => [
+			'title' => 'Attributes',
+			'type' => 'relationship',
+			'name_field' => 'title',
 		],
 	],
 
@@ -46,16 +56,8 @@ return [
 			'title'			=> 'Title',
 			'type'			=> 'text',
 		],
-		'default' => [
-			'title'			=> 'Default',
-			'type'			=> 'text',
-		],
-		'alias' => [
-			'title'			=> 'Alias',
-			'type'			=> 'text',
-		],
-		'category' => [
-			'title'			=> 'Category',
+		'attribute' => [
+			'title'			=> 'Attributes',
 			'type'			=> 'relationship',
 			'name_field'	=> 'title',
 		],

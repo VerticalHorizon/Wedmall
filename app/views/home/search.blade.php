@@ -1,6 +1,6 @@
         <div class="search all">
             <div class="form">
-                <form action="{{ URL::action('HomeController@products') }}" method="get">
+                <form action="{{ URL::action('ProductsController@index') }}" method="get">
                     <input type="text" name="q" placeholder="Поиск 1 000 000 товаров от 80 магазинов"/>
                     <input type="submit" value="Найти"/>
                 </form>
@@ -13,7 +13,7 @@
                 /*--}}
 
                 @foreach ($colors as $key => $value)
-                <a href="{{ URL::action('HomeController@products', ['color[]' => $value->alias]) }}" class="{{ $fix_color_name[$key] }}"></a>
+                <a href="{{ URL::action('ProductsController@index', ['color[]' => $value->alias]) }}" class="{{ $fix_color_name[$key] }}"></a>
                 @endforeach
             </div>
         </div>

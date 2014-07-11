@@ -7,14 +7,14 @@ class Category extends Eloquent {
         return $this->hasMany('Product');
     }
 
-    public function parameters()
+    public function attribute()
     {
-        return $this->hasMany('AdditionalParam');
+        return $this->belongsToMany('Attribute', 'categories_attributes', 'category_id', 'attribute_id');
     }
 
     public function parent()
     {
-        return $this->belongsTo('Category', 'parent_id');
+        return $this->belongsTo('Category');
     }
 
     public function children()
@@ -34,8 +34,8 @@ class Category extends Eloquent {
     {
         $titles = NULL;
         
-        if($this->getAttribute('parameters') !== NULL)
-            $this->getAttribute('parameters')->each(function($param) use (&$titles) {
+        if($this->getAttribute('attribute') !== NULL)
+            $this->getAttribute('attribute')->each(function($param) use (&$titles) {
                 $titles .= $param->title.'; ';
             });
         

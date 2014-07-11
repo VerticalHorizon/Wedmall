@@ -34,10 +34,12 @@ return [
 		'photo' => [
 			'title'		=> 'Photo',
 			'output' => '<img src="/uploads/slides/detail/(:value)" height="100" />',
+			'sortable' => false,
 		],
 		'link' => [
 			'title'		=> 'Link',
 			'output' => '<a href="(:value)" target="_blank">(:value)</a>',
+			'sortable' => false,
 		],
 	],
 

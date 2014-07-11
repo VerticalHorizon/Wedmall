@@ -1,6 +1,6 @@
 <?php
 
-class AdditionalValueSeeder extends Seeder {
+class ValuesSeeder extends Seeder {
 
     /**
      * Run the database seeds.
@@ -9,7 +9,7 @@ class AdditionalValueSeeder extends Seeder {
      */
     public function run()
     {
-        DB::table('add_values')->delete();
+        DB::table('values')->delete();
 
         $additionalValues = [
             ['param_value' => '0', 'product_id' => 1, 'param_id' => 1],
@@ -19,7 +19,7 @@ class AdditionalValueSeeder extends Seeder {
             ['param_value' => '2', 'product_id' => 3, 'param_id' => 2],
         ];
 
-        DB::table('add_values')->insert($additionalValues);
+        DB::table('values')->insert($additionalValues);
     }
 
 }

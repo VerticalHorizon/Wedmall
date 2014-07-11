@@ -17,11 +17,11 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('PermissionsTableSeeder');
 
-		$this->call('AdditionalParamSeeder');
-
-		$this->call('AdditionalValueSeeder');
-
 		$this->call('CategorySeeder');
+
+		$this->call('AttributesSeeder');
+
+		$this->call('ValuesSeeder');
 
 		$this->call('ProductSeeder');
 

@@ -8,12 +8,12 @@ class ActivityTypesTableSeeder extends Seeder {
 
         $types = [
             [
-                'title'      => 'Король',
-                'alias'      => 'king',
+                'title'      => 'Фотограф',
+                'alias'      => 'photographer',
             ],
             [
-                'title'      => 'Шут',
-                'alias'      => 'joker',
+                'title'      => 'Оператор',
+                'alias'      => 'operator',
             ],
         ];
 
@@ -25,8 +25,8 @@ class ActivityTypesTableSeeder extends Seeder {
         $profy = Role::where('name', 'professional')->firstOrFail();
 
         $profy->activityTypes()->saveMany([
-            ActivityType::where('alias', 'king')->firstOrFail(),
-            ActivityType::where('alias', 'joker')->firstOrFail(),
+            ActivityType::where('alias', 'photographer')->firstOrFail(),
+            ActivityType::where('alias', 'operator')->firstOrFail(),
         ]);
     }
 

@@ -1,21 +1,21 @@
 <?php
 
-class AdditionalValue extends Eloquent {
+class Value extends Eloquent {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'add_values';
+	protected $table = 'values';
 
     public function product()
     {
         return $this->belongsTo('Product');
     }
 
-    public function parameter()
+    public function attribute()
     {
-        return $this->belongsTo('AdditionalParam', 'param_id');
+        return $this->belongsTo('Attribute', 'param_id');
     }
 }

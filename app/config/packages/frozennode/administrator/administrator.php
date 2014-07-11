@@ -53,9 +53,9 @@ return array(
 	 */
 	'menu' => array(
 		'slider',
-		'Categories & Attributes'	=> ['categories', 'additionalparams'],
+		'Categories'		=> ['categories', 'attributes', 'defaultvalues'],
 		'users',
-		'Settings'					=> ['settings.site'],
+		'Settings'			=> ['settings.site'],
 		),
 
 	/**

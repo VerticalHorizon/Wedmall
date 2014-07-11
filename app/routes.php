@@ -21,8 +21,8 @@ Route::get('/', [
 Route::get('articles/{alias?}/{subalias?}', 'ArticlesController@index');
 Route::resource('articles', 'ArticlesController');
 
-Route::get('category/{alias}', 'ProductsController@index');
 Route::resource('products', 'ProductsController');
+Route::get('category/{alias}', 'ProductsController@index');
 
 
 // Confide routes
@@ -46,18 +46,12 @@ Route::group(['before' => 'csrf'], function()
     ]);
 });
 
-Route::get( 'user', [                                                                   # profile page
-    'before' => 'auth',
-    'uses' => 'UserController@profile',
-]);
-Route::get( 'user/settings', [
-    'before' => 'auth',
-    'uses' => 'UserController@settings',
-]);
-Route::get( 'user/portfolio', [
-    'before' => 'auth',
-    'uses' => 'UserController@portfolio',
-]);
+Route::group(['before' => 'auth'], function()
+{
+    Route::get( 'user', 'UserController@profile');
+    Route::get( 'user/settings', 'UserController@settings');
+    Route::get( 'user/portfolio', 'UserController@portfolio');
+});
 
 Route::get('user/logout', [         // relocated to Administrator config
     'as' => 'logout',

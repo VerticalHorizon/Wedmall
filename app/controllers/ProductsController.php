@@ -10,11 +10,9 @@ class ProductsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$category = Route::input('category');
+		$category = Route::input('alias');
 
 		$products = Product::search(['category' => $category]);		# ->get() already called in model
-
-		$categories = Category::with('children')->where('parent_id', NULL)->get();
 
 		$brands = Brand::all();
 
@@ -24,13 +22,14 @@ class ProductsController extends \BaseController {
 		{
 			$current_category = Category::where('alias', $category)->firstOrFail();
 
-			$attributes = AdditionalParam::leftJoin('categories', 'categories.id', '=', 'add_params.category_id')
-			->where('categories.alias', $category)
-			->select('add_params.*')
+			$attributes = Attribute::with('default_value')->leftJoin('categories_attributes', 'attributes.id', '=', 'categories_attributes.attribute_id')
+			->where('categories_attributes.category_id', $current_category->id)
+			->select('attributes.*')
 			->get()
 			->toArray();
 
 			$attributes = array_combine(array_column($attributes, 'alias'), array_values($attributes));
+			dd($attributes);
 		}
 		else
 		{
