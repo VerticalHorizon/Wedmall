@@ -16,6 +16,7 @@ class ProductMigration extends Migration {
         {
             $table->increments('id');
             $table->string('title');
+            $table->string('alias')->unique();
             $table->text('description');
             $table->integer('color_id');
             $table->float('price');
@@ -25,9 +26,9 @@ class ProductMigration extends Migration {
             $table->integer('popularity')->unsigned();
 
             $table->integer('purchase_terms_id')->unsigned();       // maybe enum
-            $table->integer('brand_id')->unsigned();
-            $table->integer('user_id')->unsigned();
-            $table->integer('category_id')->unsigned();
+            $table->integer('brand_id')->unsigned()->index();
+            $table->integer('user_id')->unsigned()->index();
+            $table->integer('category_id')->unsigned()->index();
 
             $table->softDeletes();
             $table->timestamps();

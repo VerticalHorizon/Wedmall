@@ -26,7 +26,6 @@ return [
 
     'rules' => [
         'title' => 'required',
-        'alias' => 'required',
     ],
 
     /**
@@ -45,15 +44,13 @@ return [
         'popularity' => [
             'title'     => 'Popularity'
         ],
-        'attr_titles' => [
+        'attribute' => [
             'title'         => 'Attributes',
-            // 'relationship'   => 'AdditionalParam',
-            // 'select'     => '(:table).title',
+            'relationship'   => 'Attribute',
+            'select'     => 'GROUP_CONCAT((:table).title ORDER BY (:table).title ASC SEPARATOR ", ")',
         ],
         'parent_title' => [
             'title'         => 'Parent',
-            // 'relationship'   => 'Category',
-            // 'select'     => '(:table).title',
         ],
     ],
 

@@ -22,7 +22,7 @@ class ProductsController extends \BaseController {
 		{
 			$current_category = Category::where('alias', $category)->firstOrFail();
 
-			$attributes = Attribute::with('defaultValue')->leftJoin('categories_attributes', 'attributes.id', '=', 'categories_attributes.attribute_id')
+			$attributes = Attribute::with('defaults')->leftJoin('categories_attributes', 'attributes.id', '=', 'categories_attributes.attribute_id')
 			->where('categories_attributes.category_id', $current_category->id)
 			->select('attributes.*')
 			->get()

@@ -2,6 +2,8 @@
 
 class Category extends Eloquent {
 
+    protected $guarded = [];
+
 	public function product()
     {
         return $this->hasMany('Product');
@@ -14,7 +16,7 @@ class Category extends Eloquent {
 
     public function parent()
     {
-        return $this->belongsTo('Category');
+        return $this->belongsTo('Category', 'parent_id');
     }
 
     public function children()
@@ -22,23 +24,19 @@ class Category extends Eloquent {
         return $this->hasMany('Category', 'parent_id');
     }
 
+    public function beforeSave( $forced = false ){
+
+        parent::beforeSave( $forced );
+
+        Log::error(print_r($this->attributes));
+        //$this->attributes['alias'] = $this->attributes['alias'] ? $this->attributes['alias'] : Slug::make($this->attributes['title']);
+    }
 
     /**
      * For frozennode/administrator
      */
-    public function getParentTitleAttribute()   # TODO: refactor!
+    public function getParentTitleAttribute()
     {
-        return $this->getAttribute('parent') === NULL ? NULL : $this->getAttribute('parent')->getAttribute('title');
-    }
-    public function getAttrTitlesAttribute()
-    {
-        $titles = NULL;
-        
-        if($this->getAttribute('attribute') !== NULL)
-            $this->getAttribute('attribute')->each(function($param) use (&$titles) {
-                $titles .= $param->title.'; ';
-            });
-        
-        return trim($titles);
+        return $this->parent === NULL ? NULL : $this->parent->title;
     }
 }

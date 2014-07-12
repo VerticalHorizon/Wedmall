@@ -16,7 +16,7 @@ class CategoryMigration extends Migration {
         {
             $table->increments('id');
             $table->string('title');
-            $table->string('alias');
+            $table->string('alias')->unique();
             $table->text('description');
             $table->text('photos');     // photos in JSON
             $table->integer('popularity')->unsigned();

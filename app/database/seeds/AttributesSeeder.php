@@ -19,10 +19,10 @@ class AttributesSeeder extends Seeder {
 
                 DB::table('attributes')->insert($attributes);
 
-                $category = Category::find(1);
-                $category->parameters()->attach( Attribute::where('alias', 'foot_size')->firstOrFail() );
-                $category->parameters()->attach( Attribute::where('alias', 'head_size')->firstOrFail() );
-                $category2 = Category::find(2);
-                $category2->parameters()->attach( Attribute::where('alias', 'arm_size')->firstOrFail() );
+                $category = Category::findOrFail(1);
+                $category->attribute()->attach( Attribute::where('alias', 'foot_size')->firstOrFail() );
+                $category->attribute()->attach( Attribute::where('alias', 'head_size')->firstOrFail() );
+                //$category2 = Category::findOrFail(2);
+                $category->attribute()->attach( Attribute::where('alias', 'arm_size')->firstOrFail() );
         }
 }

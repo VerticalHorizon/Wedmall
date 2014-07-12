@@ -125,6 +125,9 @@ return array(
         
         'Frozennode\Administrator\AdministratorServiceProvider',
 
+        'Ivanlemeshev\Laravel4CyrillicSlug\SlugServiceProvider',
+        'Cviebrock\EloquentSluggable\SluggableServiceProvider',
+
         'DaveJamesMiller\Breadcrumbs\ServiceProvider',
     ),
 
@@ -194,6 +197,9 @@ return array(
 
         'Confide'         => 'Zizaco\Confide\ConfideFacade',
         'Entrust'         => 'Zizaco\Entrust\EntrustFacade',
+
+        'Slug'            => 'Ivanlemeshev\Laravel4CyrillicSlug\Facades\Slug',
+        'Sluggable'       => 'Cviebrock\EloquentSluggable\Facades\Sluggable',
 
         'Breadcrumbs'     => 'DaveJamesMiller\Breadcrumbs\Facade',
 

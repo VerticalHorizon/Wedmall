@@ -39,11 +39,15 @@ return [
 		'alias' => [
 			'title'		=> 'Alias'
 		],
-		'category_titles' => [
+		'category' => [
 			'title'			=> 'Category',
+			'relationship'   => 'Category',
+            'select'     => 'GROUP_CONCAT((:table).title ORDER BY (:table).title ASC SEPARATOR ", ")',
 		],
 		'default_titles' => [
 			'title'			=> 'Defaults',
+			/*'relationship'   => 'DefaultValue',
+            'select'     => 'GROUP_CONCAT((:table).title ORDER BY (:table).title ASC SEPARATOR ", ")',*/
 		],
 	],
 
@@ -86,7 +90,7 @@ return [
 			'type'			=> 'relationship',
 			'name_field'	=> 'title',
 		],
-		'defaultValue' => [
+		'defaults' => [
 			'title'			=> 'Defaults',
 			'type'			=> 'relationship',
 			'name_field'	=> 'title',

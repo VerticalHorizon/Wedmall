@@ -35,6 +35,11 @@ return [
 		'title' => [
 			'title'		=> 'Title'
 		],
+		'attribute' => [
+			'title'			=> 'Attributes',
+			'relationship'	=> 'Attribute',
+			'select'     => 'GROUP_CONCAT((:table).title ORDER BY (:table).title ASC SEPARATOR ", ")',
+		],
 	],
 
 	/**

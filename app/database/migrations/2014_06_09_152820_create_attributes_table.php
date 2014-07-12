@@ -16,7 +16,7 @@ class CreateAttributesTable extends Migration {
         Schema::create('attributes', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('alias');
+            $table->string('alias')->unique();;
             $table->string('title');
         });
 
@@ -24,8 +24,8 @@ class CreateAttributesTable extends Migration {
         Schema::create('categories_attributes', function($table)
         {
             $table->increments('id')->unsigned();
-            $table->integer('attribute_id')->unsigned();
-            $table->integer('category_id')->unsigned();
+            $table->integer('attribute_id')->unsigned()->index();
+            $table->integer('category_id')->unsigned()->index();
         });
 
         // Schema::table('attributes', function(Blueprint $table) {

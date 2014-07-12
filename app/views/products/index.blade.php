@@ -85,9 +85,9 @@
                 @foreach ($attributes as $attribute)
                     <div class="form_cost other">
                         <a href="#">{{{ $attribute['title'] }}}</a>
-                        @if(count($attribute['default_value']))
+                        @if(count($attribute['defaults']))
                             <div>
-                                @foreach($attribute['default_value'] as $option)
+                                @foreach($attribute['defaults'] as $option)
                                     <input name="{{ $attribute['alias'] }}[{{ $option['id'] }}]" type="checkbox" id="{{ $attribute['alias'] }}_{{ $option['id'] }}" value="1" @if( Input::has($attribute['alias']) && isset(Input::get($attribute['alias'])[ $option['id'] ]) )checked="checked"@endif/>
                                      <label for="{{ $attribute['alias'] }}_{{ $option['id'] }}">{{{ $option['title'] }}} <span>(1)</span>
                                      </label>
@@ -110,18 +110,18 @@
                     Вы выбрали:
                 </p>
                 @foreach(Input::except('price-from', 'price-to', 'color', 'brand', 'q') as $key =>  $value)
-                    @if(isset($attributes[$key]))            
-                        @if(is_array($value))
+                    @if(isset($key))
+                        @if(!empty($attributes[$key]['defaults']))
                             @foreach($value as $k =>  $v)                         {{-- $v is only flag --}}
                                 <span>
-                                {{{ $attributes[$key]['title'] }}}: {{{ $attributes[$key]['default_value'][$k] }}}
+                                {{{ $attributes[$key]['title'] }}}: {{{ current(array_filter($attributes[$key]['defaults'], function($var) use (&$k) { return $var['id'] == $k; }))['title'] }}}
                                 <a href="#" class="close" data-name="{{{ $attributes[$key]['alias'] }}}_{{ $k }}"></a>
                                 </span>
                             @endforeach
                         @else
                             <span>
-                            {{{ $attributes[$key]['title'] }}}: {{{ $value }}}
-                            <a href="#" class="close" data-name="{{{ $attributes[$key]['alias'] }}}_{{{ $value }}}"></a>
+                            {{ $attributes[$key]['title'] }}: {{ reset($v) }}
+                            <a href="#" class="close" data-name="{{ $attributes[$key]['alias'] }}_{{ reset($v) }}"></a>
                             </span>
                         @endif
                     @endif
