@@ -9,17 +9,36 @@ class ValuesSeeder extends Seeder {
      */
     public function run()
     {
-        DB::table('values')->delete();
+        //DB::table('values')->delete();
 
-        $additionalValues = [
-            ['param_value' => '1', 'product_id' => 1, 'param_id' => 1],
-            ['param_value' => '1', 'product_id' => 1, 'param_id' => 3],
-            ['param_value' => '1', 'product_id' => 2, 'param_id' => 1],
-            ['param_value' => '2', 'product_id' => 2, 'param_id' => 1],
-            ['param_value' => '2', 'product_id' => 3, 'param_id' => 2],
-        ];
+        $product = Product::findOrFail(1);
 
-        DB::table('values')->insert($additionalValues);
+        $value = Value::create([]);
+        $value->param_value = 3;
+        $value->attribute()->associate( Attribute::where('alias', 'foot_size')->firstOrFail() );
+        $value->value()->associate( DefaultValue::findOrFail(1) );
+        $value->product()->associate( $product );
+        $value->save();
+
+        $value = new Value([]);
+        $value->param_value = 1;
+        $value->attribute()->associate( Attribute::where('alias', 'arm_size')->firstOrFail() );
+        $value->product()->associate( $product );
+        $value->save();
+
+        $value = Value::create([]);
+        $value->param_value = 2;
+        $value->attribute()->associate( Attribute::where('alias', 'head_size')->firstOrFail() );
+        $value->product()->associate( $product );
+        $value->save();
+
+        $product = Product::findOrFail(2);
+
+        $value = Value::create([]);
+        $value->attribute()->associate( Attribute::where('alias', 'foot_size')->firstOrFail() );
+        $value->param_value = 2;
+        $value->product()->associate( $product );
+        $value->save();
     }
 
 }

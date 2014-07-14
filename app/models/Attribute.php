@@ -1,6 +1,7 @@
 <?php
+use LaravelBook\Ardent\Ardent;
 
-class Attribute extends Eloquent {
+class Attribute extends Ardent {
 
 	/**
 	 * The database table used by the model.
@@ -41,5 +42,10 @@ class Attribute extends Eloquent {
             });
         
         return trim($titles);
+    }
+
+    public function beforeSave()
+    {
+        $this->attributes['alias'] = $this->attributes['alias'] ? $this->attributes['alias'] : Slug::make($this->attributes['title']);
     }
 }

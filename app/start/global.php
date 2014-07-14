@@ -97,3 +97,9 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+Event::listen('category.updating', function($param) 
+{
+Log::warning('creating');
+$category->updated_by = Auth::user()->id;
+});

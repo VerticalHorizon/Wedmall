@@ -1,8 +1,19 @@
 <?php
+use LaravelBook\Ardent\Ardent;
 
-class Category extends Eloquent {
+class Category extends Ardent {
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'categories';
 
     protected $guarded = [];
+
+    public static $rules = [
+        'title'                  => 'required|between:4,30',
+    ];
 
 	public function product()
     {
@@ -24,12 +35,9 @@ class Category extends Eloquent {
         return $this->hasMany('Category', 'parent_id');
     }
 
-    public function beforeSave( $forced = false ){
-
-        parent::beforeSave( $forced );
-
-        Log::error(print_r($this->attributes));
-        //$this->attributes['alias'] = $this->attributes['alias'] ? $this->attributes['alias'] : Slug::make($this->attributes['title']);
+    public function beforeSave()
+    {
+        $this->attributes['alias'] = $this->attributes['alias'] ? $this->attributes['alias'] : Slug::make($this->attributes['title']);
     }
 
     /**

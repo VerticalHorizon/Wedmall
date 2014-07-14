@@ -1,6 +1,7 @@
 <?php
+use LaravelBook\Ardent\Ardent;
 
-class Topic extends Eloquent {
+class Topic extends Ardent {
 	protected $fillable = [];
 
 	public function articles()
@@ -16,5 +17,10 @@ class Topic extends Eloquent {
     public function children()
     {
         return $this->hasMany('Topic', 'parent_id');
+    }
+
+    public function beforeSave()
+    {
+        $this->attributes['alias'] = $this->attributes['alias'] ? $this->attributes['alias'] : Slug::make($this->attributes['title']);
     }
 }

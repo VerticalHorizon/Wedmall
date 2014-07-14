@@ -24,6 +24,11 @@ return [
 
 	'form_width' => 500,
 
+    'rules' => [
+        'title' => 'required',
+        'photo' => 'required',
+    ],
+
 	/**
 	 * Columns
 	 */

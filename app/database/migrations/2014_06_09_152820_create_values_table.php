@@ -16,7 +16,7 @@ class CreateValuesTable extends Migration {
         Schema::create('values', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('param_value');
+            $table->integer('param_value')->unsigned();
 
             $table->integer('product_id')->unsigned();
             $table->integer('param_id')->unsigned();

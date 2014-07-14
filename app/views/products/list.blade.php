@@ -9,7 +9,7 @@
                         <a href="#"></a>
                         <div class="preview">
                             <a href="#"></a>
-                            <a href="{{ URL::to('products/'.$product['id']) }}" class="center">Быстрый просмотр</a>
+                            <a href="{{ URL::to('products/'.$product['alias']) }}" class="center">Быстрый просмотр</a>
                             <a href="#" class="love"></a>
                             <a href="#" class="add"></a>
                         </div>

@@ -14,16 +14,22 @@ class ConfideSetupUsersTable extends Migration {
         Schema::create('users', function($table)
         {
             $table->increments('id');
-            $table->string('username');
-            $table->string('first_name');
-            $table->string('second_name');
-            $table->date('birth_date');
-            $table->date('wedding_date');
             $table->string('email');
             $table->string('password');
             $table->string('confirmation_code');
             $table->boolean('confirmed')->default(false);
             $table->string('remember_token');
+
+            $table->string('username');
+            $table->string('avatar');
+
+            $table->string('first_name');
+            $table->string('second_name');
+            $table->date('birth_date');
+            $table->date('wedding_date');
+
+            
+            $table->string('site');
             $table->timestamps();
         });
 

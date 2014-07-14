@@ -21,9 +21,11 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('AttributesSeeder');
 
-		$this->call('ValuesSeeder');
+		$this->call('DefaultValuesTableSeeder');
 
 		$this->call('ProductSeeder');
+		
+		$this->call('ValuesSeeder');
 
 		$this->call('SliderTableSeeder');
 

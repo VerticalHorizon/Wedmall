@@ -73,12 +73,20 @@ class ProductsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($alias)
 	{
-		$product = Product::find($id);
+		$product = Product::where('alias', $alias)->firstOrFail();
+		$same_products = Product::where(function($query) use (&$product)
+		{
+			$query
+			->where('user_id', $product->user_id)
+			->where('user_id', '!=', $product->id);
+
+		})->get();
 
 		return View::make('products.show')
-		->with('product', $product);
+		->with('product', $product)
+		->with('same_products', $same_products);
 	}
 
 	/**

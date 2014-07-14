@@ -73,7 +73,6 @@ return [
             'title'         => 'Attributes',
             'type'          => 'relationship',
             'name_field'    => 'alias',
-            'sort_field'    => 'alias',
         ],
         'parent' => [
             'title'         => 'Parent',
@@ -82,4 +81,5 @@ return [
         ],
 
     ],
+
 ];

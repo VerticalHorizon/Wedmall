@@ -60,7 +60,7 @@
 
     <h1 class="product">
 
-        Свадебное платье Доминго
+        {{{$product->title}}}
 
     </h1>
 
@@ -85,67 +85,44 @@
             </div>
 
             <div class="product_left">
-
                 <div class="about_top">
-
                     <p class="cost">
-
-                        25 500 руб.
-
+                        {{ $product->price }} руб.
                     </p>
-
                     <div class="table">
-
+                        @if($product->brand)
                         <p>
-
                            <span class="bold">
-
                                Бренд:
-
                            </span>
-
-                            <span>Domingo</span>
-
+                            <span>{{{ $product->brand->title }}}</span>
                         </p>
-
+                        @endif
                         <p>
-
                            <span class="bold">
-
                                Магазин:
-
                            </span>
-
-                            <span>Charuel</span>
-
+                            <span>{{{ $product->user->username }}}</span>
                         </p>
 
                         <div class="row">
-
                            <span class="bold">
-
                                Цвет:
-
                            </span>
-
+                {{--*/
+                    $fix_color_name = ['rad', 'ping', 'yellow', 'green', 'turquoise', 'blue', 'plum', 'fiolet', 'dark_red', 'grap', 'white', 'gray', 'black']
+                /*--}}
                             <div>
-
-                                <div class="color yellow">
-
-                                </div>
-
-                                <div class="color white">
-
-                                </div>
-
+                            @foreach($product->color as $color)
+                                <div class="color {{$fix_color_name[$color->id - 1]}}"></div>
+                            @endforeach
                             </div>
-
                         </div>
-
                     </div>
 
-                    <a href="#" class="more">Подробнее</a>
-
+                    @if($product->user->site)
+                    <a href="{{ $product->user->site }}" class="more">Подробнее</a>
+                    @endif
                  </div>
 
                 <div class="about_center">
@@ -218,223 +195,57 @@
 
             <ul>
 
-                <li><a href="#tabs-1">Описание товара</a></li>
+                <li><a href="#tabs-1">@lang('labels.product_description')</a></li>
 
-                <li><a href="#tabs-2">Харрактеристики</a></li>
+                <li><a href="#tabs-2">@lang('labels.characteristics')</a></li>
 
             </ul>
 
             <div id="tabs-1">
-
-                <div>
-
-                    <div>
-
-                        <span class="bold">Материал</span>
-
-                        <span>Нейлон</span>
-
-                    </div>
-
-                    <div>
-
-                        <span class="bold">Длина</span>
-
-                        <span>180 см.</span>
-
-                    </div>
-
-                    <div>
-
-                        <span class="bold">Вырез</span>
-
-                        <span>Стандартный</span>
-
-                    </div>
-
-                    <div>
-
-                        <span class="bold">Силуэт</span>
-
-                        <span>Свадебные платья - самый важный наряд в жизни невесты. Свадебная мода никогда
-
-                            не диктует свои правила, она лишь подсказывает невестам, как лучше подчеркнуть
-
-                            свою индивидуальность. Каждый сезон дизайнеры предлагают новые решения, но, пожалуй,
-
-                            только в этом году на подиумах были представлены свадебные платья 2014 на любой вкус:
-
-                            от классических кружевных подвенечных нарядов до модных платьев с геометрическим принтом.
-
-                        </span>
-
-                    </div>
-
-                    <div>
-
-                        <span class="bold">Рукав</span>
-
-                        <span>Без рукавов</span>
-
-                    </div>
-
-                    <div>
-
-                        <span class="bold">Талия</span>
-
-                        <span>Зауженная</span>
-
-                    </div>
-
-                </div>
-
+                {{{ $product->description }}}
             </div>
 
             <div id="tabs-2">
-
-                <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
-
+                <div>
+                    @foreach($product->value as $value)
+                    <div>
+                        <span class="bold">{{{ $value->attribute->title }}}</span>
+                        <span>{{{ $value->value->title }}}</span>
+                    </div>
+                    @endforeach
+                </div>
             </div>
 
         </div>
 
+        @if($same_products)
         <div class="content_preview product">
 
             <h5>
-
-                Другие товары магазина "charuel"
-
+                Другие товары магазина "{{{ $product->user->username }}}"
             </h5>
 
+            @foreach($same_products as $one)
             <div class="preview cost">
-
                 <div>
-
                     <a href="#">
-
                         <img src="../images/other/preview_cost.png" alt="">
-
                         <p>
-
                             Набор посуды
-
                         </p>
-
                         <span>
-
                             от Твоя кухня
-
                         </span>
-
                         <p class="cost">
-
                             3200 руб.
-
                         </p>
-
                     </a>
-
                 </div>
-
             </div>
-
-            <div class="preview cost">
-
-                <div>
-
-                    <a href="#">
-
-                        <img src="../images/other/preview_cost.png" alt="">
-
-                        <p>
-
-                            Набор посуды
-
-                        </p>
-
-                        <span>
-
-                            от Твоя кухня
-
-                        </span>
-
-                        <p class="cost">
-
-                            3200 руб.
-
-                        </p>
-
-                    </a>
-
-                </div>
-
-            </div>
-
-            <div class="preview cost">
-
-                <div>
-
-                    <a href="#">
-
-                        <img src="../images/other/preview_cost.png" alt="">
-
-                        <p>
-
-                            Набор посуды
-
-                        </p>
-
-                        <span>
-
-                            от Твоя кухня
-
-                        </span>
-
-                        <p class="cost">
-
-                            3200 руб.
-
-                        </p>
-
-                    </a>
-
-                </div>
-
-            </div>
-
-            <div class="preview cost">
-
-                <div>
-
-                    <a href="#">
-
-                        <img src="../images/other/preview_cost.png" alt="">
-
-                        <p>
-
-                            Набор посуды
-
-                        </p>
-
-                        <span>
-
-                            от Твоя кухня
-
-                        </span>
-
-                        <p class="cost">
-
-                            3200 руб.
-
-                        </p>
-
-                    </a>
-
-                </div>
-
-            </div>
+            @endforeach
 
         </div>
+        @endif
 
     </div>
 @stop

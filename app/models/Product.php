@@ -1,6 +1,7 @@
 <?php
+use LaravelBook\Ardent\Ardent;
 
-class Product extends Eloquent {
+class Product extends Ardent {
 
     /**
      * The database table used by the model.
@@ -24,7 +25,7 @@ class Product extends Eloquent {
         return $this->belongsTo('Brand');
     }
 
-    public function colors()
+    public function color()
     {
         return $this->morphToMany('Color', 'colorable');
     }
@@ -34,7 +35,8 @@ class Product extends Eloquent {
         return $this->hasMany('Value', 'product_id');
     }
 
-    public function attribute() {
+    public function attribute()
+    {
         return $this->belongsToMany('Attribute', 'values', 'product_id', 'param_id')->withPivot('param_value');
     }
 
@@ -125,5 +127,10 @@ class Product extends Eloquent {
         ->groupBy('products.id');
         
         return $query->get()->toArray();
+    }
+
+    public function beforeSave()
+    {
+        $this->attributes['alias'] = $this->attributes['alias'] ? $this->attributes['alias'] : Slug::make($this->attributes['title']);
     }
 }

@@ -26,7 +26,6 @@ return [
 
     'rules' => [
         'title' => 'required',
-        'alias' => 'required',
     ],
 
 	/**
