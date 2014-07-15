@@ -4,7 +4,9 @@
 <div class="status_top">
     <div class="status">
         <div>
-
+            @if(Confide::user()->avatar)
+            <img src="{{ Confide::user()->avatar }}">
+            @endif
         </div>
         <p class="name">
             {{{ Confide::user()->username }}}
