@@ -29,7 +29,7 @@ class User extends ConfideUser {
      *
      * @var array
      */
-    protected $appends = ['birth_day', 'birth_month', 'birth_year', 'wedding_day', 'wedding_month', 'wedding_year'];
+    //protected $appends = ['birth_day', 'birth_month', 'birth_year', 'wedding_day', 'wedding_month', 'wedding_year'];
 
     /**
      * Validation rules

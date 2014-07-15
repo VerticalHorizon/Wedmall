@@ -18,3 +18,10 @@ $(document).ready(function() {
     });
     
 });
+
+function ulcall(token) {
+    $.post('http://'+window.location.hostname+'/user/login_social', { token: token, _token: $('input[name="_token"]').val() }).done( function(data) {
+        window.console.log(data)
+        window.location.href = window.location.origin + window.location.pathname
+    });
+}

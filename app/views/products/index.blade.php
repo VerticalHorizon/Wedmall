@@ -54,11 +54,11 @@
             <div class="form_cost">
                 <a href="#">Цена </a>
                 <div>
-                    <input type="hidden" name="price-from" value="72" />
-                    <input type="hidden" name="price-to" value="6000" />
+                    <input type="hidden" value="72" />
+                    <input type="hidden" value="6000" />
                     <div id="slider"></div>
-                    <input type="text" id="minCost" value="72 руб"/>
-                    <input type="text" id="maxCost" value="6000 руб"/>
+                    <input type="text" name="price-from" id="minCost" value="72 руб"/>
+                    <input type="text" name="price-to" id="maxCost" value="6000 руб"/>
                 </div>
             </div>
             <div class="form_cost other color">

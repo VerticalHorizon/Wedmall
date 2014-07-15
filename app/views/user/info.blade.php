@@ -128,7 +128,13 @@
                 <label>Фото профиля:</label>
             </div>
             <div>
+                @if(Confide::user()->avatar)
+                <div class="foto">
+                    <img src="{{ Confide::user()->avatar }}" class="foto" style=" width: 66px; "/>
+                </div>
+                @elseif
                 <div class="foto"></div>
+                @endif
                 <input type="button" value="Загрузить фото"/>
             </div>
         </div>

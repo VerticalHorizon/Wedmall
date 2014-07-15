@@ -19,13 +19,10 @@
     </title>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 
     <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css'>
-
     <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-
     <link href='http://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet/less" type="text/css" href="{{ URL::asset('assets/css/style.less') }}"/>
@@ -34,6 +31,7 @@
     <script src="{{ URL::asset('assets/scripts/less.js') }}"></script>
     <script src="{{ URL::asset('assets/scripts/style.js') }}"></script>
     <script src="{{ URL::asset('assets/scripts/behavior.js') }}"></script>
+    <script src="//ulogin.ru/js/ulogin.js"></script>
 
 </head>
 
@@ -229,7 +227,11 @@
             <div class="user">
                <div class="top">
                    <div class="photo">
+                        @if(Confide::user()->avatar)
+                            <img src="{{ Confide::user()->avatar }}" />
+                        @elseif
                        <img src="" alt=""/>
+                       @endif
                    </div>
                    <span>
                        {{{ Auth::user()->username }}}
@@ -689,32 +691,20 @@
 
                 <i>Войти через социальные сети:</i>
 
-                <div class="social">
-
-                    <a href="#" class="vk"></a>
-
-                    <a href="#" class="fb"></a>
-
-                    <a href="#" class="twitter"></a>
-
-                    <a href="#" class=ok></a>
-
+                <div class="social" id="uLogin" data-ulogin="display=buttons;fields=first_name,last_name,nickname,photo_big,bdate,email;redirect_uri=;callback=ulcall">
+                    <a href="#" class="vk" data-uloginbutton="vkontakte"></a>
+                    <a href="#" class="fb" data-uloginbutton="facebook"></a>
+                    <a href="#" class="twitter" data-uloginbutton="twitter"></a>
+                    <a href="#" class="ok" data-uloginbutton="odnoklassniki"></a>
                 </div>
 
                 <i>Или заполните форму:</i>
-
-
-
-                <form action="">
-
+                <form action="{{{ Confide::checkAction('UserController@do_login') ?: URL::to('/user/login') }}}" method="post" accept-charset="UTF-8">
+                    <input type="hidden" name="_token" value="{{ Session::getToken() }}">
                     <input type="email" placeholder="Email"/>
-
                     <input type="password" placeholder="Пароль"/>
-
                     <input type="submit" value="Войти"/>
-
                     <a href="#" class="r_pass">Забыли пароль?</a>
-
                 </form>
 
             </div>

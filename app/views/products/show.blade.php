@@ -120,8 +120,8 @@
                         </div>
                     </div>
 
-                    @if($product->user->site)
-                    <a href="{{ $product->user->site }}" class="more">Подробнее</a>
+                    @if($product->external_url)
+                    <a href="{{ $product->external_url }}" class="more">Подробнее</a>
                     @endif
                  </div>
 

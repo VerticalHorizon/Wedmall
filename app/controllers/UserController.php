@@ -47,6 +47,7 @@ class UserController extends BaseController {
 
         if ( $user->id )
         {
+            $user->attachRole( Role::where('name', 'user')->first() );
             $notice = Lang::get('confide::confide.alerts.account_created') . ' ' . Lang::get('confide::confide.alerts.instructions_sent'); 
                     
             // Redirect with success message, You may replace "Lang::get(..." for your custom message.
@@ -109,6 +110,7 @@ class UserController extends BaseController {
      */
     public function do_login()
     {
+
         $input = array(
             'email'    => Input::get( 'email' ), // May be the username too
             'username' => Input::get( 'email' ), // so we have to pass both
@@ -146,10 +148,52 @@ class UserController extends BaseController {
                 $err_msg = Lang::get('confide::confide.alerts.wrong_credentials');
             }
 
-                        return Redirect::action('UserController@login')
-                            ->withInput(Input::except('password'))
+            return Redirect::action('UserController@login')
+                ->withInput(Input::except('password'))
                 ->with( 'error', $err_msg );
         }
+    }
+
+    /**
+     * Attempt to do social login
+     *
+     */
+    public function do_login_social()
+    {
+        $user = [];
+        if (Input::get('token'))
+        {
+            $compliance = [
+                'email' => 'email',
+                'photo_big' => 'avatar',
+                'first_name' => 'first_name',
+                'last_name' => 'second_name',
+              //  'bdate' => 'birth_date',
+                'network' => 'provider',
+                'identity' => 'profile',
+            ];
+            $s = file_get_contents('http://ulogin.ru/token.php?token='.Input::get('token').'&host='.Request::server('HTTP_HOST'));
+            $fields = json_decode($s, true);
+
+            $user = User::firstOrNew(['profile' => $fields['identity']]);
+            if(!isset($user->id))
+            {
+                foreach ($compliance as $key => $value)
+                {
+                    !isset($fields[$key]) ?: $user->$value = $fields[$key];
+                }
+
+                $user->password = $user->password_confirmation = self::generateRandomString();
+                $user->username = Slug::make($user->first_name).'_'.Slug::make($user->second_name);
+                $user->confirmed = 1;
+                $user->save();
+                $user = User::where('profile', $user->profile)->first();
+                $user->attachRole( Role::where('name', 'user')->first() );
+            }
+            Auth::login($user);
+
+        }
+        return Response::json($user);
     }
 
     /**
@@ -278,5 +322,15 @@ class UserController extends BaseController {
     public function portfolio()
     {
         return View::make('user.portfolio');
+    }
+
+
+    public static function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, strlen($characters) - 1)];
+        }
+        return $randomString;
     }
 }

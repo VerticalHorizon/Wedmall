@@ -14,18 +14,21 @@ class ConfideSetupUsersTable extends Migration {
         Schema::create('users', function($table)
         {
             $table->increments('id');
-            $table->string('email');
-            $table->string('password');
             $table->string('confirmation_code');
             $table->boolean('confirmed')->default(false);
             $table->string('remember_token');
+            $table->string('password');
+                                                                                                # uLogin equivalents:
+            $table->string('email');
+            $table->string('username');                                                         # nickname
+            $table->string('avatar');                                                           # photo_big
 
-            $table->string('username');
-            $table->string('avatar');
+            $table->string('first_name');                                                       # first_name
+            $table->string('second_name');                                                      # last_name
+            $table->date('birth_date');                                                         # bdate
 
-            $table->string('first_name');
-            $table->string('second_name');
-            $table->date('birth_date');
+            $table->enum('provider', ['vkontakte', 'facebook', 'twitter', 'odnoklassniki']);    # network
+            $table->string('profile');                                                          # profile
             $table->date('wedding_date');
 
             

@@ -37,6 +37,7 @@ Route::group(['before' => 'csrf'], function()
 {
     Route::post('user/store',                  'UserController@store');                 # store new user
     Route::post('user/login',                  'UserController@do_login');              # take 'post' with credentials
+    Route::post('user/login_social',           'UserController@do_login_social');              # take 'post' with ulogin token
     Route::post('user/forgot_password',        'UserController@do_forgot_password');
     Route::post('user/reset_password',         'UserController@do_reset_password');
 
