@@ -13,8 +13,20 @@
 
 App::before(function($request)
 {
-	View::share('topics', $topics = Topic::with('children')->where('parent_id', NULL)->get());
-	View::share('categories', $categories = Category::with('children')->where('parent_id', NULL)->get());
+	if (!$topics = Cache::get('topics'))
+	{
+		$topics = Topic::with('children')->where('parent_id', NULL)->get();
+		Cache::put('topics', $topics, Carbon::now()->addMinutes(10));
+	}
+
+	if (!$categories = Cache::get('categories'))
+	{
+		$categories = Category::with('children')->where('parent_id', NULL)->get();
+		Cache::put('categories', $categories, Carbon::now()->addMinutes(10));
+	}
+
+	View::share('topics', $topics);
+	View::share('categories', $categories);
 });
 
 
