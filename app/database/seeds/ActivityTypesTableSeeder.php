@@ -9,11 +9,19 @@ class ActivityTypesTableSeeder extends Seeder {
         $types = [
             [
                 'title'      => 'Фотограф',
-                'alias'      => 'photographer',
+                'alias'      => Slug::make('Фотограф'),
             ],
             [
                 'title'      => 'Оператор',
-                'alias'      => 'operator',
+                'alias'      => Slug::make('Оператор'),
+            ],
+            [
+                'title'      => 'Студия декора',
+                'alias'      => Slug::make('Студия декора'),
+            ],
+            [
+                'title'      => 'Ресторан',
+                'alias'      => Slug::make('Ресторан'),
             ],
         ];
 
@@ -25,8 +33,14 @@ class ActivityTypesTableSeeder extends Seeder {
         $profy = Role::where('name', 'professional')->firstOrFail();
 
         $profy->activityTypes()->saveMany([
-            ActivityType::where('alias', 'photographer')->firstOrFail(),
-            ActivityType::where('alias', 'operator')->firstOrFail(),
+            ActivityType::where('alias', Slug::make('Фотограф'))->firstOrFail(),
+            ActivityType::where('alias', Slug::make('Оператор'))->firstOrFail(),
+        ]);
+
+        $profy = Role::where('name', 'organization')->firstOrFail();
+
+        $profy->activityTypes()->saveMany([
+            ActivityType::where('alias', Slug::make('Студия декора'))->firstOrFail(),
         ]);
     }
 

@@ -32,11 +32,8 @@
                 <label>Вид деятельности:</label>
             </div>
             <div>
-                <select name="">
-                    <option value="">Фотограф</option>
-                    <option value="">Студия не декора</option>
-                    <option value="">Студия передекора</option>
-                </select>
+                {{--*/ $activities = Confide::user()->roles[0]->activityTypes()->get()->toArray(); /*--}}
+                {{ Form::select('activity_type_id', array_combine(array_column($activities, 'id'), array_column($activities, 'title')), Confide::user()->activity_type_id ) }}
             </div>
         </div>
 @endif
@@ -116,10 +113,10 @@
                 <label>Контакты:</label>
             </div>
             <div>
-                <input type="text" class="contact" placeholder="В контакте"/>
-                <input type="text" class="facebook" placeholder="facebook"/>
-                <input type="text" placeholder="сайт"/>
-                <input type="text" placeholder="Телефон"/>
+                <input name="vk" value="{{{ Confide::user()->vk }}}" type="text" class="contact" placeholder="В контакте"/>
+                <input name="fb" value="{{{ Confide::user()->fb }}}" type="text" class="facebook" placeholder="facebook"/>
+                <input name="site" value="{{{ Confide::user()->site }}}" type="text" placeholder="сайт"/>
+                <input name="phone" value="{{{ Confide::user()->phone }}}" type="text" placeholder="Телефон"/>
             </div>
         </div>
 @endif
@@ -132,7 +129,7 @@
                 <div class="foto">
                     <img src="{{ Confide::user()->avatar }}" class="foto" style=" width: 66px; "/>
                 </div>
-                @elseif
+                @else
                 <div class="foto"></div>
                 @endif
                 <input type="button" value="Загрузить фото"/>

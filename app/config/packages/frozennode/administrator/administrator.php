@@ -53,9 +53,10 @@ return array(
 	 */
 	'menu' => array(
 		'slider',
-		'Categories'		=> ['categories', 'attributes', 'defaultvalues'],
+		trans('admin.categories')		=> ['categories', 'attributes', 'defaultvalues'],
 		'users',
-		'Settings'			=> ['settings.site'],
+		'pages',
+		//'Settings'			=> ['settings.site'],
 		),
 
 	/**
@@ -75,14 +76,14 @@ return array(
 	 *
 	 * @type bool
 	 */
-	'use_dashboard' => false,
+	'use_dashboard' => true,
 
 	/**
 	 * If you want to create a dashboard view, provide the view string here.
 	 *
 	 * @type string
 	 */
-	'dashboard_view' => '',
+	'dashboard_view' => 'dashboard',
 
 	/**
 	 * The menu item that should be used as the default landing page of the administrative section

@@ -45,6 +45,11 @@ class User extends ConfideUser {
         return $this->belongsTo('City');
     }
 
+    public function activityType()
+    {
+        return $this->belongsTo('ActivityType', 'activity_type_id');
+    }
+
     /**
      * Get the unique identifier for the user.
      *
@@ -123,6 +128,27 @@ class User extends ConfideUser {
         # temp:
         unset($this->country, $this->city);
     }
+
+/*    public function getVkAttribute($value)
+    {
+        return 'http://vk.com/'.$value;
+    }
+
+    public function getFbAttribute($value)
+    {
+        return 'https://www.facebook.com/'.$value;
+    }
+
+    public function setVkAttribute($value)
+    {
+        return 'http://vk.com/'.$value;
+    }
+
+    public function setFbAttribute($value)
+    {
+        return 'https://www.facebook.com/'.$value;
+    }*/
+
 
     public function getBirthDayAttribute()
     {

@@ -228,10 +228,10 @@
                <div class="top">
                    <div class="photo">
                         @if(Confide::user()->avatar)
-                            <img src="{{ Confide::user()->avatar }}" />
-                        @elseif
-                       <img src="" alt=""/>
-                       @endif
+                        <img src="{{ Confide::user()->avatar }}" />
+                        @else
+                        <img src="" alt=""/>
+                        @endif
                    </div>
                    <span>
                        {{{ Auth::user()->username }}}
@@ -298,35 +298,20 @@
         </div>
 
         <div class="about">
-
             <h2>
-
                 о нас
-
             </h2>
-
             <ul>
-
                 <li>
-
-                    <a href="#">О проекте</a>
-
+                    <a href="{{ URL::to('about') }}">О проекте</a>
                 </li>
-
                 <li>
-
-                    <a href="#">клиенты</a>
-
+                    <a href="{{ URL::to('partnership') }}">Партнерам</a>
                 </li>
-
                 <li>
-
-                    <a href="#">контакты</a>
-
+                    <a href="{{ URL::to('contacts') }}">Контакты</a>
                 </li>
-
             </ul>
-
         </div>
 
         <div class="partners">

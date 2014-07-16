@@ -6,14 +6,14 @@ return [
 	 *
 	 * @type string
 	 */
-	'title'		=> 'Attributes',
+	'title'		=> trans('admin.attributes'),
 
 	/**
 	 * The singular name of model
 	 *
 	 * @type string
 	 */
-	'single'	=> 'attribute',
+	'single'	=> trans('admin.attribute'),
 
 	/**
 	 * The class name of the Eloquent model that this config represents
@@ -33,18 +33,18 @@ return [
 	 */
 	'columns' => [
 		'title' => [
-			'title'		=> 'Title'
+			'title'		=> trans('admin.title'),
 		],
 		'alias' => [
-			'title'		=> 'Alias'
+			'title'		=> trans('admin.alias'),
 		],
 		'category' => [
-			'title'			=> 'Category',
+			'title'			=> trans('admin.category'),
 			'relationship'   => 'Category',
             'select'     => 'GROUP_CONCAT((:table).title ORDER BY (:table).title ASC SEPARATOR ", ")',
 		],
 		'default_titles' => [
-			'title'			=> 'Defaults',
+			'title'			=> trans('admin.defaults'),
 			/*'relationship'   => 'DefaultValue',
             'select'     => 'GROUP_CONCAT((:table).title ORDER BY (:table).title ASC SEPARATOR ", ")',*/
 		],
@@ -55,18 +55,18 @@ return [
 	 */
 	'filters' => [
 		'title' => [
-			'title' => 'Title',
+			'title' => trans('admin.title'),
 		],
 		'alias' => [
-			'title' => 'Alias',
+			'title' => trans('admin.alias'),
 		],
 		'updated_at' => [
-			'title' => 'Updated',
+			'title' => trans('admin.updated'),
 			'type' => 'date',
 			'date_format' => 'yy-mm-dd',
 		],
 		'category' => [
-			'title' => 'Category',
+			'title' => trans('admin.category'),
 			'type' => 'relationship',
 			'name_field' => 'title',
 		],
@@ -77,20 +77,20 @@ return [
 	 */
 	'edit_fields' => [
 		'title' => [
-			'title'			=> 'Title',
+			'title'			=> trans('admin.title'),
 			'type'			=> 'text',
 		],
 		'alias' => [
-			'title'			=> 'Alias',
+			'title'			=> trans('admin.alias'),
 			'type'			=> 'text',
 		],
 		'category' => [
-			'title'			=> 'Categories',
+			'title'			=> trans('admin.categories'),
 			'type'			=> 'relationship',
 			'name_field'	=> 'title',
 		],
 		'defaults' => [
-			'title'			=> 'Defaults',
+			'title'			=> trans('admin.defaults'),
 			'type'			=> 'relationship',
 			'name_field'	=> 'title',
 		],

@@ -18,6 +18,8 @@ class CreateTopicsTable extends Migration {
             $table->string('title');
             $table->string('alias');
             $table->text('description');
+            $table->text('meta_description');
+            $table->string('meta_keywords');
             $table->text('photos');     // photos in JSON
             $table->integer('popularity')->unsigned();
 

@@ -7,4 +7,9 @@ class ActivityType extends Eloquent {
     {
         return $this->belongsTo('Role');
     }
+
+    public function user()
+    {
+        return $this->hasMany('User', 'activity_type_id');
+    }
 }

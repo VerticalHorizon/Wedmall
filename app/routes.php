@@ -58,3 +58,13 @@ Route::get('user/logout', [         // relocated to Administrator config
     'as' => 'logout',
     'uses' => 'UserController@logout'
 ]);
+
+// other pages
+Route::get('{alias}', function($alias) {
+    $page = Page::where('alias', $alias)->first();
+
+    if ( is_null($page) )
+        App::abort(404);
+
+    return View::make('page', array('page' => $page));
+});

@@ -28,11 +28,15 @@ class ConfideSetupUsersTable extends Migration {
             $table->date('birth_date');                                                         # bdate
 
             $table->enum('provider', ['vkontakte', 'facebook', 'twitter', 'odnoklassniki']);    # network
-            $table->string('profile');                                                          # profile
-            $table->date('wedding_date');
+            $table->string('profile');                                                          # identity
 
-            
+            $table->date('wedding_date');
+            $table->integer('activity_type_id')->unsigned();
+            $table->string('vk');
+            $table->string('fb');
             $table->string('site');
+            $table->string('phone');
+
             $table->timestamps();
         });
 

@@ -6,14 +6,14 @@ return [
 	 *
 	 * @type string
 	 */
-	'title'		=> 'Default Values',
+	'title'		=> trans('admin.defaults'),
 
 	/**
 	 * The singular name of model
 	 *
 	 * @type string
 	 */
-	'single'	=> 'default value',
+	'single'	=> trans('admin.default'),
 
 	/**
 	 * The class name of the Eloquent model that this config represents
@@ -33,10 +33,10 @@ return [
 	 */
 	'columns' => [
 		'title' => [
-			'title'		=> 'Title'
+			'title'		=> trans('admin.title'),
 		],
 		'attribute' => [
-			'title'			=> 'Attributes',
+			'title'			=> trans('admin.attributes'),
 			'relationship'	=> 'Attribute',
 			'select'     => 'GROUP_CONCAT((:table).title ORDER BY (:table).title ASC SEPARATOR ", ")',
 		],
@@ -47,10 +47,10 @@ return [
 	 */
 	'filters' => [
 		'title' => [
-			'title' => 'Title',
+			'title' => trans('admin.title'),
 		],
 		'attribute' => [
-			'title' => 'Attributes',
+			'title' => trans('admin.attributes'),
 			'type' => 'relationship',
 			'name_field' => 'title',
 		],
@@ -58,11 +58,11 @@ return [
 
 	'edit_fields' => [
 		'title' => [
-			'title'			=> 'Title',
+			'title'			=> trans('admin.title'),
 			'type'			=> 'text',
 		],
 		'attribute' => [
-			'title'			=> 'Attributes',
+			'title'			=> trans('admin.attribute'),
 			'type'			=> 'relationship',
 			'name_field'	=> 'title',
 		],

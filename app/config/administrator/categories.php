@@ -6,14 +6,14 @@ return [
      *
      * @type string
      */
-    'title'     => 'Categories',
+    'title'     => trans('admin.categories'),
 
     /**
      * The singular name of model
      *
      * @type string
      */
-    'single'    => 'category',
+    'single'    => trans('admin.category'),
 
     /**
      * The class name of the Eloquent model that this config represents
@@ -33,49 +33,49 @@ return [
      */
     'columns' => [
         'title' => [
-            'title'     => 'Title'
+            'title'     => trans('admin.title')
         ],
         'description' => [
-            'title'     => 'Description'
+            'title'     => trans('admin.description')
         ],
         'photos' => [
-            'title'     => 'Photos'
+            'title'     => trans('admin.photos')
         ],
         'popularity' => [
-            'title'     => 'Popularity'
+            'title'     => trans('admin.popularity')
         ],
         'attribute' => [
-            'title'         => 'Attributes',
+            'title'         => trans('admin.attributes'),
             'relationship'   => 'Attribute',
             'select'     => 'GROUP_CONCAT((:table).title ORDER BY (:table).title ASC SEPARATOR ", ")',
         ],
         'parent_title' => [
-            'title'         => 'Parent',
+            'title'         => trans('admin.parent'),
         ],
     ],
 
     'edit_fields' => [
         'title' => [
-            'title'         => 'Title',
+            'title'         => trans('admin.title'),
             'type'          => 'text',
         ],
         'alias' => [
-            'title'         => 'Alias',
+            'title'         => trans('admin.alias'),
             'type'          => 'text',
         ],
         'description' => [
-            'title'         => 'Description',
+            'title'         => trans('admin.description'),
             'type'          => 'textarea',
             'limit'         => 300,
             'height'        => 130,
         ],
         'attribute' => [
-            'title'         => 'Attributes',
+            'title'         => trans('admin.attributes'),
             'type'          => 'relationship',
             'name_field'    => 'alias',
         ],
         'parent' => [
-            'title'         => 'Parent',
+            'title'         => trans('admin.parent'),
             'type'          => 'relationship',
             'name_field'    => 'title',
         ],

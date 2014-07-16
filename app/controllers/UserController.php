@@ -47,7 +47,6 @@ class UserController extends BaseController {
 
         if ( $user->id )
         {
-            $user->attachRole( Role::where('name', 'user')->first() );
             $notice = Lang::get('confide::confide.alerts.account_created') . ' ' . Lang::get('confide::confide.alerts.instructions_sent'); 
                     
             // Redirect with success message, You may replace "Lang::get(..." for your custom message.
@@ -82,7 +81,7 @@ class UserController extends BaseController {
 
         $error = $user->errors()->all(':message');
 
-        return Redirect::action('UserController@profile')
+        return Redirect::back()
             ->with( 'error', $error );
     }
 

@@ -46,9 +46,6 @@ return array(
 	 * @type array
 	 */
 	'rules' => array(
-		'site_name' => 'required|max:50',
-		'page_cache_lifetime' => 'required|integer',
-		'logo' => 'required',
 	),
 
 	/**

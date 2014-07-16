@@ -6,14 +6,14 @@ return [
 	 *
 	 * @type string
 	 */
-	'title'		=> 'Slider',
+	'title'		=> trans('admin.slider'),
 
 	/**
 	 * The singular name of model
 	 *
 	 * @type string
 	 */
-	'single'	=> 'slide',
+	'single'	=> trans('admin.slide'),
 
 	/**
 	 * The class name of the Eloquent model that this config represents
@@ -34,15 +34,15 @@ return [
 	 */
 	'columns' => [
 		'description' => [
-			'title'		=> 'Description'
+			'title'		=> trans('admin.description'),
 		],
 		'photo' => [
-			'title'		=> 'Photo',
+			'title'		=> trans('admin.photo'),
 			'output' => '<img src="/uploads/slides/detail/(:value)" height="100" />',
 			'sortable' => false,
 		],
 		'link' => [
-			'title'		=> 'Link',
+			'title'		=> trans('admin.link'),
 			'output' => '<a href="(:value)" target="_blank">(:value)</a>',
 			'sortable' => false,
 		],
@@ -50,17 +50,17 @@ return [
 
 	'edit_fields' => [
 		'description' => [
-			'title'			=> 'Description',
+			'title'			=> trans('admin.description'),
 			'type'			=> 'textarea',
 			'limit'			=> 300,
 			'height'		=> 130,
 		],
 		'link' => [
-			'title'			=> 'Link',
+			'title'			=> trans('admin.link'),
 			'type'			=> 'text',
 		],
 		'photo' => [
-			'title'			=> 'Photo',
+			'title'			=> trans('admin.photo'),
 			'type'			=> 'image',
 			'naming'		=> 'random',
 			'location'		=> public_path().'/uploads/slides/originals/',

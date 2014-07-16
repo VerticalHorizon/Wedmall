@@ -12,17 +12,21 @@ class AttributesSeeder extends Seeder {
                 DB::table('attributes')->delete();
 
                 $attributes = [
-                        ['alias' => 'foot_size', 'title' => 'Foot Size'],
-                        ['alias' => 'head_size', 'title' => 'Head Size'],
-                        ['alias' => 'arm_size', 'title' => 'Arm Size'],
+                        ['title' => 'Максимальная нагрузка', 'alias' => Slug::make('Максимальная нагрузка')],
+                        ['title' => 'Материал каркаса', 'alias' => Slug::make('Материал каркаса')],
+                        ['title' => 'Материал обивки', 'alias' => Slug::make('Материал обивки')],
+                        ['title' => 'Элементы конструкции', 'alias' => Slug::make('Элементы конструкции')],
+                        ['title' => 'Высота', 'alias' => Slug::make('Высота')],
                 ];
 
                 DB::table('attributes')->insert($attributes);
 
                 $category = Category::findOrFail(1);
-                $category->attribute()->attach( Attribute::where('alias', 'foot_size')->firstOrFail() );
-                $category->attribute()->attach( Attribute::where('alias', 'head_size')->firstOrFail() );
-                //$category2 = Category::findOrFail(2);
-                $category->attribute()->attach( Attribute::where('alias', 'arm_size')->firstOrFail() );
+                $category->attribute()->attach( Attribute::where('alias', Slug::make('Максимальная нагрузка'))->firstOrFail() );
+                $category->attribute()->attach( Attribute::where('alias', Slug::make('Материал каркаса'))->firstOrFail() );
+                $category->attribute()->attach( Attribute::where('alias', Slug::make('Материал обивки'))->firstOrFail() );
+                $category2 = Category::findOrFail(2);
+                $category->attribute()->attach( Attribute::where('alias', Slug::make('Элементы конструкции'))->firstOrFail() );
+                $category->attribute()->attach( Attribute::where('alias', Slug::make('Высота'))->firstOrFail() );
         }
 }

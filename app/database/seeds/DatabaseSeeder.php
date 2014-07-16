@@ -39,6 +39,8 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('ArticlesTableSeeder');
 
+		$this->call('PagesTableSeeder');
+
 		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 	}
 

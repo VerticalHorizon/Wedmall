@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateActivityTypesTable extends Migration {
+class CreatePagesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,14 @@ class CreateActivityTypesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('activity_types', function(Blueprint $table)
+		Schema::create('pages', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('title');
-			$table->string('alias');
-			$table->integer('role_id')->unsigned();
+            $table->string('title');
+            $table->string('alias');
+            $table->text('content');
+            $table->text('meta_description');
+            $table->string('meta_keywords');
 			$table->timestamps();
 		});
 	}
@@ -30,7 +32,7 @@ class CreateActivityTypesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('activity_types');
+		Schema::drop('pages');
 	}
 
 }
