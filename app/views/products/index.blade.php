@@ -100,7 +100,8 @@
         {{ Form::close() }}
     </div>
 
-    <div class="content articles catalog"><!-- Fucking white space! -->{{-- Breadcrumbs::renderIfExists('category', $current_category) --}}
+    <div class="content articles catalog">
+        {{ Breadcrumbs::renderIfExists('category', $current_category) }}
         <h1>
             {{{ $current_category->title or trans('labels.products') }}}
         </h1>

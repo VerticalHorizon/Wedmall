@@ -48,15 +48,7 @@
     @include('products.search')
 
 
-    <div class="breadcrumbs">
-
-        <a href="#">Главная</a>
-
-        <a href="#">Платья на свадьбу</a>
-
-        <a href="#">Все о свадебных платьях</a>
-
-    </div>
+    {{ Breadcrumbs::renderIfExists('products', $product) }}
 
     <h1 class="product">
 

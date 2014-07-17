@@ -1,6 +1,7 @@
 <?php
 
 return [
+	'home'					=> 'Главная',
 	'login'					=> 'Вход',
 	'logout'				=> 'Выход',
 	'profile'				=> 'Профиль',

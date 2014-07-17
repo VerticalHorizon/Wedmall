@@ -1,6 +1,6 @@
 <?php
 Breadcrumbs::register('home', function($breadcrumbs) {
-    $breadcrumbs->push('Home', route('home'));
+    $breadcrumbs->push(Lang::get('labels.home'), route('home'));
 });
 
 Breadcrumbs::register('category', function($breadcrumbs, $category) {
@@ -12,7 +12,7 @@ Breadcrumbs::register('category', function($breadcrumbs, $category) {
     $breadcrumbs->push($category->title, route('category', $category->alias));
 });
 
-Breadcrumbs::register('page', function($breadcrumbs, $page) {
-    $breadcrumbs->parent('category', $page->category);
-    $breadcrumbs->push($page->title, route('page', $page->id));
+Breadcrumbs::register('products', function($breadcrumbs, $product) {
+    $breadcrumbs->parent('category', $product->category);
+    $breadcrumbs->push($product->title, url($product->alias));
 });

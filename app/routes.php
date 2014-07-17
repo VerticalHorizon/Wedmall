@@ -22,7 +22,10 @@ Route::get('articles/{alias?}/{subalias?}', 'ArticlesController@index');
 Route::resource('articles', 'ArticlesController');
 
 Route::resource('products', 'ProductsController');
-Route::get('category/{alias}', 'ProductsController@index');
+Route::get('category/{alias}', [
+    'as' => 'category',
+    'uses' => 'ProductsController@index',
+]);
 
 
 // Confide routes

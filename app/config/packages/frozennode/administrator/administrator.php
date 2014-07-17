@@ -56,7 +56,7 @@ return array(
 		trans('admin.categories')		=> ['categories', 'attributes', 'defaultvalues'],
 		'users',
 		'pages',
-		//'Settings'			=> ['settings.site'],
+		'settings.site',
 		),
 
 	/**

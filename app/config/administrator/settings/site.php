@@ -11,7 +11,7 @@ return array(
 	 *
 	 * @type string
 	 */
-	'title' => 'Site Settings',
+	'title' => trans('admin.settings'),
 
 	/**
 	 * The edit fields array
@@ -19,24 +19,19 @@ return array(
 	 * @type array
 	 */
 	'edit_fields' => array(
-		'site_name' => array(
-			'title' => 'Site Name',
-			'type' => 'text',
-			'limit' => 50,
+		'popular_sections_count' => array(
+			'title' => trans('admin.popular_sections_count'),
+			'type' => 'enum',
+		    'options' => [0 => '0', 3 => '3', 6 => '6'],
+		),
+		'popular_products_count' => array(
+			'title' => trans('admin.popular_products_count'),
+			'type' => 'enum',
+		    'options' => [0 => '0', 3 => '3', 6 => '6'],
 		),
 		'page_cache_lifetime' => array(
 			'title' => 'Page Cache Lifetime (in minutes)',
 			'type' => 'number',
-		),
-		'logo' => array(
-			'title' => 'Image (200 x 150)',
-			'type' => 'image',
-			'naming' => 'random',
-			'location' => public_path(),
-			'size_limit' => 2,
-			'sizes' => array(
-		 		array(200, 150, 'crop', public_path() . '/resize/', 100),
-		 	)
 		),
 	),
 
@@ -58,7 +53,7 @@ return array(
 	 */
 	'before_save' => function(&$data)
 	{
-		$data['site_name'] = $data['site_name'] . ' - The Blurst Site Ever';
+		//
 	},
 
 	/**
