@@ -6,7 +6,7 @@
                         <ul>
                             @foreach ($category->children as $subcategory)
                                 <li>
-                                    <a href="{{ URL::to('category/'.$subcategory->alias) }}"{{ Request::is('category/'.$subcategory->alias) ? ' class="active"' : '' }} data-name="{{ $subcategory->alias }}">{{{ $subcategory->title }}}</a>
+                                    <a href="{{ URL::to('category/'.$category->alias.'/'.$subcategory->alias) }}"{{ Request::is('category/'.$subcategory->alias) ? ' class="active"' : '' }} data-name="{{ $subcategory->alias }}">{{{ $subcategory->title }}}</a>
                                 </li>
                             @endforeach
                         </ul>

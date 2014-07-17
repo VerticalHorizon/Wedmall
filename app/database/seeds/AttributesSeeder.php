@@ -25,7 +25,7 @@ class AttributesSeeder extends Seeder {
                 $category->attribute()->attach( Attribute::where('alias', Slug::make('Максимальная нагрузка'))->firstOrFail() );
                 $category->attribute()->attach( Attribute::where('alias', Slug::make('Материал каркаса'))->firstOrFail() );
                 $category->attribute()->attach( Attribute::where('alias', Slug::make('Материал обивки'))->firstOrFail() );
-                $category2 = Category::findOrFail(2);
+                $category = Category::findOrFail(2);
                 $category->attribute()->attach( Attribute::where('alias', Slug::make('Элементы конструкции'))->firstOrFail() );
                 $category->attribute()->attach( Attribute::where('alias', Slug::make('Высота'))->firstOrFail() );
         }

@@ -8,9 +8,9 @@ class ProductsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($alias = NULL, $subalias = NULL)
 	{
-		$category = Route::input('alias');
+		$category = $subalias ? $subalias : $alias;
 
 		$products = Product::search(['category' => $category]);		# ->get() already called in model
 
