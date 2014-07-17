@@ -36,6 +36,10 @@ class DefaultValuesTableSeeder extends Seeder {
         $attribute->defaults()->attach( DefaultValue::findOrFail(2) );
         $attribute->defaults()->attach( DefaultValue::findOrFail(3) );
         $attribute->defaults()->attach( DefaultValue::findOrFail(4) );
+
+        $attribute = Attribute::findOrFail(5);
+        $attribute->defaults()->attach( DefaultValue::findOrFail(5) );
+        $attribute->defaults()->attach( DefaultValue::findOrFail(6) );
 	}
 
 }

@@ -48,6 +48,12 @@ class Product extends Ardent {
 
         extract($arguments, EXTR_OVERWRITE);
 
+        //DB::table($this->table)
+        $q = self::select('products.*')
+        ->groupBy('products.id')
+        ->get();
+        //dd($q);
+
         if($color)
         {
             $query
@@ -88,7 +94,7 @@ class Product extends Ardent {
                       if (is_array($value))
                       {   
                           $i ? $query->orWhere('attributes.alias', $key) : $query->where('attributes.alias', $key);
-                          $query->whereIn('param_value', array_keys($value));
+                          $query->whereIn('values.param_value', array_keys($value));
                           $i++;
                       }
                   }
@@ -125,7 +131,7 @@ class Product extends Ardent {
         })
         ->select('products.*')
         ->groupBy('products.id');
-        
+
         return $query->get()->toArray();
     }
 
